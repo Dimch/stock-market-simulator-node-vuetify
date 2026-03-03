@@ -1,0 +1,235 @@
+html {
+  .bg-success,
+  .bg-info,
+  .bg-warning {
+    color: white !important;
+  }
+}
+
+.v-row + .v-row {
+  margin-top: 0px;
+}
+
+.v-divider {
+  opacity: 1;
+  border-color: rgb(var(--v-theme-borderLight));
+}
+
+.v-table > .v-table__wrapper > table > thead > tr > th {
+  color: inherit;
+}
+
+.link-hover {
+  text-decoration: unset;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.v-selection-control {
+  flex: unset;
+}
+
+.switchRight {
+  .v-input__control {
+    justify-content: flex-end;
+  }
+}
+
+.customizer-btn:hover .icon > svg {
+  animation: progress-circular-rotate 1.4s linear infinite;
+  transform-origin: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.no-spacer {
+  .v-list-item__spacer {
+    display: none !important;
+  }
+}
+
+.payment-method {
+  --v-border-opacity: 1;
+}
+
+@keyframes progress-circular-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+header {
+  &.v-toolbar--border {
+    border-color: rgb(var(--v-theme-borderLight));
+  }
+}
+
+.v-toolbar {
+  &.v-app-bar {
+    border-bottom: 1px solid rgba(var(--v-theme-borderLight), 0.8);
+  }
+}
+
+.v-sheet--border {
+  border: 1px solid rgba(var(--v-theme-borderLight), 0.8);
+}
+
+.timeline-icon-circle {
+  &.custom-timeline {
+    .v-timeline-divider__inner-dot {
+      border-radius: 100%;
+    }
+  }
+}
+
+.list-content {
+  .v-list-item__content {
+    min-width: unset;
+  }
+}
+
+// apexchart css
+.apexcharts-canvas {
+  .apexcharts-tooltip-rangebar {
+    padding: 0px 8px 5px;
+  }
+  .apexcharts-tooltip-title {
+    margin-bottom: 0;
+  }
+  .apexcharts-tooltip-marker {
+    margin-top: -9px;
+  }
+  .apexcharts-tooltip-series-group {
+    &.apexcharts-active,
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+  .apexcharts-menu {
+    .apexcharts-menu-item {
+      &:hover {
+        background: rgb(var(--v-theme-gray100));
+      }
+    }
+  }
+}
+
+// table css
+.bordered-table {
+  .v-table__wrapper {
+    > table {
+      > thead {
+        > tr {
+          > th {
+            border-bottom: 1px solid rgb(var(--v-theme-borderLight));
+          }
+        }
+      }
+      > tbody {
+        > tr {
+          &:not(:last-child) {
+            > td {
+              border-bottom: 1px solid rgb(var(--v-theme-borderLight));
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.v-table--fixed-header {
+  &.bordered-table {
+    .v-table__wrapper {
+      > table {
+        > thead {
+          > tr {
+            > th {
+              border-bottom: 1px solid rgb(var(--v-theme-borderLight)) !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.v-table {
+  &.v-table--hover {
+    > .v-table__wrapper {
+      > table {
+        > tbody {
+          > tr {
+            &:hover {
+              td {
+                background: rgb(var(--v-theme-gray100));
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// accordion page css
+.v-expansion-panel {
+  border: 1px solid rgb(var(--v-theme-borderLight));
+  &:not(:first-child) {
+    margin-top: -1px;
+  }
+  .v-expansion-panel-text__wrapper {
+    border-top: 1px solid rgb(var(--v-theme-borderLight));
+    padding: 16px 24px;
+  }
+  &.v-expansion-panel--active {
+    .v-expansion-panel-title--active {
+      .v-expansion-panel-title__overlay {
+        background-color: rgb(var(--v-theme-gray100));
+      }
+    }
+  }
+}
+.v-expansion-panel--active {
+  > .v-expansion-panel-title {
+    min-height: unset;
+  }
+}
+.v-expansion-panel--disabled .v-expansion-panel-title {
+  color: rgba(var(--v-theme-on-surface), 0.15);
+}
+
+.apexcharts-canvas,
+.vue-flow,
+.vue3-marquee {
+  [dir='rtl'] & {
+    direction: ltr;
+  }
+}
+
+.blur-logo {
+  position: absolute;
+  filter: blur(18px);
+  bottom: 0;
+  transform: inherit;
+  @media (max-width: 600px) {
+    filter: blur(30px);
+  }
+  [dir='rtl'] & {
+    left: 0;
+  }
+}
+
+// snackbar css
+.v-snackbar__wrapper {
+  &.v-snackbar--variant-tonal {
+    background: rgb(var(--v-theme-surface));
+  }
+}
+
+.v-tooltip {
+  > .v-overlay__content.smallTooltip {
+    padding: 2px 10px;
+  }
+}
