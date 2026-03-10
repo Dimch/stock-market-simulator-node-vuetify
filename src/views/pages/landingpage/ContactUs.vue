@@ -1,8 +1,8 @@
 <script setup>
 import {ref} from 'vue';
-import Appbar from './Components/AppBarMenu.vue';
-import DarkFooter from './Components/DarkFooter.vue';
-import BannerInnerpage from './Components/BannerInnerpage.vue';
+import Appbar from './components/AppBarMenu.vue';
+import DarkFooter from './components/DarkFooter.vue';
+import BannerInnerpage from './components/BannerInnerpage.vue';
 
 const checked = ref(true);
 </script>

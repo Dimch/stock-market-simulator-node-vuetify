@@ -148,41 +148,4 @@ export default [
   //     }
   //   ]
   // },
-  // {divider: true},
-  // {header: 'Forms'},
-  // {
-  //   title: 'Plugins',
-  //   icon: CloudUploadOutlined,
-  //   to: '/forms/radio',
-  //   children: [
-  //     {
-  //       id: 'editor',
-  //       title: 'Editor',
-  //       to: '/forms/plugins/editor'
-  //     },
-  //     {
-  //       id: 'mask',
-  //       title: 'Mask',
-  //       to: '/forms/plugins/mask'
-  //     },
-  //     {
-  //       id: 'captchalogin',
-  //       title: 'Captcha',
-  //       to: '/captcha'
-  //     },
-  //     {
-  //       id: 'dropzone',
-  //       title: 'Dropzone',
-  //       to: '/forms/plugins/dropzone',
-  //       chip: 'new',
-  //       chipColor: 'primary',
-  //       chipVariant: 'tonal'
-  //     },
-  //     {
-  //       id: 'clipboard',
-  //       title: 'Clipboard',
-  //       to: '/forms/plugins/clipboard'
-  //     }
-  //   ]
-  // },
 ];
