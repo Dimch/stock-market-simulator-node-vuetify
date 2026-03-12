@@ -37,7 +37,7 @@ const drawer = ref(false);
         <!---right part -->
         <!-- ---------------------------------------------- -->
         <template v-if="mdAndUp">
-          <v-btn variant="text" to="/main/dashboard/default">Dashboard</v-btn>
+          <v-btn variant="text" to="/main/dashboards/security">Dashboard</v-btn>
           <v-btn variant="text" to="/components/buttons">Components</v-btn>
           <v-btn variant="text" href="">Documentation</v-btn>
         </template>
@@ -52,7 +52,7 @@ const drawer = ref(false);
 
   <v-navigation-drawer v-model="drawer" temporary location="top" style="height: 210px; position: fixed" floating v-if="!mdAndUp">
     <v-list color="primary">
-      <v-list-item to="/main/dashboard/default">
+      <v-list-item to="/main/dashboards/security">
         <template #prepend>
           <LineOutlined />
         </template>

@@ -5,18 +5,18 @@ const MainRoutes = {
     authStrategy: 'admin',
     loginRoute: '/login',
   },
-  redirect: '/main/dashboard/default',
+  redirect: '/main/dashboards/market',
   component: () => import('@/layouts/dashboard/DashboardLayout.vue'),
   children: [
     {
-      name: 'Default',
-      path: 'dashboard/default',
-      component: () => import('@/views/dashboards/default/DefaultDashboard.vue')
+      name: 'Security',
+      path: 'dashboards/security',
+      component: () => import('@/views/dashboards/security/SecurityDashboard.vue')
     },
     {
-      name: 'Analytics',
-      path: 'dashboard/analytics',
-      component: () => import('@/views/dashboards/analytics/AnalyticsDashboard.vue')
+      name: 'Market',
+      path: 'dashboards/market',
+      component: () => import('@/views/dashboards/market/MarketDashboard.vue')
     },
     {
       name: 'Starter',

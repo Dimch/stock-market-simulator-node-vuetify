@@ -18,14 +18,14 @@ const horizontalItems = [
         to: '#',
         children: [
           {
-            title: 'Default',
+            title: 'Security',
             icon: DashboardOutlined,
-            to: '/main/dashboard/default'
+            to: '/main/dashboards/security'
           },
           {
-            title: 'Analytics',
+            title: 'Market',
             icon: DesktopOutlined,
-            to: '/main/dashboard/analytics'
+            to: '/main/dashboards/market'
           }
         ]
       },

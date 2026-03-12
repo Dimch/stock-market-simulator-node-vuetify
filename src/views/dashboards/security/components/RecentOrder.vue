@@ -92,7 +92,7 @@ const projects = shallowRef([
       <tbody>
         <tr v-for="item in projects" :key="item.name">
           <td class="py-3">
-            <router-link to="/main/dashboard/default" class="text-secondary link-hover">{{ item.number }}</router-link>
+            <router-link to="/main/dashboards/security" class="text-secondary link-hover">{{ item.number }}</router-link>
           </td>
           <td class="py-3">{{ item.name }}</td>
           <td class="py-3 text-end" style="min-width: 100px">{{ item.order }}</td>

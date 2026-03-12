@@ -11,7 +11,7 @@
         <p class="text-h6 text-lightText constructionContent">
           Hey! Please check out this site later. We are doing some maintenance on it right now.
         </p>
-        <v-btn variant="flat" color="primary" to="/main/dashboard/analytics">Back To Home</v-btn>
+        <v-btn variant="flat" color="primary" to="/main/dashboards/market">Back To Home</v-btn>
       </div>
     </v-col>
   </v-row>

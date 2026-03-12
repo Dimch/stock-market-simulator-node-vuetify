@@ -1,6 +1,5 @@
 <script setup>
 // imported components
-import RateLimitCharts from '@/views/widgets/chart/RateLimitCharts.vue';
 import StockPriceRange from '../../widgets/chart/StockPriceRange.vue';
 import WelcomeBanner from './components/WelcomeBanner.vue';
 import PageView from './components/PageView.vue';
@@ -13,29 +12,18 @@ import SkillCard from '../../widgets/statistics/components/SkillCard.vue';
 
 <template>
   <v-row class="mt-0">
-    <!-- column 1 -->
     <v-col cols="12" class="pt-2">
       <WelcomeBanner />
     </v-col>
-
-    <!-- column 2 -->
-    <v-col cols="12" class="pb-0">
-      <RateLimitCharts />
-    </v-col>
-
-    <!-- column-3 -->
     <v-col cols="12" md="12">
       <StockPriceRange ticker="ZVEX" />
     </v-col>
-    
     <v-col cols="12" md="4">
       <PageView />
     </v-col>
-    
     <v-col cols="12" md="8">
       <AnalyticsReport />
     </v-col>
-
     <v-col cols="12" md="8">
       <TaskCard />
     </v-col>

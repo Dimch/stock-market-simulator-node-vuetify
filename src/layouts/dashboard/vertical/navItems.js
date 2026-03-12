@@ -8,16 +8,16 @@ import {
 export default [
   {header: 'Dashboard'},
   {
-    id: 'default',
-    title: 'Default',
+    id: 'security',
+    title: 'Security',
     icon: DashboardOutlined,
-    to: '/main/dashboard/default',
+    to: '/main/dashboards/security',
   },
   {
-    id: 'analytics',
-    title: 'Analytics',
+    id: 'market',
+    title: 'Market',
     icon: StockOutlined,
-    to: '/main/dashboard/analytics'
+    to: '/main/dashboards/market',
   },
   // {
   //   title: 'Components',

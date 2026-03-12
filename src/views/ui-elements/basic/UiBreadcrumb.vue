@@ -18,7 +18,7 @@ const items = ref([
   {
     title: 'Dashboard',
     disabled: false,
-    href: '/main/dashboard/default'
+    href: '/main/dashboards/security'
   },
   {
     title: 'Basic',
