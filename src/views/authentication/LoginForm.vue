@@ -12,18 +12,18 @@ const password = ref('password');
 const username = ref('admin@example.com');
 // Password validation rules
 const passwordRules = ref([
-  (v) => !!v || 'Password is required',
-  (v) => v === v.trim() || 'Password cannot start or end with spaces',
-  (v) => v.length <= 10 || 'Password must be less than 10 characters'
+  v => !!v || 'Password is required',
+  v => v === v.trim() || 'Password cannot start or end with spaces',
+  v => v.length <= 10 || 'Password must be less than 10 characters',
 ]);
 // Email validation rules
 const emailRules = ref([
-  (v) => !!v.trim() || 'E-mail is required',
-  (v) => {
+  v => !!v.trim() || 'E-mail is required',
+  v => {
     const trimmedEmail = v.trim();
     return !/\s/.test(trimmedEmail) || 'E-mail must not contain spaces';
   },
-  (v) => /.+@.+\..+/.test(v.trim()) || 'E-mail must be valid'
+  v => /.+@.+\..+/.test(v.trim()) || 'E-mail must be valid',
 ]);
 
 const validate = async (values, {setErrors}) => {
@@ -35,7 +35,7 @@ const validate = async (values, {setErrors}) => {
 
   const authStore = useAdminAuthStore();
   return authStore.login(trimmedUsername, password.value).catch((error) => setErrors({apiError: error}));
-}
+};
 </script>
 
 <template>

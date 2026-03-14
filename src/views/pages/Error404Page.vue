@@ -12,7 +12,7 @@
         </div>
         <h1 class="text-md-h1 text-h2 mt-16">Page Not Found</h1>
         <p class="text-h6 text-lightText">The page you are looking was moved, removed, <br />renamed, or might never exist!</p>
-        <v-btn variant="flat" color="primary" class="mt-2" to="/main/dashboards/market"> Back To Home</v-btn>
+        <v-btn variant="flat" color="primary" class="mt-2" to="/console/admin/dashboards/market"> Back To Home</v-btn>
       </div>
     </v-col>
   </v-row>

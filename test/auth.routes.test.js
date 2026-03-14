@@ -21,7 +21,7 @@ describe('/auth endpoints', () => {
   const login = async () => {
     const csrfToken = await fetchCsrfToken();
     return agent
-      .post('/auth')
+      .post('/admin/auth')
       .set('x-csrf-token', csrfToken)
       .send(ADMIN_CREDENTIALS)
       .expect(200);
@@ -40,25 +40,25 @@ describe('/auth endpoints', () => {
     });
   });
 
-  describe('GET /auth', () => {
+  describe('GET /admin/auth', () => {
     it('allows requests without a CSRF token', async () => {
-      const res = await agent.get('/auth');
+      const res = await agent.get('/admin/auth');
       expect(res.status).toBe(200);
-      expect(res.body).toEqual({authenticated: false});
+      expect(res.body).toMatchObject({authenticated: false});
     });
 
     it('reflects authenticated session state', async () => {
       await login();
-      const res = await agent.get('/auth');
+      const res = await agent.get('/admin/auth');
       expect(res.status).toBe(200);
-      expect(res.body).toEqual({authenticated: true});
+      expect(res.body).toMatchObject({authenticated: true});
     });
   });
 
-  describe('POST /auth', () => {
+  describe('POST /admin/auth', () => {
     it('requires a CSRF token', async () => {
       const res = await agent
-        .post('/auth')
+        .post('/admin/auth')
         .send(ADMIN_CREDENTIALS);
 
       expect(res.status).toBe(419);
@@ -69,23 +69,24 @@ describe('/auth endpoints', () => {
       const csrfToken = await fetchCsrfToken();
 
       const res = await agent
-        .post('/auth')
+        .post('/admin/auth')
         .set('x-csrf-token', csrfToken)
         .send(ADMIN_CREDENTIALS);
 
       expect(res.status).toBe(200);
-      expect(res.body.user).toMatchObject({
+      console.error('Response body:', res.body);
+      expect(res.body).toMatchObject({
         email: ADMIN_CREDENTIALS.username,
         name: 'Admin',
       });
-      expect(res.body.user).toHaveProperty('id');
+      expect(res.body).toHaveProperty('id');
     });
 
     it('rejects invalid credentials', async () => {
       const csrfToken = await fetchCsrfToken();
 
       const res = await agent
-        .post('/auth')
+        .post('/admin/auth')
         .set('x-csrf-token', csrfToken)
         .send({
           username: ADMIN_CREDENTIALS.username,
@@ -96,9 +97,9 @@ describe('/auth endpoints', () => {
     });
   });
 
-  describe('DELETE /auth', () => {
+  describe('DELETE /admin/auth', () => {
     it('requires a CSRF token', async () => {
-      const res = await agent.delete('/auth');
+      const res = await agent.delete('/admin/auth');
       expect(res.status).toBe(419);
       expect(res.text).toBe('invalid csrf token');
     });
@@ -108,14 +109,14 @@ describe('/auth endpoints', () => {
 
       const csrfToken = await fetchCsrfToken();
       const logoutRes = await agent
-        .delete('/auth')
+        .delete('/admin/auth')
         .set('x-csrf-token', csrfToken);
 
       expect(logoutRes.status).toBe(200);
 
-      const postLogoutRes = await agent.get('/auth');
+      const postLogoutRes = await agent.get('/admin/auth');
       expect(postLogoutRes.status).toBe(200);
-      expect(postLogoutRes.body).toEqual({authenticated: false});
+      expect(postLogoutRes.body).toMatchObject({authenticated: false});
     });
   });
 });

@@ -22,7 +22,7 @@ import {EyeOutlined} from '@ant-design/icons-vue';
             </p>
             <div data-aos="fade-up" class="d-flex flex-wrap ga-2 justify-md-start justify-center" data-aos-duration="1000">
               <v-btn color="primary" size="large" variant="outlined" to="/components/buttons">Explore components</v-btn>
-              <v-btn color="primary" size="large" to="/main/dashboards/security">
+              <v-btn color="primary" size="large" to="/console/admin/dashboards/security">
                 <template #prepend>
                   <EyeOutlined />
                 </template>

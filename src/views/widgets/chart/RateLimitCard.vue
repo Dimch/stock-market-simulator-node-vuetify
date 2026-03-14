@@ -3,7 +3,7 @@ import {computed} from 'vue';
 import {use} from 'echarts/core';
 import {SVGRenderer} from 'echarts/renderers';
 import {BarChart} from 'echarts/charts'
-import {GridComponent} from 'echarts/components';
+import {GridComponent, TooltipComponent} from 'echarts/components';
 import VChart from 'vue-echarts';
 import {flow, identity, map, size, times} from 'lodash/fp';
 import {hexColor} from '@/helper';
@@ -24,7 +24,7 @@ const props = defineProps({
   height: {type: String, default: '130px'},
 });
 
-use([SVGRenderer, GridComponent, BarChart]);
+use([SVGRenderer, GridComponent, TooltipComponent, BarChart]);
 
 const humanizeDuration = computed(() => {
   const {size, unit} = props.rateLimit;

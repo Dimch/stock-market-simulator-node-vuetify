@@ -13,45 +13,28 @@ const horizontalItems = [
     to: '#',
     children: [
       {
-        title: 'Dashboard',
+        title: 'Security',
         icon: DashboardOutlined,
-        to: '#',
-        children: [
-          {
-            title: 'Security',
-            icon: DashboardOutlined,
-            to: '/main/dashboards/security'
-          },
-          {
-            title: 'Market',
-            icon: DesktopOutlined,
-            to: '/main/dashboards/market'
-          }
-        ]
+        to: '/console/admin/dashboards/security',
       },
-    ]
+      {
+        title: 'Market',
+        icon: DesktopOutlined,
+        to: '/console/admin/dashboards/market',
+      },
+    ],
   },
   {
-    title: 'Widgets',
+    title: 'More',
     icon: IdcardOutlined,
     to: '#',
     children: [
       {
         title: 'Statistics',
         icon: IdcardOutlined,
-        to: '/widget/statistics'
+        to: '/admin/statistics',
       },
-      {
-        title: 'Data',
-        icon: DatabaseOutlined,
-        to: '/widget/data'
-      },
-      {
-        title: 'Chart',
-        icon: LineChartOutlined,
-        to: '/widget/chart'
-      }
-    ]
+    ],
   },
 ];
 

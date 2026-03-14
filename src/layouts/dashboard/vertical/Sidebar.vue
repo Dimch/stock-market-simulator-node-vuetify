@@ -7,7 +7,7 @@ import NavGroup from './NavGroup.vue';
 import NavItem from './NavItem.vue';
 import NavCollapse from './NavCollapse.vue';
 import UserProfile from './UserProfile.vue';
-import Logo from '../shared/LogoMain.vue';
+import Logo from '../shared/Logo.vue';
 
 const customizer = useCustomizerStore();
 const sidebarMenu = shallowRef(navItems);

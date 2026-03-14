@@ -1,7 +1,7 @@
 // Composables
 import {createRouter, createWebHistory} from 'vue-router';
 import PublicRoutes from './PublicRoutes';
-import MainRoutes from './MainRoutes';
+import AdminRoutes from './AdminRoutes';
 import CustomerRoutes from './CustomerRoutes';
 import {useAuthStore} from '@/stores/auth';
 import {useCsrfStore} from '@/stores/csrf';
@@ -15,7 +15,7 @@ const router = createRouter({
       component: () => import('@/views/pages/Error404Page.vue'),
     },
     PublicRoutes,
-    MainRoutes,
+    AdminRoutes,
     CustomerRoutes,
   ],
 });

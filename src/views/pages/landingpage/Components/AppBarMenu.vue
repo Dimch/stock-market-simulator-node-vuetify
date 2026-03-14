@@ -3,13 +3,13 @@ import {ref} from 'vue';
 // icons
 import {MenuOutlined, LineOutlined} from '@ant-design/icons-vue';
 
-import Logo from '@/layouts/dashboard/shared/LogoLight.vue';
+import Logo from '@/layouts/dashboard/shared/Logo.vue';
 import {useDisplay} from 'vuetify';
 import {useCustomizerStore} from '@/stores/customizer';
 
 const customizer = useCustomizerStore();
 
-const appVersion = import.meta.env.VITE_APP_VERSION;
+const appVersion = '1.0';
 
 const {mdAndUp} = useDisplay();
 const drawer = ref(false);
@@ -37,7 +37,7 @@ const drawer = ref(false);
         <!---right part -->
         <!-- ---------------------------------------------- -->
         <template v-if="mdAndUp">
-          <v-btn variant="text" to="/main/dashboards/security">Dashboard</v-btn>
+          <v-btn variant="text" to="/console/admin/dashboards/security">Dashboard</v-btn>
           <v-btn variant="text" to="/components/buttons">Components</v-btn>
           <v-btn variant="text" href="">Documentation</v-btn>
         </template>
@@ -52,7 +52,7 @@ const drawer = ref(false);
 
   <v-navigation-drawer v-model="drawer" temporary location="top" style="height: 210px; position: fixed" floating v-if="!mdAndUp">
     <v-list color="primary">
-      <v-list-item to="/main/dashboards/security">
+      <v-list-item to="/console/admin/dashboards/security">
         <template #prepend>
           <LineOutlined />
         </template>

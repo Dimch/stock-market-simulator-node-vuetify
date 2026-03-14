@@ -4,7 +4,7 @@ import {useCustomizerStore} from '@/stores/customizer';
 // icons
 import {MenuFoldOutlined, WindowsOutlined, TranslationOutlined, SettingOutlined} from '@ant-design/icons-vue';
 // shared components
-import Logo from '../shared/LogoMain.vue';
+import Logo from '../shared/Logo.vue';
 import LanguageDD from '../shared/LanguageDD.vue';
 import NotificationDD from '../shared/NotificationDD.vue';
 import ProfileDD from '../shared/ProfileDD.vue';

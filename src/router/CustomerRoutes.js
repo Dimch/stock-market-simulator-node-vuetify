@@ -1,4 +1,4 @@
-const MainRoutes = {
+const CustomerRoutes = {
   path: '/trader',
   meta: {
     requiresAuth: true,
@@ -10,14 +10,14 @@ const MainRoutes = {
     {
       name: 'Trading Floor',
       path: 'floor',
-      component: () => import('@/views/dashboards/default/DefaultDashboard.vue')
+      component: () => import('@/views/pages/UnderConstruction.vue'),
     },
     {
       name: 'Portfolio',
       path: 'stocks',
-      component: () => import('@/views/dashboards/analytics/AnalyticsDashboard.vue')
+      component: () => import('@/views/pages/UnderConstruction.vue'),
     },
-  ]
+  ],
 };
 
-export default MainRoutes;
+export default CustomerRoutes;

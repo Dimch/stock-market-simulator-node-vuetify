@@ -9,7 +9,7 @@
         </div>
         <h1 class="text-md-h1 text-h2 mt-2 mb-1">Internal Server Error</h1>
         <p class="text-caption text-lightText">Server error 500. we fixing the problem. please try <br />again at a later stage.</p>
-        <v-btn variant="flat" color="primary" class="mt-4" to="/main/dashboards/market"> Back To Home</v-btn>
+        <v-btn variant="flat" color="primary" class="mt-4" to="/console/admin/dashboards/market"> Back To Home</v-btn>
       </div>
     </v-col>
   </v-row>

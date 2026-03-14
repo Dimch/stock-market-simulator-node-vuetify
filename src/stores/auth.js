@@ -6,7 +6,7 @@ const strategyConfig = {
   admin: {
     use: useAuthApi,
     loginPath: '/login',
-    redirectTo: '/main/dashboards/market',
+    redirectTo: '/console/admin/dashboards/market',
   },
   customer: {
     use: useStockAuthApi,
