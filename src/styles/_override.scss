@@ -11,6 +11,22 @@ a {
   text-decoration: none;
 }
 
+.bg-container {
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-construction-image-1 {
+  background-image: url("@/assets/images/maintenance/under-construction-1.jpg");
+}
+.bg-construction-image-2 {
+  background-image: url("@/assets/images/maintenance/under-construction-2.jpg");
+}
+.bg-construction-image-1-dark {
+  background-image: url("@/assets/images/maintenance/under-construction-1-dark.jpg");
+}
+
 .v-row + .v-row {
   margin-top: 0px;
 }
@@ -93,32 +109,6 @@ header {
 .list-content {
   .v-list-item__content {
     min-width: unset;
-  }
-}
-
-// apexchart css
-.apexcharts-canvas {
-  .apexcharts-tooltip-rangebar {
-    padding: 0px 8px 5px;
-  }
-  .apexcharts-tooltip-title {
-    margin-bottom: 0;
-  }
-  .apexcharts-tooltip-marker {
-    margin-top: -9px;
-  }
-  .apexcharts-tooltip-series-group {
-    &.apexcharts-active,
-    &:last-child {
-      padding-bottom: 0;
-    }
-  }
-  .apexcharts-menu {
-    .apexcharts-menu-item {
-      &:hover {
-        background: rgb(var(--v-theme-gray100));
-      }
-    }
   }
 }
 
@@ -205,7 +195,6 @@ header {
   color: rgba(var(--v-theme-on-surface), 0.15);
 }
 
-.apexcharts-canvas,
 .vue-flow,
 .vue3-marquee {
   [dir='rtl'] & {

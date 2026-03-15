@@ -12,7 +12,6 @@ import router from '@/router';
 import {PiniaColada} from '@pinia/colada';
 import DataTable from 'vue3-easy-data-table';
 import {PerfectScrollbarPlugin} from 'vue3-perfect-scrollbar';
-import VueApexCharts from 'vue3-apexcharts';
 import VueTablerIcons from 'vue-tabler-icons';
 import Vue3Marquee from 'vue3-marquee';
 import Antd from 'ant-design-vue';
@@ -42,5 +41,4 @@ export const registerPlugins = app => app
   .use(Vue3Marquee)
   .use(i18n)
   .directive('maska', vMaska)
-  .use(VueApexCharts)
   .use(vuetify);
