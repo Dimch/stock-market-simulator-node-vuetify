@@ -26,6 +26,60 @@ a {
 .bg-construction-image-1-dark {
   background-image: url("@/assets/images/maintenance/under-construction-1-dark.jpg");
 }
+.bg-login-image-1 {
+  background-image: url("@/assets/images/background/login-1.jpg");
+}
+.bg-login-image-1-dark {
+  background-image: url("@/assets/images/background/login-1-dark.jpg");
+}
+.bg-404-image-1 {
+  background-image: url("@/assets/images/maintenance/error-404-1.jpg");
+}
+.bg-404-image-1-dark {
+  background-image: url("@/assets/images/maintenance/error-404-1-dark.jpg");
+}
+.bg-landing-image-1 {
+  background-image: url("@/assets/images/landing/landing-1.jpg");
+}
+.bg-landing-image-1-dark {
+  background-image: url("@/assets/images/landing/landing-1-dark.jpg");
+}
+.bg-landing-image-2 {
+  background-image: url("@/assets/images/landing/landing-2.jpg");
+}
+.bg-landing-image-2-dark {
+  background-image: url("@/assets/images/landing/landing-2-dark.jpg");
+}
+.bg-landing-image-3 {
+  background-image: url("@/assets/images/landing/landing-3.jpg");
+}
+.bg-landing-image-3-dark {
+  background-image: url("@/assets/images/landing/landing-3-dark.jpg");
+}
+.bg-landing-image-4 {
+  background-image: url("@/assets/images/landing/landing-4.jpg");
+}
+
+.message-card {
+  padding: 2rem;
+  @media (min-width: 0px) {
+    max-width: 90%;
+  }
+  @media (min-width: 768px) {
+    max-width: 600px;
+  }
+  .content {
+    color: rgba(var(--v-theme-on-primary), 0.6);
+    width: 83%;
+    margin-inline: auto;
+    margin-bottom: 2.5rem;
+  }
+}
+
+
+.surfopac-8 {
+  background-color: rgba(var(--v-theme-surface), 0.8);
+}
 
 .v-row + .v-row {
   margin-top: 0px;
@@ -90,7 +144,8 @@ header {
 
 .v-toolbar {
   &.v-app-bar {
-    border-bottom: 1px solid rgba(var(--v-theme-borderLight), 0.8);
+    background-color: rgba(var(--v-theme-surface), 0.7);
+    border-bottom: 1px solid rgba(var(--v-theme-borderLight), 0.5);
   }
 }
 

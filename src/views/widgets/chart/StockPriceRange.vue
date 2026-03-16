@@ -23,7 +23,7 @@ import {CaretDownFilled, CaretUpFilled, DownloadOutlined} from '@ant-design/icon
 
 const chartOptions = computed(() => ({
   animation: false,
-  darkMode: theme.current.value.dark,
+  darkMode: theme.current.dark.value,
   grid: {
     left: 0,
     right: 0,

@@ -1,50 +1,26 @@
-<script setup></script>
+<script setup>
+import {useImageStore} from '@/stores/images';
+const {bg404Image: bgImageClass} = useImageStore();
+</script>
 
 <template>
-  <v-row no-gutters class="overflow-hidden bg-containerBg" style="min-height: 100vh">
+  <v-row no-gutters :class="['overflow-hidden', 'bg-container', bgImageClass]" style="min-height: 100vh">
     <v-col class="d-flex align-center justify-center">
-      <div class="text-center">
-        <div class="CardMediaWrapper">
-          <img src="@/assets/images/maintenance/Error404.png" alt="404" />
-          <div class="CardMediaBuild">
-            <img src="@/assets/images/maintenance/TwoCone.png" alt="grid" class="w-100" />
-          </div>
-        </div>
-        <h1 class="text-md-h1 text-h2 mt-16">Page Not Found</h1>
-        <p class="text-h6 text-lightText">The page you are looking was moved, removed, <br />renamed, or might never exist!</p>
-        <v-btn variant="flat" color="primary" class="mt-2" to="/console/admin/dashboards/market"> Back To Home</v-btn>
-      </div>
+      <v-card class="message-card surfopac-8 text-center elevation-6">
+        <h1 class="text-md-h1 text-h2 mt-9 mb-3">
+          404 page not found
+        </h1>
+        <p class="text-h6 content">
+          Oops! The page you are looking for does not exist. It might have been moved or deleted.
+          Please check the URL or return to the homepage.
+        </p>
+        <v-btn variant="flat" color="primary" to="/console/admin/dashboards/market">
+          Back
+        </v-btn>
+      </v-card>
     </v-col>
   </v-row>
 </template>
+
 <style lang="scss">
-.CardMediaWrapper {
-  max-width: 720px;
-  margin: 0 auto;
-  position: relative;
-  > img {
-    @media (min-width: 0px) {
-      width: 250px;
-      height: 130px;
-    }
-    @media (min-width: 768px) {
-      width: 590px;
-      height: 300px;
-    }
-  }
-}
-.CardMediaBuild {
-  position: absolute;
-  top: 60px;
-  @media (min-width: 0px) {
-    width: 130px;
-    height: 115px;
-    right: -14%;
-  }
-  @media (min-width: 768px) {
-    width: 390px;
-    height: 330px;
-    right: -60%;
-  }
-}
 </style>

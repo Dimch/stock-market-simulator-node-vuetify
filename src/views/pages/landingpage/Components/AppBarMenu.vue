@@ -5,9 +5,6 @@ import {MenuOutlined, LineOutlined} from '@ant-design/icons-vue';
 
 import Logo from '@/layouts/dashboard/shared/Logo.vue';
 import {useDisplay} from 'vuetify';
-import {useCustomizerStore} from '@/stores/customizer';
-
-const customizer = useCustomizerStore();
 
 const appVersion = '1.0';
 
@@ -16,14 +13,7 @@ const drawer = ref(false);
 </script>
 
 <template>
-  <v-app-bar
-    elevation="0"
-    flat
-    height="69"
-    class="border-bottom position-fixed"
-    :color="customizer.actTheme === 'dark' ? 'surface' : '#141414'"
-    border="0"
-  >
+  <v-app-bar elevation="0" flat height="69" class="border-bottom position-fixed" border="0">
     <v-container class="fill-height maxWidth">
       <div class="d-flex align-center ga-2 w-100">
         <div class="d-flex align-center ga-2">
@@ -33,9 +23,6 @@ const drawer = ref(false);
            }}</v-chip>
         </div>
         <v-spacer />
-        <!-- ---------------------------------------------- -->
-        <!---right part -->
-        <!-- ---------------------------------------------- -->
         <template v-if="mdAndUp">
           <v-btn variant="text" to="/console/admin/dashboards/security">Dashboard</v-btn>
           <v-btn variant="text" to="/components/buttons">Components</v-btn>

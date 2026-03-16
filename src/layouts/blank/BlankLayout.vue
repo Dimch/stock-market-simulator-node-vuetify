@@ -3,7 +3,7 @@
   <v-locale-provider :rtl="customizer.isRtl">
     <v-app
       :style="getStyleObject()"
-      :theme="customizer.actTheme"
+      :theme="theme.global.name.value"
       :class="applicationClass"
     >
       <!-- Loader start -->
@@ -51,7 +51,7 @@ const getStyleObject = () => {
   return condition ? dynamicStyle.value : {};
 };
 const applicationClass = computed(() => [
-  customizer.actTheme,
+  theme.global.name.value,
   customizer.fontTheme,
   customizer.mini_sidebar ? 'mini-sidebar' : '',
   customizer.setHorizontalLayout ? 'horizontalLayout' : 'verticalLayout',

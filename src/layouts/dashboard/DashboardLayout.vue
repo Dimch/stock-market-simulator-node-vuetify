@@ -65,7 +65,7 @@ const calcHeight = () => {
 
 <template>
   <v-locale-provider :rtl="customizer.isRtl">
-    <v-app :style="getStyleObject()" :theme="customizer.actTheme" :class="applicationClass">
+    <v-app :style="getStyleObject()" :theme="theme.global.name.value" :class="applicationClass">
       <Customizer />
       <HeaderComponent />
       <SidebarComponent />

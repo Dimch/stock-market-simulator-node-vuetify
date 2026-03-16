@@ -1,14 +1,14 @@
 <script setup>
-// assets
-import dashboard from '@/assets/images/landing/bg-mockup-default.png';
 import technology from '@/assets/images/landing/technology.svg';
 
 // icons
 import {EyeOutlined} from '@ant-design/icons-vue';
+import {useImageStore} from '@/stores/images';
+const {bgLandingImage: bgImageClass} = useImageStore();
 </script>
 
 <template>
-  <div class="home-bg">
+  <div :class="['home-bg', 'bg-container', bgImageClass]">
     <v-container class="maxWidth">
       <img :src="dashboard" alt="dashboard" class="HeaderImage d-none d-md-block" />
       <v-row class="spacer align-center">

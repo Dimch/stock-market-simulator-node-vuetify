@@ -10,8 +10,12 @@ const footerLink = [
     <v-row justify="center" no-gutters>
       <v-col cols="12" md="6" class="text-md-start text-center">
         <p class="text-subtitle-2 text-lightText mb-md-0 mb-4">
-          This site is protected by
-          <a class="text-primary">Tuckmann & Marsh</a>
+          This work is protected by
+          <a href="https://youtu.be/fgBc06l62bc?si=Uz5gCAUKhipmJD0k&t=43"
+             target="_blank" class="text-primary">
+            Tuchman Marsh
+          </a>
+          :-)
         </p>
       </v-col>
       <v-col class="d-flex flex-md-row flex-column justify-md-end align-center" cols="12" md="6">

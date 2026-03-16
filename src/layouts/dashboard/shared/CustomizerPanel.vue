@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref, shallowRef, watch} from 'vue';
+import {ref, shallowRef, watch} from 'vue';
 import {useTheme} from 'vuetify';
 import {useCustomizerStore} from '@/stores/customizer';
 // icons
@@ -161,33 +161,9 @@ const isSystemDarkMode = () => {
   return typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches;
 };
 
-// for system mode
-// Function to update the theme based on the user's preferred color scheme
-const updateTheme = () => {
-  const preferredColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  if (customizer.actTheme === Theme.System) customizer.SET_THEME(preferredColorScheme);
-};
-
-// Call updateTheme on component mounted
-onMounted(() => {
-  updateTheme();
-
-  // Watch for changes in the user's preferred color scheme
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
-});
-
-// Watch for changes in the customizer's theme setting
-watch(
-  () => customizer.actTheme,
-  (newValue, oldValue) => {
-    if (newValue === Theme.System && newValue !== oldValue) updateTheme();
-  }
-);
-
 const multiple = ref([0, 1, 2, 3, 4, 5, 6]);
 
-function clearoptions() {
-  customizer.actTheme = 'light';
+function clearOptions() {
   customizer.setHorizontalLayout = false;
   customizer.inputBg = false;
   customizer.boxed = false;
@@ -212,9 +188,6 @@ const imgStyle = shallowRef({
 });
 </script>
 
-<!------------------------------------->
-<!-- Customizer -->
-<!------------------------------------->
 <template>
   <v-navigation-drawer app temporary elevation="24" location="end" border="0" v-model="customizer.Customizer_drawer" width="340">
     <v-row class="ma-0">
@@ -470,9 +443,11 @@ const imgStyle = shallowRef({
               <!------------------------------------->
               <!------------------------------------->
             </v-expansion-panels>
-            <v-divider></v-divider>
+            <v-divider />
             <div class="d-flex pa-4">
-              <v-btn color="error" variant="tonal" block @click="clearoptions"> Reset </v-btn>
+              <v-btn color="error" variant="tonal" block @click="clearOptions">
+                Reset
+              </v-btn>
             </div>
           </v-col>
         </v-row>
