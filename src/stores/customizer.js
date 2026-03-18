@@ -8,7 +8,6 @@ export const useCustomizerStore = defineStore('customizer', () => {
   const Customizer_drawer = ref(config.Customizer_drawer);
   const mini_sidebar = ref(config.mini_sidebar);
   const setHorizontalLayout = ref(config.setHorizontalLayout);
-  const actTheme = ref(config.actTheme);
   const fontTheme = ref(config.fontTheme);
   const inputBg = ref(config.inputBg);
   const boxed = ref(config.boxed);
@@ -38,10 +37,6 @@ export const useCustomizerStore = defineStore('customizer', () => {
     setHorizontalLayout.value = payload;
   }
 
-  function SET_THEME(payload) {
-    actTheme.value = payload;
-  }
-
   function SET_FONT(payload) {
     fontTheme.value = payload;
   }
@@ -56,12 +51,10 @@ export const useCustomizerStore = defineStore('customizer', () => {
     Customizer_drawer,
     mini_sidebar,
     setHorizontalLayout,
-    actTheme,
     fontTheme,
     inputBg,
     isRtl,
     boxed,
-    SET_THEME,
     SET_SIDEBAR_DRAWER,
     SET_CUSTOMIZER_DRAWER,
     SET_MINI_SIDEBAR,

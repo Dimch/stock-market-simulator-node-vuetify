@@ -182,6 +182,11 @@ function clearOptions() {
   );
 }
 
+const themeAdapter = computed({
+  get: () => vuetifyTheme.current.value.name,
+  set: val => vuetifyTheme.global.name.value = val,
+})
+
 const imgStyle = shallowRef({
   height: '64px',
   width: '64px',
@@ -288,7 +293,7 @@ const imgStyle = shallowRef({
                 </v-expansion-panel-title>
                 <v-expansion-panel-text>
                   <div>
-                    <v-radio-group class="custom-radio ma-n2" v-model="customizer.actTheme" hide-details>
+                    <v-radio-group class="custom-radio ma-n2" v-model="themeAdapter" hide-details>
                       <v-radio :value="Theme.Light" color="primary" class="ma-2 text-center" label="Light">
                         <img src="@/assets/images/customizer/default.svg" alt="light layout" :style="imgStyle" />
                       </v-radio>
