@@ -1,5 +1,6 @@
 <script setup>
 import {ref, watch} from 'vue';
+import {useTheme} from 'vuetify';
 import {useCustomizerStore} from '@/stores/customizer';
 // icons
 import {MenuFoldOutlined, WindowsOutlined, TranslationOutlined, SettingOutlined} from '@ant-design/icons-vue';
@@ -13,9 +14,7 @@ import Searchbar from '../shared/SearchBarPanel.vue';
 
 const customizer = useCustomizerStore();
 const priority = ref(customizer.setHorizontalLayout ? 0 : 0);
-// watch(priority, (newPriority) => {
-//   priority.value = newPriority;
-// });
+const theme = useTheme();
 </script>
 
 <template>
@@ -53,7 +52,10 @@ const priority = ref(customizer.setHorizontalLayout ? 0 : 0);
       </v-menu>
     </v-btn>
 
-    <NotificationDD />
+    <v-checkbox class="pt-3" v-model="theme.current.value.dark" color="purple"
+      off-icon="mdi-theme-light-dark"
+      on-icon="mdi-theme-light-dark"
+    ></v-checkbox>
 
     <v-btn class="customizer-btn ms-sm-2 ms-1" icon color="darkText" rounded="sm" size="small"
            variant="text" @click.stop="customizer.SET_CUSTOMIZER_DRAWER(!customizer.Customizer_drawer)">

@@ -5,6 +5,10 @@ import {routes as authRoutes} from '../auth/index.js';
 export const routes = () => {
   const router = Router();
 
+  router.get('/stocks/hot', (_, res) => {
+    res.json(stockMarketService.getTop(6));
+  });
+
   router.use(...authRoutes('customer'));
 
   /**

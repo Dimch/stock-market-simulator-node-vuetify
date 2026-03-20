@@ -3,7 +3,7 @@
  * Manages stock prices and market simulation
  */
 import fp from 'lodash/fp.js';
-const {first, last, map} = fp;
+const {first, flow, last, map, orderBy, slice} = fp;
 import {DateTime} from 'luxon';
 import {Stocks, StockPrices} from '../../database/index.js';
 import {generatePriceSequence, updatePrice} from '../../lib/stockSimulator.js';
@@ -92,14 +92,7 @@ export class StockMarketService {
     const stock = this.getStock(ticker);
     if (!stock) return null;
 
-    // Get recorded prices from journal
-    const recordedPrices = this.stockPrices.getPriceHistory(ticker, periods);
-    
-    const prices = getPrices(recordedPrices);
-    const firstPrice = first(prices) || stock.price;
-    const lastPrice = last(prices) || stock.price;
-    const changeAmount = lastPrice - firstPrice;
-    const changePercent = firstPrice ? (changeAmount / firstPrice * 100) : 0;
+    const {changeAmount, changePercent, prices} = this.calculateChange(stock, periods);
     const timeLabels = getTimeLabels(DateTime.fromSQL(stock.updated_at), prices.length);
 
     return {
@@ -113,12 +106,49 @@ export class StockMarketService {
     };
   }
 
+  calculateChange(stock, periods = 60, returnPrices = true) {
+    const recordedPrices = this.stockPrices.getPriceHistory(stock,ticker, periods);
+    
+    const prices = getPrices(recordedPrices);
+    const firstPrice = first(prices) || stock.price;
+    const lastPrice = last(prices) || stock.price;
+    const changeAmount = lastPrice - firstPrice;
+    const changePercent = firstPrice ? (changeAmount / firstPrice * 100) : 0;
+
+    return {
+      changeAmount,
+      changePercent,
+      prices: returnPrices ? prices : undefined,
+    };
+  }
+
+  getDashboard() {
+    return null;
+  }
+
   /**
    * Reset a stock price (for testing)
    */
   resetPrice(ticker, price) {
     this.stocks.setPrice({ticker, price});
     return this.getStock(ticker);
+  }
+
+  getTop(count = 5, periodRange = 60) {
+    const stocks = this.getAllStocks();
+    return flow(
+      map(stock => {
+        const {changeAmount, changePercent} = this.calculateChange(stock, periodRange, false);
+        return {
+          ...stock,
+          changeAmount,
+          changePercent,
+          periodRange,
+        };
+      }),
+      orderBy(['changeAmount'], ['desc']),
+      slice(0, count),
+    )(stocks);
   }
 };
 

@@ -74,9 +74,7 @@ const calcHeight = () => {
               class="page-wrapper overflow-scroll" :height="wrapperHeight">
         <v-container fluid>
           <div :class="customizer.boxed ? 'maxWidth' : ''">
-            <!-- Loader start -->
             <LoaderWrapper />
-            <!-- Loader end -->
             <RouterView />
           </div>
         </v-container>

@@ -6,6 +6,7 @@ import {useClient, data} from './httpClient';
 // Used by frontend components to display stock information,
 // and provide buy/sell functionality.
 const api = client => ({
+  getTop: () => client.get('/stocks/hot').then(data),
   getAllStocks: () => client.get('/stocks').then(data),
   getPriceHistory: (ticker, periods = 30) => client.get(`/history/${ticker}`, {params: {periods }}).then(data),
   buyStock: (ticker, quantity) => client.post(`/stocks/${ticker}/buy`, {quantity}).then(data),
