@@ -177,7 +177,7 @@ Clear browser cookies and restart the development servers.
 - 💾 **Persistent Storage** - Database integration with comprehensive data models
 - 🎨 **Modern UI** - Material Design with Vuetify components and responsive layouts
 - 📱 **Full REST API** - Complete API endpoints for stock market operations
-- 📊 **Data Visualization** - ApexCharts, ECharts, and Tabler icons integration
+- 📊 **Data Visualization** - ECharts
 - 🌐 **Multi-language Support** - Vue i18n internationalization
 - ⚡ **Hot Module Replacement** - Vite development server with instant code refresh
 - 🧪 **Comprehensive Testing** - Vitest and Supertest for unit and integration tests

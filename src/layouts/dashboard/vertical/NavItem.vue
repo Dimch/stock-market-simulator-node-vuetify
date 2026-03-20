@@ -23,7 +23,7 @@ onMounted(async () => {
                color="primary" :disabled="item.disabled" :target="item.type === 'external' ? '_blank' : ''">
     <!---If icon-->
     <template #prepend>
-      <component :is="item.icon" class="iconClass" :level="level"></component>
+      <v-icon class="iconClass" size="small">mdi-{{ item.icon }}</v-icon>
     </template>
     <v-list-item-title>{{ t(item.title) }}</v-list-item-title>
     <!---If Caption-->

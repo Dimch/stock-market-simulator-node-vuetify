@@ -7,7 +7,7 @@ const props = defineProps({item: Object, level: Number});
   <router-link :to="`${item.to}`" class="navItemLink rounded-0" :disabled="item.disabled">
     <!---If icon-->
     <i class="navIcon">
-      <component :is="props.item.icon" :level="props.level" :style="{fontSize: '16px'}" />
+      <v-icon>mdi-{{ props.item.icon }}</v-icon>
     </i>
     <span>{{ item.title }}</span>
     <!---If Caption-->

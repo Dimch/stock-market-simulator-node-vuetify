@@ -1,6 +1,4 @@
 <script setup>
-import {GlobalOutlined, NodeExpandOutlined} from '@ant-design/icons-vue';
-
 const props = defineProps({
   title: String,
   subContent: String,
@@ -19,11 +17,11 @@ const props = defineProps({
             <h2 class="text-h2 mb-2">{{ props.title }}</h2>
             <h6 class="text-h6 text-lightText mb-5">{{ props.subContent }}</h6>
             <div class="d-flex align-center mb-2 text-caption text-lightText">
-              <NodeExpandOutlined class="me-2" />
+              <v-icon icon="mdi-file-tree" class="me-2" size="small" />
               <span>{{ props.path }}</span>
             </div>
             <a :href="props.link" class="d-inline-flex align-center text-primary text-caption link-hover" target="_blank">
-              <GlobalOutlined class="me-2" />
+              <v-icon icon="mdi-globe" class="me-2" size="small" />
               <span>{{ props.link }}</span>
             </a>
           </v-col>

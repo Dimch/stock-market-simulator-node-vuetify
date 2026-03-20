@@ -1,6 +1,4 @@
 <script setup>
-// icons
-import {RightOutlined} from '@ant-design/icons-vue';
 import {useAdminAuthStore} from '@/stores/auth';
 
 const authStore = useAdminAuthStore();
@@ -17,7 +15,7 @@ const authStore = useAdminAuthStore();
       </div>
       <div class="ms-auto">
         <v-btn variant="flat" size="small" icon rounded>
-          <RightOutlined :style="{fontSize: '10px'}" />
+          <v-icon icon="mdi-chevron-right" />
           <v-menu activator="parent" :close-on-content-click="false">
             <v-sheet rounded="md" width="110" elevation="24">
               <v-list>

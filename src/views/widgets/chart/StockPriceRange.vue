@@ -18,9 +18,6 @@ const props = defineProps({
 const theme = useTheme();
 use([SVGRenderer, TooltipComponent, GridComponent, LineChart]);
 
-// icons
-import {CaretDownFilled, CaretUpFilled, DownloadOutlined} from '@ant-design/icons-vue';
-
 const chartOptions = computed(() => ({
   animation: false,
   darkMode: theme.current.value.dark,
@@ -85,7 +82,7 @@ useInterval(refreshStock, 60 * 1000); // refresh every minute
     <v-row class="justify-sm-space-between justify-center py-5 px-4">
       <v-col cols="12" sm="6">
         <div class="d-flex align-center" :class="stock.changeAmount >= 0 ? 'text-success' : 'text-error'">
-          <component :is="stock.changeAmount >= 0 ? CaretUpFilled : CaretDownFilled" />
+          <v-icon :icon="stock.changeAmount >= 0 ? 'mdi-chevron-up' : 'mdi-chevron-down'" size="small" />
           <h6 class="text-h6 mb-0 ms-1">
             ${{ Math.abs(stock.changeAmount).toFixed(2) }} ({{ (Math.abs(stock.changePercent)).toFixed(0) }}%)
           </h6>
@@ -100,7 +97,7 @@ useInterval(refreshStock, 60 * 1000); // refresh every minute
             </v-btn>
           </v-btn-toggle>
           <v-btn icon rounded variant="outlined" color="secondary" size="small" disabled>
-            <DownloadOutlined :style="{fontSize: '14px'}" />
+            <v-icon icon="mdi-download" size="small" />
           </v-btn>
         </div>
       </v-col>

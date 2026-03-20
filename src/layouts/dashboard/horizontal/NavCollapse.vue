@@ -1,7 +1,5 @@
 <script setup>
 import NavItem from './NavItem.vue';
-// icons
-import {RightOutlined} from '@ant-design/icons-vue';
 
 const props = defineProps({item: Object, level: Number});
 </script>
@@ -11,7 +9,7 @@ const props = defineProps({item: Object, level: Number});
   <a class="navItemLink rounded-md cursor-pointer">
     <!---Icon  -->
     <i class="navIcon">
-      <component :is="props.item.icon" :level="level" :style="{fontSize: '16px'}" />
+      <v-icon>mdi-{{ props.item.icon }}</v-icon>
     </i>
     <!---Title  -->
     <span class="me-auto">{{ item.title }}</span>
@@ -19,7 +17,7 @@ const props = defineProps({item: Object, level: Number});
     <small v-if="item.subCaption" class="text-caption mt-n1 hide-menu">
       {{ item.subCaption }}
     </small>
-    <i class="ddIcon ms-2"><RightOutlined :style="{fontSize: '15px'}" /></i>
+    <i class="ddIcon ms-2"><v-icon>mdi-chevron-right</v-icon></i>
   </a>
   <!---Sub Item-->
   <ul :class="`ddMenu px-0 ddLevel-${level + 1}`">

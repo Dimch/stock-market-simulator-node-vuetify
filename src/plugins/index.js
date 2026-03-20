@@ -12,9 +12,7 @@ import router from '@/router';
 import {PiniaColada} from '@pinia/colada';
 import DataTable from 'vue3-easy-data-table';
 import {PerfectScrollbarPlugin} from 'vue3-perfect-scrollbar';
-import VueTablerIcons from 'vue-tabler-icons';
 import Vue3Marquee from 'vue3-marquee';
-import Antd from 'ant-design-vue';
 // print
 import print from 'vue3-print-nb';
 // i18
@@ -33,10 +31,8 @@ export const registerPlugins = app => app
   .use(pinia)
   .use(PiniaColada)
   .use(router)
-  .use(VueTablerIcons)
   .component('EasyDataTable', DataTable)
   .use(PerfectScrollbarPlugin)
-  .use(Antd)
   .use(print)
   .use(Vue3Marquee)
   .use(i18n)

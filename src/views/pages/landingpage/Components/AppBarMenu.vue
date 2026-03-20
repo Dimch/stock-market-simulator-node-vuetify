@@ -1,8 +1,5 @@
 <script setup>
 import {ref} from 'vue';
-// icons
-import {MenuOutlined, LineOutlined} from '@ant-design/icons-vue';
-
 import Logo from '@/layouts/dashboard/shared/Logo.vue';
 import {useDisplay} from 'vuetify';
 
@@ -30,7 +27,7 @@ const drawer = ref(false);
         </template>
         <template v-else>
           <v-btn icon rounded="sm" variant="text" size="small" @click.stop="drawer = !drawer">
-            <MenuOutlined :style="{fontSize: '20px'}" />
+            <v-icon icon="mdi-menu" />
           </v-btn>
         </template>
       </div>
@@ -41,28 +38,25 @@ const drawer = ref(false);
     <v-list color="primary">
       <v-list-item to="/console/admin/dashboards/security">
         <template #prepend>
-          <LineOutlined />
+          <v-icon icon="mdi-minus" />
         </template>
-
         <v-list-item-title class="ms-3">Dashboard</v-list-item-title>
       </v-list-item>
       <v-list-item to="/components/buttons">
         <template #prepend>
-          <LineOutlined />
+          <v-icon icon="mdi-minus" />
         </template>
-
         <v-list-item-title class="ms-3">Components</v-list-item-title>
       </v-list-item>
       <v-list-item to="">
         <template #prepend>
-          <LineOutlined />
+          <v-icon icon="mdi-minus" />
         </template>
-
         <v-list-item-title class="ms-3">Documentation</v-list-item-title>
       </v-list-item>
       <v-list-item to="">
         <template #prepend>
-          <LineOutlined />
+          <v-icon icon="mdi-minus" />
         </template>
 
         <v-list-item-title class="ms-3">Ask something</v-list-item-title>

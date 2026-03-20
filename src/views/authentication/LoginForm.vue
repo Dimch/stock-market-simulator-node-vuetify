@@ -1,7 +1,5 @@
 <script setup>
 import {computed, ref} from 'vue';
-// icons
-import {EyeInvisibleOutlined, EyeOutlined} from '@ant-design/icons-vue';
 import {useAdminAuthStore} from '@/stores/auth';
 import {Form as VeeForm} from 'vee-validate';
 
@@ -48,10 +46,8 @@ const validate = async (values, {setErrors}) => {
                     color="primary" hide-details="auto" :type="passType" class="mt-2">
         <template #append-inner>
           <v-btn color="secondary" icon rounded variant="text">
-            <EyeOutlined v-if="showPass" color="rgb(var(--v-theme-secondary))"
-                         @click="showPass = !showPass" />
-            <EyeInvisibleOutlined v-else color="rgb(var(--v-theme-secondary))"
-                                  @click="showPass = !showPass" />
+            <v-icon :icon="showPass ? 'mdi-eye' : 'mdi-eye-off'" 
+                    @click="showPass = !showPass" />
           </v-btn>
         </template> 
       </v-text-field>

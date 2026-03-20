@@ -2,7 +2,6 @@
 const props = defineProps({
   stock: {type: Object, required: true}, // stock ticker data
 });
-import {CaretDownFilled, CaretUpFilled} from '@ant-design/icons-vue';
 </script>
 
 <template>
@@ -16,7 +15,7 @@ import {CaretDownFilled, CaretUpFilled} from '@ant-design/icons-vue';
       </v-col>
       <v-col cols="12" sm="6">
         <div class="d-flex align-center" :class="stock.changeAmount >= 0 ? 'text-success' : 'text-error'">
-          <component :is="stock.changeAmount >= 0 ? CaretUpFilled : CaretDownFilled" />
+          <v-icon :icon="stock.changeAmount >= 0 ? 'mdi-chevron-up' : 'mdi-chevron-down'" size="small" />
           <h6 class="mb-0 ms-1">
             ${{ Math.abs(stock.changeAmount).toFixed(2) }} ({{ (Math.abs(stock.changePercent)).toFixed(0) }}%)
           </h6>

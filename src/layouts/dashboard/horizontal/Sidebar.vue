@@ -1,13 +1,11 @@
 <script setup>
 import {shallowRef} from 'vue';
 import {useDisplay} from 'vuetify';
-import {useCustomizerStore} from '@/stores/customizer';
 import NavItem from './NavItem.vue';
 import NavCollapse from './NavCollapse.vue';
 import VerticalSidebar from '../vertical/Sidebar.vue';
 import navItems from './navItems';
 
-const customizer = useCustomizerStore();
 const sidebarMenu = shallowRef(navItems);
 const {mdAndUp} = useDisplay();
 </script>
@@ -16,7 +14,7 @@ const {mdAndUp} = useDisplay();
   <template v-if="mdAndUp">
     <div class="horizontalMenu">
       <v-container fluid class="py-0">
-        <ul class="gap-1 horizontal-navbar px-0" :class="customizer.boxed ? 'maxWidth' : ''">
+        <ul class="gap-1 horizontal-navbar px-0">
           <li v-for="(item, i) in sidebarMenu" :key="i" class="navItem">
             <NavCollapse v-if="item.children" :item="item" :level="0" />
             <NavItem v-else :item="item" />

@@ -1,37 +1,29 @@
-import {
-  DashboardOutlined,
-  DesktopOutlined,
-  IdcardOutlined,
-  DatabaseOutlined,
-  LineChartOutlined,
-} from '@ant-design/icons-vue';
-
 const horizontalItems = [
   {
     title: 'Dashboard',
-    icon: DashboardOutlined,
+    icon: 'mdi-gauge',
     to: '#',
     children: [
       {
         title: 'Security',
-        icon: DashboardOutlined,
+        icon: 'mdi-shield-lock-outline',
         to: '/console/admin/dashboards/security',
       },
       {
         title: 'Market',
-        icon: DesktopOutlined,
+        icon: 'mdi-finance',
         to: '/console/admin/dashboards/market',
       },
     ],
   },
   {
     title: 'More',
-    icon: IdcardOutlined,
+    icon: 'chart-bell-curve',
     to: '#',
     children: [
       {
         title: 'Statistics',
-        icon: IdcardOutlined,
+        icon: 'chart-timeline',
         to: '/admin/statistics',
       },
     ],

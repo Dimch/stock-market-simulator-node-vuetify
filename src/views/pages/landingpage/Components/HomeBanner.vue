@@ -1,8 +1,5 @@
 <script setup>
 import technology from '@/assets/images/landing/technology.svg';
-
-// icons
-import {EyeOutlined} from '@ant-design/icons-vue';
 import {useImageStore} from '@/stores/images';
 const {bgLandingImage: bgImageClass} = useImageStore();
 </script>
@@ -24,7 +21,7 @@ const {bgLandingImage: bgImageClass} = useImageStore();
               <v-btn color="primary" size="large" variant="outlined" to="/components/buttons">Explore components</v-btn>
               <v-btn color="primary" size="large" to="/console/admin/dashboards/security">
                 <template #prepend>
-                  <EyeOutlined />
+                  <v-icon icon="mdi-eye" />
                 </template>
                 Live Preview
               </v-btn>
