@@ -48,13 +48,16 @@ const error404Images = {
 
 export const useImageStore = defineStore('images', () => {
   const theme = useTheme();
-  const bgConstructionImage = computed(() => sample(constructionImages[theme.global.name.value]));
-  const bgLoginImage = computed(() => sample(loginImages[theme.global.name.value]));
-  const bgLandingImage = computed(() => sample(landingImages[theme.global.name.value]));
-  const bg404Image = computed(() => sample(error404Images[theme.global.name.value]));
-  const bg500Image = computed(() => sample(error404Images[theme.global.name.value]));
+  const currentTheme = computed(() => theme.global.name.value);
+  const oneOf = themeConf => computed(() => sample(themeConf[currentTheme.value]));
+  const bgConstructionImage = oneOf(constructionImages);
+  const bgLoginImage = oneOf(loginImages);
+  const bgLandingImage = oneOf(landingImages);
+  const bg404Image = oneOf(error404Images);
+  const bg500Image = oneOf(error404Images);
   
   return {
+    currentTheme,
     bgConstructionImage,
     bgLoginImage,
     bgLandingImage,

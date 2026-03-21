@@ -35,7 +35,7 @@ const calcHeight = () => {
 
 <template>
   <v-locale-provider>
-    <v-app :style="getStyleObject()" :theme="theme.global.name.value" :class="applicationClass">
+    <v-app :theme="theme.global.name.value" :class="applicationClass">
       <HeaderComponent />
       <SidebarComponent />
 

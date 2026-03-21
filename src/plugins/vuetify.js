@@ -1,6 +1,5 @@
 import {createVuetify} from 'vuetify';
 import {aliases, mdi} from 'vuetify/iconsets/mdi-svg';
-import {icons} from './mdi-icon';
 
 export const PrimaryColor = '#1677ff';
 export const PrimaryDarkColor = '#0958d9';
@@ -103,10 +102,7 @@ const dark = {
 export default createVuetify({
   icons: {
     defaultSet: 'mdi',
-    aliases: {
-      ...aliases,
-      ...icons
-    },
+    aliases,
     sets: {
       mdi
     }

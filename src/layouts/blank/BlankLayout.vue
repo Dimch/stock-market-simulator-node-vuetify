@@ -2,7 +2,6 @@
 <template>
   <v-locale-provider>
     <v-app
-      :style="getStyleObject()"
       :theme="theme.global.name.value"
       :class="applicationClass"
     >

@@ -7,17 +7,17 @@ const {bgLandingImage: bgImageClass} = useImageStore();
 <template>
   <div :class="['home-bg', 'bg-container', bgImageClass]">
     <v-container class="maxWidth">
-      <img :src="dashboard" alt="dashboard" class="HeaderImage d-none d-md-block" />
+      <!-- <img :src="dashboard" alt="dashboard" class="HeaderImage d-none d-md-block" /> -->
       <v-row class="spacer align-center">
         <v-col cols="12" lg="4" md="5">
           <div class="pr-lg-4 homeContent text-md-start text-center">
-            <h1 class="bannerText mb-5 text-white" data-aos="fade-up" data-aos-duration="500">
+            <h1 class="bannerText mb-5 text-white">
               Carefully Crafted for your <span class="text-primary">Caring Vue</span> Project
             </h1>
-            <p class="mb-8 text-h5 font-weight-regular text-white" data-aos="fade-up" data-aos-duration="800">
+            <p class="mb-8 text-h5 font-weight-regular text-white">
               StockSimulator is a blazing-fast marketplace with Bluetooth built using the Vuetify library.
             </p>
-            <div data-aos="fade-up" class="d-flex flex-wrap ga-2 justify-md-start justify-center" data-aos-duration="1000">
+            <div class="d-flex flex-wrap ga-2 justify-md-start justify-center">
               <v-btn color="primary" size="large" variant="outlined" to="/components/buttons">Explore components</v-btn>
               <v-btn color="primary" size="large" to="/console/admin/dashboards/security">
                 <template #prepend>
@@ -26,7 +26,7 @@ const {bgLandingImage: bgImageClass} = useImageStore();
                 Live Preview
               </v-btn>
             </div>
-            <div data-aos="fade-up" data-aos-duration="1400">
+            <div>
               <v-img :src="technology" alt="technology" width="281" class="mx-md-0 mx-auto mt-8" />
             </div>
           </div>
