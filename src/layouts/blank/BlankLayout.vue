@@ -21,7 +21,7 @@ const theme = useTheme();
 
 const applicationClass = computed(() => [
   theme.global.name.value,
-  'Fira Sans',
+  'FiraSans',
   // 'mini-sidebar'
   'verticalLayout',
 ]);

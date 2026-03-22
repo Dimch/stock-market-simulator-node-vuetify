@@ -17,7 +17,7 @@
     "@fontsource/open-sans": "^5.2.7",
     "@fontsource/roboto": "5.2.7",
     "@img-comparison-slider/vue": "^8.0.0",
-    "@mdi/js": "^7.4.47",
+    "@mdi/font": "^7.4.47",
     "@pinia/colada": "^0.21.4",
     "@tiptap/extension-list": "^3.11.1",
     "@tiptap/extension-text-style": "^3.11.1",

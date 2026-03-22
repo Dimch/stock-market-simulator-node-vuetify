@@ -7,7 +7,7 @@ const {bgLandingImage: bgImageClass} = useImageStore();
 </script>
 
 <template>
-  <v-layout :class="['bg-containerBg', bgImageClass]">
+  <v-layout :class="[]">
     <Appbar />
     <v-main class="ma-0">
       <HomeBanner />

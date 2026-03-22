@@ -19,10 +19,8 @@ const {bgLandingImage: bgImageClass} = useImageStore();
             </p>
             <div class="d-flex flex-wrap ga-2 justify-md-start justify-center">
               <v-btn color="primary" size="large" variant="outlined" to="/components/buttons">Explore components</v-btn>
-              <v-btn color="primary" size="large" to="/console/admin/dashboards/security">
-                <template #prepend>
-                  <v-icon icon="mdi-eye" />
-                </template>
+              <v-btn color="primary" size="large" to="/console/admin/dashboards/security"
+                     prepend-icon="mdi-eye" p>
                 Live Preview
               </v-btn>
             </div>
