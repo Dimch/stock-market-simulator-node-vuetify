@@ -1,10 +1,8 @@
 <script setup>
-import {useImageStore} from '@/stores/images';
-const {bg500Image: bgImageClass} = useImageStore();
 </script>
 
 <template>
-  <v-row no-gutters :class="['overflow-hidden', 'bg-container', bgImageClass]" style="min-height: 100vh">
+  <v-row no-gutters class="overflow-hidden" style="min-height: 100vh">
     <v-col class="d-flex align-center justify-center">
       <v-card class="message-card surfopac-8 text-center elevation-6">
         <h1 class="text-md-h1 text-h2 mt-9 mb-3">

@@ -1,5 +1,6 @@
 import {defineStore} from 'pinia';
 import {computed} from 'vue';
+import {useRoute} from 'vue-router';
 import {useTheme} from 'vuetify';
 import {sample} from 'lodash/fp';
 
@@ -45,23 +46,22 @@ const error404Images = {
   ],
 };
 
+const routeToImageMap = {
+  '/': landingImages,
+  '/construction': constructionImages,
+  '/login': loginImages,
+  '/error': error404Images,
+  '/error500': error404Images,
+};
 
 export const useImageStore = defineStore('images', () => {
   const theme = useTheme();
+  const route = useRoute();
   const currentTheme = computed(() => theme.global.name.value);
-  const oneOf = themeConf => computed(() => sample(themeConf[currentTheme.value]));
-  const bgConstructionImage = oneOf(constructionImages);
-  const bgLoginImage = oneOf(loginImages);
-  const bgLandingImage = oneOf(landingImages);
-  const bg404Image = oneOf(error404Images);
-  const bg500Image = oneOf(error404Images);
+  const bgImageClass = computed(() => sample(routeToImageMap[route?.path]?.[currentTheme.value]));
   
   return {
     currentTheme,
-    bgConstructionImage,
-    bgLoginImage,
-    bgLandingImage,
-    bg404Image,
-    bg500Image,
+    bgImageClass,
   };
 });

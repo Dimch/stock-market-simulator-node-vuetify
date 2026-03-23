@@ -1,28 +1,19 @@
-// ===============================|| Blank Layout ||=============================== //
 <template>
   <v-locale-provider>
-    <v-app
-      :theme="theme.global.name.value"
-      :class="applicationClass"
-    >
-      <!-- Loader start -->
-      <LoaderWrapper />
-      <!-- Loader end -->
-      <RouterView />
-    </v-app>
+    <loader-wrapper />
+    <v-layout :class="['bg-container', img.bgImageClass]">
+      <app-toolbar />
+      <v-main class="">
+        <router-view />
+      </v-main>
+    </v-layout> 
   </v-locale-provider>
 </template>
-<script setup>
-import {computed} from 'vue';
-import {useTheme} from 'vuetify';
-import {RouterView} from 'vue-router';
-import LoaderWrapper from '../dashboard/LoaderWrapper.vue';
-const theme = useTheme();
 
-const applicationClass = computed(() => [
-  theme.global.name.value,
-  'FiraSans',
-  // 'mini-sidebar'
-  'verticalLayout',
-]);
+<script setup>
+import {RouterView} from 'vue-router';
+import AppToolbar from './AppBarMenu.vue';
+import LoaderWrapper from '../dashboard/LoaderWrapper.vue';
+import {useImageStore} from '@/stores/images';
+const img = useImageStore();
 </script>

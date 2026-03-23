@@ -1,11 +1,12 @@
 <script setup>
 import {ref} from 'vue';
-import {useDisplay} from 'vuetify';
+import {useDisplay, useTheme} from 'vuetify';
 import Logo from '@/layouts/dashboard/shared/Logo.vue';
 import ThemeModeToggle from '@/components/ThemeModeSwitch.vue';
 
 const appVersion = '1.0';
 
+const theme = useTheme();
 const {mdAndUp} = useDisplay();
 const drawer = ref(false);
 
@@ -17,7 +18,8 @@ const menuItems = [
 </script>
 
 <template>
-  <v-app-bar elevation="0" flat height="69" class="border-bottom position-fixed" border="0">
+  <v-app-bar elevation="0" flat height="69"  border="0"
+             :class="['border-bottom', 'position-fixed', theme.global.name.value]">
     <v-container class="fill-height maxWidth">
       <div class="d-flex align-center ga-2 w-100">
         <div class="d-flex align-center ga-2">
