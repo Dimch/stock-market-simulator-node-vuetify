@@ -16,9 +16,12 @@ useInterval(refreshStocks, REFRESH_INTERVAL);
 </script>
 
 <template>
+  <v-toolbar-title class="text-center">
+    Top 6 Performers
+  </v-toolbar-title>
   <v-row class="mb-0">
     <template v-for="stock in stocks">
-      <v-col cols="12" sm="6">
+      <v-col cols="12" sm="12">
         <ticker-widget :stock="stock" />
       </v-col>
     </template>

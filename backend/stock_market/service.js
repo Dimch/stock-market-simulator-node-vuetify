@@ -107,7 +107,7 @@ export class StockMarketService {
   }
 
   calculateChange(stock, periods = 60, returnPrices = true) {
-    const recordedPrices = this.stockPrices.getPriceHistory(stock,ticker, periods);
+    const recordedPrices = this.stockPrices.getPriceHistory(stock.ticker, periods);
     
     const prices = getPrices(recordedPrices);
     const firstPrice = first(prices) || stock.price;

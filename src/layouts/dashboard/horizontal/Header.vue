@@ -1,8 +1,6 @@
 <script setup>
 import {useTheme} from 'vuetify';
-// shared components
 import Logo from '../shared/Logo.vue';
-import LanguageDD from '../shared/LanguageDD.vue';
 import ProfileDD from '../shared/ProfileDD.vue';
 import Searchbar from '../shared/SearchBarPanel.vue';
 
@@ -24,15 +22,6 @@ const theme = useTheme();
     </v-sheet>
 
     <v-spacer />
-
-    <v-btn icon class="ms-sm-2 ms-1" color="darkText" rounded="sm" size="small">
-      <v-icon icon="mdi-translate" />
-      <v-menu activator="parent" :close-on-content-click="false" location="bottom" offset="6, 80">
-        <v-sheet rounded="md" width="200">
-          <LanguageDD />
-        </v-sheet>
-      </v-menu>
-    </v-btn>
 
     <v-checkbox class="pt-3" v-model="theme.current.value.dark" color="purple"
       off-icon="mdi-theme-light-dark"

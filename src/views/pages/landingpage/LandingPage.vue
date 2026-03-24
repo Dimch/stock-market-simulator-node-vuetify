@@ -1,13 +1,13 @@
 <script setup>
 import technology from '@/assets/images/landing/technology.svg';
+import Top6Performers from '@/views/widgets/Top6Performers.vue';
 </script>
 
 <template>
   <div :class="['home-bg']">
     <v-container class="maxWidth">
-      <!-- <img :src="dashboard" alt="dashboard" class="HeaderImage d-none d-md-block" /> -->
       <v-row class="spacer align-center">
-        <v-col cols="12" lg="5" md="6">
+        <v-col cols="12" lg="8" md="6">
           <div class="pr-lg-5 pa-10 home-content text-md-start text-center">
             <h1 class="banner-text mb-5 text-on-surface">
               Carefully Crafted for your <span class="text-primary">Caring Vue</span> Project
@@ -26,6 +26,13 @@ import technology from '@/assets/images/landing/technology.svg';
               <v-img :src="technology" alt="technology" width="281" class="mx-md-0 mx-auto mt-8" />
             </div>
           </div>
+        </v-col>
+        <v-col cols="12" lg="3" md="2" class="top-6">
+          <v-card class="surfopac-8">
+            <v-card-text>
+              <top6-performers />
+            </v-card-text>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
@@ -46,7 +53,7 @@ import technology from '@/assets/images/landing/technology.svg';
     top: 0;
     left: 0;
     z-index: 2;
-    background: linear-gradient(329.36deg, rgb(0, 0, 0) 14.79%, rgba(67, 67, 67, 0.28) 64.86%);
+    background: linear-gradient(350.36deg, rgb(0, 0, 0) 04.79%, rgba(67, 67, 67, 0.28) 64.86%);
   }
 }
 .home-content {
@@ -68,36 +75,7 @@ import technology from '@/assets/images/landing/technology.svg';
     font-size: 1.825rem;
   }
 }
-.HeaderImage {
-  display: block;
-  object-fit: cover;
-  position: absolute;
-  z-index: 1;
-  width: 65%;
-  right: -2%;
-  top: 8%;
-  [dir='rtl'] & {
-    right: unset;
-    left: -2%;
-  }
-}
-.widget1 {
-  position: absolute;
-  top: -40px;
-  right: -170px;
-  width: 290px;
-  animation: 10s slideY linear infinite;
-}
-.widget2 {
-  position: absolute;
-  bottom: -90px;
-  left: 300px;
-  width: 280px;
-  animation: 10s slideY linear infinite;
-  animation-delay: 2s;
-}
-.widgetImages {
-  max-width: 100%;
-  filter: drop-shadow(0px 0px 50px rgb(33 150 243 / 30%));
+.top-6 {
+  margin-top: -20%;
 }
 </style>

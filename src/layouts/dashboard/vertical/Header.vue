@@ -1,6 +1,4 @@
 <script setup>
-// shared components
-import LanguageDD from '../shared/LanguageDD.vue';
 import ProfileDD from '../shared/ProfileDD.vue';
 import Searchbar from '../shared/SearchBarPanel.vue';
 import {useAdminAuthStore} from '@/stores/auth';
@@ -24,15 +22,6 @@ const authStore = useAdminAuthStore();
     </v-sheet>
 
     <v-spacer />
-
-    <v-btn icon class="ms-sm-2 ms-1" color="darkText" rounded="sm" size="small">
-      <v-icon icon="mdi-translate" />
-      <v-menu activator="parent" :close-on-content-click="false" location="bottom" offset="6, 80">
-        <v-sheet rounded="md" width="200">
-          <LanguageDD />
-        </v-sheet>
-      </v-menu>
-    </v-btn>
 
     <v-btn class="profileBtn" variant="text" rounded="sm">
       <div class="d-flex align-center">
