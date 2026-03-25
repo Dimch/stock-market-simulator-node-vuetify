@@ -7,7 +7,9 @@ const authStore = useAdminAuthStore();
   <v-sheet rounded="0" class="px-4 py-3 sidebar-user">
     <div class="d-flex align-center">
       <v-avatar size="40" color="primary" variant="tonal">
-        <img src="@/assets/images/users/avatar-1.png" width="40" :alt="authStore.user?.name" />
+        <v-icon v-tooltip="authStore.user?.name">
+          mdi-account
+        </v-icon>
       </v-avatar>
       <div class="px-3">
         <h6 class="text-h6 mb-0">{{ authStore.user?.name }}</h6>

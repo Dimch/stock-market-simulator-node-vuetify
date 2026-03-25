@@ -12,7 +12,7 @@ const content = {
 </script>
 
 <template>
-  <v-row no-gutters class="overflow-hidden" style="min-height: 100vh">
+  <v-row no-gutters class="overflow-hidden" style="min-height: calc(100vh - 69px)">
     <v-col class="d-flex align-center justify-center">
       <v-card class="message-card surfopac-8 text-center elevation-6">
         <h1 class="text-md-h1 text-h2 mt-9 mb-3">

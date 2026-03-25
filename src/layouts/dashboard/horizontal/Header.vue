@@ -30,9 +30,8 @@ const theme = useTheme();
 
     <v-btn class="profileBtn" variant="text" rounded="sm" v-bind="props">
       <div class="d-flex align-center">
-        <v-avatar class="me-sm-2 me-0 py-2">
-          <img src="@/assets/images/users/avatar-1.png" alt="Julia" />
-        </v-avatar>
+        <v-avatar icon="mdi-account" v-tooltip="'Julia'"
+                  class="me-sm-2 me-0 py-2" />
         <h6 class="text-subtitle-1 mb-0 d-sm-block d-none">JWT User</h6>
       </div>
       <v-menu activator="parent" :close-on-content-click="false" offset="8, 0">

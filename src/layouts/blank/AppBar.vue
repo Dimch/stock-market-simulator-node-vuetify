@@ -18,7 +18,7 @@ const menuItems = [
 </script>
 
 <template>
-  <v-app-bar elevation="0" flat height="69"  border="0"
+  <v-app-bar elevation="0" flat border="0"
              :class="['border-bottom', 'position-fixed', theme.global.name.value]">
     <v-container class="fill-height maxWidth">
       <div class="d-flex align-center ga-2 w-100">

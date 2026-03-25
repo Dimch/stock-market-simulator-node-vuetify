@@ -12,9 +12,8 @@ const authStore = useCustomerAuthStore();
   <!-- ---------------------------------------------- -->
   <div>
     <div class="d-flex align-center pa-5">
-      <v-avatar size="32" class="me-2">
-        <img src="@/assets/images/users/avatar-1.png" width="32" alt="Julia" />
-      </v-avatar>
+      <v-avatar icon="mdi-account" v-tooltip="'Julia'"
+                  class="me-2" />
       <div>
         <h6 class="text-h6 mb-0">JWT User</h6>
         <p class="text-caption mb-0">UI/UX Designer</p>

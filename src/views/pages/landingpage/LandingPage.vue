@@ -42,19 +42,9 @@ import Top6Performers from '@/views/widgets/Top6Performers.vue';
 .home-bg {
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: calc(100vh - 69px);
   display: flex;
   align-items: center;
-  &::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    background: linear-gradient(350.36deg, rgb(0, 0, 0) 04.79%, rgba(67, 67, 67, 0.28) 64.86%);
-  }
 }
 .home-content {
   background-color: rgba(var(--v-theme-surface), 0.8);
@@ -76,6 +66,6 @@ import Top6Performers from '@/views/widgets/Top6Performers.vue';
   }
 }
 .top-6 {
-  margin-top: -20%;
+  
 }
 </style>

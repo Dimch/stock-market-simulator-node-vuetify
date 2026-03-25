@@ -6,10 +6,10 @@ const footerLink = [
 ];
 </script>
 <template>
-  <v-footer class="px-0 pt-2">
+  <v-footer app class="py-4">
     <v-row justify="center" no-gutters>
       <v-col cols="12" md="6" class="text-md-start text-center">
-        <p class="text-subtitle-2 text-lightText mb-md-0 mb-4">
+        <p class="text-subtitle-2 text-lightText">
           This work is protected by
           <a href="https://youtu.be/fgBc06l62bc?si=Uz5gCAUKhipmJD0k&t=43"
              target="_blank" class="text-primary">

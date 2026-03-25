@@ -1,6 +1,6 @@
 <script setup>
-import ProfileDD from '../shared/ProfileDD.vue';
-import Searchbar from '../shared/SearchBarPanel.vue';
+import ProfileDropdown from '../shared/ProfileDD.vue';
+import SearchBar from '../shared/SearchBarPanel.vue';
 import {useAdminAuthStore} from '@/stores/auth';
 
 const authStore = useAdminAuthStore();
@@ -18,21 +18,22 @@ const authStore = useAdminAuthStore();
     </v-btn>
 
     <v-sheet class="d-none d-lg-block" width="250">
-      <Searchbar />
+      <search-bar />
     </v-sheet>
 
     <v-spacer />
 
     <v-btn class="profileBtn" variant="text" rounded="sm">
       <div class="d-flex align-center">
-        <v-avatar class="me-sm-2 me-0 py-2">
-          <img src="@/assets/images/users/avatar-1.png" :alt="authStore.user?.name" />
-        </v-avatar>
-        <h6 class="text-subtitle-1 mb-0 d-sm-block d-none">{{ authStore.user?.name }}</h6>
+        <v-avatar icon="mdi-account" v-tooltip="authStore.user?.name"
+                  class="me-sm-2 me-0 py-2" />
+        <h6 class="text-subtitle-1 mb-0 d-sm-block d-none">
+          {{ authStore.user?.name }}
+        </h6>
       </div>
       <v-menu activator="parent" :close-on-content-click="false" offset="8, 0">
         <v-sheet rounded="md" width="290">
-          <ProfileDD />
+          <profile-dropdown />
         </v-sheet>
       </v-menu>
     </v-btn>
