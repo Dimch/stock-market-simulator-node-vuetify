@@ -12,7 +12,7 @@ const router = createRouter({
   routes: [
     {
       path: '/:pathMatch(.*)*',
-      component: () => import('@/views/pages/Error404Page.vue'),
+      redirect: '/404',
     },
     PublicRoutes,
     AdminRoutes,

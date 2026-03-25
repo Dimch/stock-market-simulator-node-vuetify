@@ -50,8 +50,8 @@ const routeToImageMap = {
   '/': landingImages,
   '/construction': constructionImages,
   '/login': loginImages,
-  '/error': error404Images,
-  '/error500': error404Images,
+  '/404': error404Images,
+  '/500': error404Images,
 };
 
 export const useImageStore = defineStore('images', () => {

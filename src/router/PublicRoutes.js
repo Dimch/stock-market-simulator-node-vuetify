@@ -31,14 +31,14 @@ const PublicRoutes = {
       component: () => import('@/views/pages/UnderConstruction.vue'),
     },
     {
-      name: 'Error 404',
-      path: '/error',
-      component: () => import('@/views/pages/Error404Page.vue'),
+      name: '404',
+      path: '/404',
+      component: () => import('@/views/pages/ErrorPage.vue'),
     },
     {
-      name: 'Error 500',
-      path: '/error500',
-      component: () => import('@/views/pages/Error500Page.vue'),
+      name: '500',
+      path: '/500',
+      component: () => import('@/views/pages/ErrorPage.vue'),
     },
   ],
 };
