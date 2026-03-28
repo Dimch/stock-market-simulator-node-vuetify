@@ -36,20 +36,20 @@ const calcHeight = () => {
 <template>
   <v-locale-provider>
     <v-app :theme="theme.global.name.value" :class="applicationClass">
-      <HeaderComponent />
-      <SidebarComponent />
+      <header-component />
+      <sidebar-component />
 
       <v-main ref="wrapperRef" v-resize="calcHeight"
               class="page-wrapper overflow-scroll" :height="wrapperHeight">
         <v-container fluid>
           <div>
-            <LoaderWrapper />
-            <RouterView />
+            <loader-wrapper />
+            <router-view />
           </div>
         </v-container>
         <v-container fluid class="pt-0">
           <div>
-            <FooterPanel />
+            <footer-panel />
           </div>
         </v-container>
       </v-main>

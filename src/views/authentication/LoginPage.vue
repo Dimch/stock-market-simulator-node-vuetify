@@ -9,7 +9,7 @@ import LoginForm from './LoginForm.vue';
         <div class="d-flex align-center justify-center" style="min-height: calc(100vh - 148px)">
           <v-card class="login-box surfopac-8">
             <v-card-text class="pa-sm-10 pa-6">
-              <LoginForm />
+              <login-form />
             </v-card-text>
           </v-card>
         </div>

@@ -5,7 +5,7 @@ import RateLimitCharts from '@/views/widgets/chart/RateLimitCharts.vue';
 <template>
   <v-row class="mt-0">
     <v-col cols="12" md="12" class="pb-0">
-      <RateLimitCharts />
+      <rate-limit-charts />
     </v-col>
     <v-col cols="12" md="8">
       <!-- Rate limit configurations table -->

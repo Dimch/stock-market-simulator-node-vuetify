@@ -10,7 +10,7 @@ const selectedTicker = ref('ZVEX');
       <!-- List of selectable widgets showing price -->
     </v-col>
     <v-col cols="12" md="12">
-      <StockPriceRange :ticker="selectedTicker" />
+      <stock-price-range :ticker="selectedTicker" />
     </v-col>
     <v-col cols="12" md="4">
       <!-- Table of all stocks and prices -->

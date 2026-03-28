@@ -78,7 +78,7 @@ useInterval(refreshStock, 60 * 1000); // refresh every minute
 </script>
 
 <template>
-  <UiTitleCard :title="stock.name" class="px-0 rounded-md overflow-hidden pb-0">
+  <ui-title-card :title="stock.name" class="px-0 rounded-md overflow-hidden pb-0">
     <v-row class="justify-sm-space-between justify-center py-5 px-4">
       <v-col cols="12" sm="6">
         <div class="d-flex align-center" :class="stock.changeAmount >= 0 ? 'text-success' : 'text-error'">
@@ -103,7 +103,7 @@ useInterval(refreshStock, 60 * 1000); // refresh every minute
       </v-col>
     </v-row>
     <v-chart class="chart" :option="chartOptions" :style="{width: '100%', height: '400px'}" autoresize />
-  </UiTitleCard>
+  </ui-title-card>
 </template>
 
 <style lang="scss">

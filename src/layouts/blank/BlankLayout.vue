@@ -6,7 +6,7 @@
       <v-main style="--v-layout-top: 0px">
         <router-view />
         <v-container class="pt-0 pb-6">
-          <Footer />
+          <blank-footer />
         </v-container>
       </v-main>
     </v-layout> 
@@ -16,7 +16,7 @@
 <script setup>
 import {RouterView} from 'vue-router';
 import AppToolbar from './AppBar.vue';
-import Footer from './Footer.vue';
+import BlankFooter from './Footer.vue';
 import LoaderWrapper from '../dashboard/LoaderWrapper.vue';
 import {useImageStore} from '@/stores/images';
 const img = useImageStore();

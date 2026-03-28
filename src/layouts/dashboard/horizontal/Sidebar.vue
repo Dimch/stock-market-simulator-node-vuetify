@@ -16,15 +16,15 @@ const {mdAndUp} = useDisplay();
       <v-container fluid class="py-0">
         <ul class="gap-1 horizontal-navbar px-0">
           <li v-for="(item, i) in sidebarMenu" :key="i" class="navItem">
-            <NavCollapse v-if="item.children" :item="item" :level="0" />
-            <NavItem v-else :item="item" />
+            <component :is="item.children ? NavCollapse : NavItem"
+                       :item="item" :level="0" />
           </li>
         </ul>
       </v-container>
     </div>
   </template>
   <div v-else class="mobile-menu">
-    <VerticalSidebar />
+    <vertical-sidebar />
   </div>
 </template>
 <style lang="scss"></style>

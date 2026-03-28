@@ -22,8 +22,8 @@ const props = defineProps({item: Object, level: Number});
   <!---Sub Item-->
   <ul :class="`ddMenu px-0 ddLevel-${level + 1}`">
     <li v-for="(subitem, i) in item.children" :key="i" class="navItem rounded-0">
-      <NavCollapse v-if="subitem.children" :item="subitem" :level="props.level + 1" />
-      <NavItem v-else :item="subitem" :level="props.level + 1" />
+      <component :is="subitem.children ? NavCollapse : NavItem"
+                 :item="subitem" :level="props.level + 1" />
     </li>
   </ul>
   <!---End Item Sub Header -->

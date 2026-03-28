@@ -23,7 +23,7 @@ const menuItems = [
     <v-container class="fill-height maxWidth">
       <div class="d-flex align-center ga-2 w-100">
         <div class="d-flex align-center ga-2">
-          <Logo />
+          <logo />
           <v-chip label variant="outlined" color="secondary" size="small" class="px-3">
             {{ appVersion }}
           </v-chip>

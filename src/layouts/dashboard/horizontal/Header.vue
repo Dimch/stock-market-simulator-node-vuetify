@@ -1,8 +1,8 @@
 <script setup>
 import {useTheme} from 'vuetify';
 import Logo from '../shared/Logo.vue';
-import ProfileDD from '../shared/ProfileDD.vue';
-import Searchbar from '../shared/SearchBarPanel.vue';
+import ProfileDropdown from '../shared/ProfileDD.vue';
+import SearchBar from '../shared/SearchBarPanel.vue';
 
 const theme = useTheme();
 </script>
@@ -10,7 +10,7 @@ const theme = useTheme();
 <template>
   <v-app-bar elevation="0" height="60">
     <div class="pa-5 hidden-md-and-down">
-      <Logo />
+      <logo />
     </div>
     <v-btn class="hidden-lg-and-up text-secondary ms-3" color="darkText" icon rounded="sm"
            variant="text" size="small">
@@ -18,7 +18,7 @@ const theme = useTheme();
     </v-btn>
 
     <v-sheet class="d-none d-lg-block" width="250">
-      <Searchbar />
+      <search-bar />
     </v-sheet>
 
     <v-spacer />
@@ -36,7 +36,7 @@ const theme = useTheme();
       </div>
       <v-menu activator="parent" :close-on-content-click="false" offset="8, 0">
         <v-sheet rounded="md" width="290">
-          <ProfileDD />
+          <profile-dropdown />
         </v-sheet>
       </v-menu>
     </v-btn>

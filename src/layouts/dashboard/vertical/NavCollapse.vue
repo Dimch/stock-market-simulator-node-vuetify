@@ -3,6 +3,7 @@ import {useI18n} from 'vue-i18n';
 const {t} = useI18n();
 
 import NavItem from './NavItem.vue';
+import NavCollapse from '../horizontal/NavCollapse.vue';
 
 const props = defineProps({item: Object, level: Number});
 </script>
@@ -33,8 +34,8 @@ const props = defineProps({item: Object, level: Number});
     <!---Sub Item-->
     <!-- ---------------------------------------------- -->
     <template v-for="(subitem, i) in item.children" :key="i">
-      <NavCollapse :item="subitem" v-if="subitem.children" :level="props.level + 1" />
-      <NavItem :item="subitem" :level="props.level + 1" v-else></NavItem>
+      <component :is="subitem.children ? NavCollapse : NavItem"
+                 :item="subitem" :level="props.level + 1" />
     </template>
   </v-list-group>
 
