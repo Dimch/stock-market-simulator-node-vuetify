@@ -21,27 +21,27 @@ const AdminRoutes = {
     {
       name: 'Stocks',
       path: 'stocks',
-      component: () => import('@/views/pages/UnderConstruction.vue'),
+      redirect: '/construction',
     },
     {
       name: 'Transactions',
       path: 'transactions',
-      component: () => import('@/views/pages/UnderConstruction.vue'),
+      redirect: '/construction',
     },
     {
       name: 'Rate Limits',
       path: 'rate-limits',
-      component: () => import('@/views/pages/UnderConstruction.vue'),
+      redirect: '/construction',
     },
     {
       name: 'Rate Limit Configuration',
       path: 'rate-limits/configuration',
-      component: () => import('@/views/pages/UnderConstruction.vue'),
+      redirect: '/construction',
     },
     {
       name: 'Statistics',
       path: 'widget/statistics',
-      component: () => import('@/views/pages/UnderConstruction.vue'),
+      redirect: '/construction',
     },
   ]
 };

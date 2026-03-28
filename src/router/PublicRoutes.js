@@ -18,7 +18,7 @@ const PublicRoutes = {
     {
       name: 'PrivacyPolicy',
       path: '/privacy-policy',
-      component: () => import('@/views/pages/landingpage/PrivacyPolicy.vue'),
+      redirect: '/construction',
     },
     {
       name: 'FAQs',

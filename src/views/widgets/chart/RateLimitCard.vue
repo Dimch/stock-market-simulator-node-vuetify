@@ -100,16 +100,18 @@ const chipColor = computed(() => {
 
 <template>
   <v-card variant="outlined" elevation="0" class="bg-surface">
-    <v-card-text class="pb-0">
-      <div class="d-flex align-start">
+    <v-card-text class="">
+      <div class="d-flex align-start justify-space-between">
         <div>
           <h6 class="text-h6 text-lightText">
             {{ rateLimit.title }}
           </h6>
-          <h5 class="text-h5 mb-0 text-center">
+        </div>
+        <div>
+          <h5 class="text-h5 mb-0 text-end">
             {{ rateLimit.salt }}
           </h5>
-          <h4 class="text-h4 mb-0 d-flex align-center flex-wrap gap-1">
+          <h4 class="text-h4 mb-0 d-flex align-center flex-wrap gap-1 justify-end">
             {{ rateLimit.value }}
             <span class="text-subtitle-2 ms-2 rl-unit">
               /{{ humanizeDuration }}

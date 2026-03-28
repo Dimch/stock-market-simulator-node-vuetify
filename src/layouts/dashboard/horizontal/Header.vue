@@ -1,14 +1,15 @@
 <script setup>
 import {useTheme} from 'vuetify';
 import Logo from '../shared/Logo.vue';
-import ProfileDropdown from '../shared/ProfileDD.vue';
+import ProfileDropdown from '../shared/ProfileMenu.vue';
 import SearchBar from '../shared/SearchBarPanel.vue';
+import ThemeModeToggle from '@/components/ThemeModeSwitch.vue';
 
 const theme = useTheme();
 </script>
 
 <template>
-  <v-app-bar elevation="0" height="60">
+  <v-app-bar elevation="0" height="60" :class="theme.global.name.value">
     <div class="pa-5 hidden-md-and-down">
       <logo />
     </div>
@@ -23,12 +24,9 @@ const theme = useTheme();
 
     <v-spacer />
 
-    <v-checkbox class="pt-3" v-model="theme.current.value.dark" color="purple"
-      off-icon="mdi-theme-light-dark"
-      on-icon="mdi-theme-light-dark"
-    ></v-checkbox>
+    <theme-mode-toggle class="ms-2" />
 
-    <v-btn class="profileBtn" variant="text" rounded="sm" v-bind="props">
+    <v-btn class="profileBtn" variant="text" rounded="sm">
       <div class="d-flex align-center">
         <v-avatar icon="mdi-account" v-tooltip="'Julia'"
                   class="me-sm-2 me-0 py-2" />

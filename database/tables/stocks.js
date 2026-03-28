@@ -15,13 +15,18 @@ export const init = (db) => {
   db.exec(`
     insert or ignore into stocks (ticker, name, price)
     values
-      ('ZVEX', 'ZephyrVex Technologies', 150.00),
-      ('NXUM', 'NexiumCore Systems', 2800.00),
-      ('PYRX', 'PyreX Digital Solutions', 300.00),
-      ('KXOR', 'KineticXOR Industries', 3500.00),
-      ('VXLT', 'VaultX Entertainment', 600.00),
+      ('ZVEX', 'Zephyr Vex Technologies', 150.00),
+      ('NRVS', 'NervousCore Systems', 2800.00),
+      ('PYRO', 'Pyro Digital Solutions', 300.00),
+      ('KORI', 'Kinetic OR Industries', 3500.00),
+      ('VELT', 'Vault Entertainment', 600.00),
       ('OXEN', 'OxenMind Computing', 350.00),
-      ('ZXFL', 'ZephyrFlow Innovations', 700.00);
+      ('SFFL', 'SaffronFlow Innovations', 700.00),
+      ('QAUM', 'Quantum Analytics', 2200.00),
+      ('RXOL', 'Radius Box Solutions', 450.00),
+      ('PRZU', 'Zaibatzu Pharmaceuticals', 1800.00),
+      ('AMLG', 'Amalgam Amalgamation', 550.00),
+      ('UZEN', 'UltraZen Networks', 1200.00);
   `);
 };
 

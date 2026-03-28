@@ -1,31 +1,27 @@
 <script setup>
-import ProfileDropdown from '../shared/ProfileDD.vue';
+import {useTheme} from 'vuetify';
+import ProfileDropdown from '../shared/ProfileMenu.vue';
 import SearchBar from '../shared/SearchBarPanel.vue';
+import ThemeModeToggle from '@/components/ThemeModeSwitch.vue';
 import {useAdminAuthStore} from '@/stores/auth';
 
+const theme = useTheme();
 const authStore = useAdminAuthStore();
 </script>
 
 <template>
-  <v-app-bar elevation="0" height="60">
-    <v-btn class="hidden-md-and-down text-secondary me-3" color="darkText" icon rounded="sm"
-           variant="text" size="small" @click.stop="">
-      <v-icon icon="mdi-menu-fold" />
-    </v-btn>
-    <v-btn class="hidden-lg-and-up text-secondary ms-3" color="darkText" icon rounded="sm"
-           variant="text" size="small" @click.stop="">
-      <v-icon icon="mdi-menu-fold" />
-    </v-btn>
-
-    <v-sheet class="d-none d-lg-block" width="250">
+  <v-app-bar elevation="0" height="60" :class="theme.global.name.value">
+    <v-sheet class="d-none d-lg-block ms-10" width="250">
       <search-bar />
     </v-sheet>
 
     <v-spacer />
 
+    <theme-mode-toggle class="ms-2" />
+
     <v-btn class="profileBtn" variant="text" rounded="sm">
       <div class="d-flex align-center">
-        <v-avatar icon="mdi-account" v-tooltip="authStore.user?.name"
+        <v-avatar icon="mdi-account-circle" v-tooltip="authStore.user?.name"
                   class="me-sm-2 me-0 py-2" />
         <h6 class="text-subtitle-1 mb-0 d-sm-block d-none">
           {{ authStore.user?.name }}

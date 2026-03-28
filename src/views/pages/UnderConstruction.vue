@@ -1,4 +1,6 @@
 <script setup>
+import {useRouter} from 'vue-router';
+const router = useRouter();
 </script>
 
 <template>
@@ -11,9 +13,10 @@
         <p class="text-h6 content">
           Hello, please come back later. We are doing some maintenance...
         </p>
-        <v-btn variant="flat" color="primary" to="/console/admin/dashboards/market">
-          Back
-        </v-btn>
+        <v-btn icon="mdi-arrow-u-left-top" variant="tonal" class="me-10"
+               v-tooltip="`Back`" @click="router.back()" />
+        <v-btn icon="mdi-home" variant="tonal"
+               v-tooltip="`Home`" to="/console/admin/dashboards/market" />
       </v-card>
     </v-col>
   </v-row>

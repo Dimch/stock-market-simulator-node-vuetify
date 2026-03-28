@@ -1,6 +1,8 @@
 {
   "Dashboard": "Dashboard",
   "Default": "Default",
+  "Security": "Security",
+  "Market": "Market",
   "Analytics": "Analytics",
 
   "Widget": "Widget",
@@ -8,6 +10,7 @@
   "Data": "Data",
   "Chart": "Chart",
 
+  "More": "More",
   "Components": "Components",
 
   "Applications": "Applications",
