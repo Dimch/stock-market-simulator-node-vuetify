@@ -38,6 +38,9 @@ const chartOptions = computed(() => ({
     type: 'category',
     splitLine: {
       show: true,
+      lineStyle: {
+        color: 'rgba(var(--v-theme-on-surface), 0.1)',
+      },
     },
     data: stock.value.timeLabels || [],
   },
@@ -47,6 +50,9 @@ const chartOptions = computed(() => ({
     max: 'dataMax',
     splitLine: {
       show: true,
+      lineStyle: {
+        color: 'rgba(var(--v-theme-on-surface), 0.1)',
+      },
     },
   },
   series: [
@@ -82,7 +88,7 @@ useInterval(refreshStock, 60 * 1000); // refresh every minute
     <v-row class="justify-sm-space-between justify-center py-5 px-4">
       <v-col cols="12" sm="6">
         <div class="d-flex align-center" :class="stock.changeAmount >= 0 ? 'text-success' : 'text-error'">
-          <v-icon :icon="stock.changeAmount >= 0 ? 'mdi-chevron-up' : 'mdi-chevron-down'" size="small" />
+          <v-icon :icon="stock.changeAmount >= 0 ? 'mdi-triangle-small-up' : 'mdi-triangle-small-down'" />
           <h6 class="text-h6 mb-0 ms-1">
             ${{ Math.abs(stock.changeAmount).toFixed(2) }} ({{ (Math.abs(stock.changePercent)).toFixed(0) }}%)
           </h6>

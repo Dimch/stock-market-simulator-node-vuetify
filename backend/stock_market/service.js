@@ -123,7 +123,20 @@ export class StockMarketService {
   }
 
   getDashboard() {
-    return null;
+    const periodRange = 60 * 24; // last 24 hours
+    const stocks = this.getAllStocks();
+    return flow(
+      map(stock => {
+        const {changeAmount, changePercent} = this.calculateChange(stock, periodRange, false);
+        return {
+          ...stock,
+          changeAmount,
+          changePercent,
+          periodRange,
+        };
+      }),
+      orderBy(['ticket'], ['asc']),
+    )(stocks);
   }
 
   /**
