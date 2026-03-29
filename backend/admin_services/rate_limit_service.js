@@ -1,7 +1,7 @@
 import fp from 'lodash/fp.js';
 const {isInteger, map, reduce, startCase, sum} = fp;
 import {Duration} from 'luxon';
-import {RateLimits, RateLimitConfigs} from '../../database/index.js';
+import {RateLimits, RateLimitConfigs} from '../database/index.js';
 import {RateLimiter} from 'sliding-window-limiter';
 import {store} from '../admin_services/rate_limit_store_adapter.js';
 

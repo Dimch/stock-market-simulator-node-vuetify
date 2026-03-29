@@ -1,6 +1,6 @@
 import fp from 'lodash/fp.js';
 const {split} = fp;
-import {RateLimitsRepo, db} from '../../database/index.js';
+import {RateLimitsRepo, db} from '../database/index.js';
 
 const getKeySalt = split('§');
 

@@ -5,8 +5,8 @@
 import fp from 'lodash/fp.js';
 const {first, flow, last, map, orderBy, slice} = fp;
 import {DateTime} from 'luxon';
-import {Stocks, StockPrices} from '../../database/index.js';
-import {generatePriceSequence, updatePrice} from '../../lib/stockSimulator.js';
+import {Stocks, StockPrices} from '../database/index.js';
+import {generatePriceSequence, updatePrice} from '../lib/stockSimulator.js';
 
 const getPrices = map('price');
 export function getTimeLabels(startDate = DateTime.now(), periodRange) {

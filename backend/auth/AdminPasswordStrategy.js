@@ -3,7 +3,7 @@ import fp from 'lodash/fp.js';
 const {cloneDeep} = fp;
 import argon2 from 'argon2';
 import {Strategy as LocalStrategy} from 'passport-local';
-import {Admins} from '../../database/index.js';
+import {Admins} from '../database/index.js';
 
 passport.use('admin', new LocalStrategy(
   {
