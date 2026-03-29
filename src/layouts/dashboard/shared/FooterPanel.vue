@@ -40,9 +40,11 @@ const footerLink = computed(() =>
         </p>
       </v-col>
       <v-col class="text-end" cols="6">
-        <a v-for="(item, i) in footerLink" :key="i" class="mx-2 text-caption text-darkText" :href="item.link" target="_blank">
-          {{ item.title }}
-        </a>
+        <template v-for="item in footerLink">
+           <a :href="item.link" target="_blank" class="mx-2 text-caption">
+             {{ item.title }}
+           </a>
+        </template>
       </v-col>
     </v-row>
   </v-footer>

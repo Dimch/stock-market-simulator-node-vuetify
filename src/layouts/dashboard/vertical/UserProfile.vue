@@ -17,16 +17,10 @@ const authStore = useAdminAuthStore();
           <v-icon icon="mdi-chevron-right" />
           <v-menu activator="parent" :close-on-content-click="false">
             <v-sheet rounded="md" width="110" elevation="24">
-              <v-list>
-                <v-list-item class="no-spacer" min-height="33" @click="authStore.logout()">
-                  <v-list-item-title class="text-h6">Logout</v-list-item-title>
-                </v-list-item>
-                <v-list-item class="no-spacer" to="/app/user/userprofile" min-height="33">
-                  <v-list-item-title class="text-h6">Profile</v-list-item-title>
-                </v-list-item>
-                <v-list-item class="no-spacer" to="/app/user/account-profile/profile1" min-height="33">
-                  <v-list-item-title class="text-h6">My account</v-list-item-title>
-                </v-list-item>
+              <v-list density="compact">
+                <v-list-item title="Logout" @click="authStore.logout()" />
+                <v-list-item title="Profile" to="/user/profile" />
+                <v-list-item title="My account" to="/user/account" />
               </v-list>
             </v-sheet>
           </v-menu>

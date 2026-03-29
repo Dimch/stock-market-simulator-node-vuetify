@@ -1,22 +1,18 @@
 <script setup>
 import {ref} from 'vue';
-import {useCustomerAuthStore} from '@/stores/auth';
+import {useAdminAuthStore} from '@/stores/auth';
 
 const tab = ref(null);
-const authStore = useCustomerAuthStore();
+const authStore = useAdminAuthStore();
 </script>
 
 <template>
-  <!-- ---------------------------------------------- -->
-  <!-- profile DD -->
-  <!-- ---------------------------------------------- -->
   <div>
     <div class="d-flex align-center pa-5">
-      <v-avatar icon="mdi-account" v-tooltip="'Julia'"
-                  class="me-2" />
+      <v-avatar icon="mdi-account" v-tooltip="authStore.user?.name" class="me-2" />
       <div>
-        <h6 class="text-h6 mb-0">JWT User</h6>
-        <p class="text-caption mb-0">UI/UX Designer</p>
+        <h6 class="text-h6 mb-0">{{ authStore.user?.name }}</h6>
+        <p class="text-caption mb-0">{{ authStore.user?.email }}</p>
       </div>
       <div class="ms-auto">
         <v-btn variant="text" color="primary" rounded="sm" icon size="large" @click="authStore.logout()">
@@ -25,95 +21,27 @@ const authStore = useCustomerAuthStore();
       </div>
     </div>
     <v-tabs v-model="tab" color="primary" grow>
-      <v-tab value="111"> <v-icon icon="mdi-account" class="v-icon--start" size="small" /> Profile </v-tab>
-      <v-tab value="222"> <v-icon icon="mdi-cog" class="v-icon--start" size="small" /> Setting </v-tab>
+      <v-tab value="111" prepend-icon="mdi-account">Profile</v-tab>
+      <v-tab value="222" prepend-icon="mdi-cog">Settings</v-tab>
     </v-tabs>
     <perfect-scrollbar style="height: calc(100vh - 300px); max-height: 240px">
       <v-window v-model="tab">
         <v-window-item value="111">
           <v-list class="py-0" aria-label="profile list" aria-busy="true">
-            <v-list-item color="primary" rounded="0" value="Edit profile">
-              <template #prepend>
-                <v-icon icon="mdi-pencil" class="me-4" />
-              </template>
-
-              <v-list-item-title class="text-h6"> Edit Profile</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item color="primary" rounded="0" value="View Profile">
-              <template #prepend>
-                <v-icon icon="mdi-account" class="me-4" />
-              </template>
-
-              <v-list-item-title class="text-h6"> View Profile</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item color="primary" rounded="0" value="Social Profile">
-              <template #prepend>
-                <v-icon icon="mdi-account-box" class="me-4" />
-              </template>
-
-              <v-list-item-title class="text-h6"> Social Profile</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item color="primary" rounded="0" value="Billing">
-              <template #prepend>
-                <v-icon icon="mdi-wallet" class="me-4" />
-              </template>
-
-              <v-list-item-title class="text-h6"> Billing</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item @click="authStore.logout()" color="secondary" rounded="0">
-              <template #prepend>
-                <v-icon icon="mdi-logout" class="me-4" />
-              </template>
-
-              <v-list-item-title class="text-h6"> Logout</v-list-item-title>
-            </v-list-item>
+            <v-list-item title="Edit Profile" prepend-icon="mdi-pencil" color="primary" value="Edit profile" />
+            <v-list-item title="View Profile" prepend-icon="mdi-account" color="primary" value="View Profile" />
+            <v-list-item title="Social Profile" prepend-icon="mdi-account-box" color="primary" value="Social Profile" />
+            <v-list-item title="Billing" prepend-icon="mdi-wallet" color="primary" value="Billing" />
+            <v-list-item title="Logout" prepend-icon="mdi-logout" @click="authStore.logout()" color="secondary" />
           </v-list>
         </v-window-item>
         <v-window-item value="222">
-          <v-list class="py-0" aria-label="profile list" aria-busy="true">
-            <v-list-item color="primary" rounded="0" value="Support">
-              <template #prepend>
-                <v-icon icon="mdi-help-circle" class="me-4" />
-              </template>
-
-              <v-list-item-title class="text-h6"> Support</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item color="primary" rounded="0" value="Account">
-              <template #prepend>
-                <v-icon icon="mdi-account" class="me-4" />
-              </template>
-
-              <v-list-item-title class="text-h6"> Account settings</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item color="primary" rounded="0" value="Privacy">
-              <template #prepend>
-                <v-icon icon="mdi-lock" class="me-4" />
-              </template>
-
-              <v-list-item-title class="text-h6"> Privacy center</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item color="primary" rounded="0" value="Feedback">
-              <template #prepend>
-                <v-icon icon="mdi-comment" class="me-4" />
-              </template>
-
-              <v-list-item-title class="text-h6"> Feedback</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item color="primary" rounded="0" value="History">
-              <template #prepend>
-                <v-icon icon="mdi-list" class="me-4" />
-              </template>
-
-              <v-list-item-title class="text-h6"> History</v-list-item-title>
-            </v-list-item>
+          <v-list class="py-0" aria-label="settings list" aria-busy="true">
+            <v-list-item title="Support" prepend-icon="mdi-help-circle" color="primary" value="Support" />
+            <v-list-item title="Account settings" prepend-icon="mdi-account" color="primary" value="Account" />
+            <v-list-item title="Privacy center" prepend-icon="mdi-lock" color="primary" value="Privacy" />
+            <v-list-item title="Feedback" prepend-icon="mdi-comment" color="primary" value="Feedback" />
+            <v-list-item title="History" prepend-icon="mdi-list-box" color="primary" value="History" />
           </v-list>
         </v-window-item>
       </v-window>
