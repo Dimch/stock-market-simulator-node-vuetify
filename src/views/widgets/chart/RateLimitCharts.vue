@@ -1,21 +1,13 @@
 <script setup>
-import {useQuery} from '@pinia/colada';
-import {useInterval} from '@/helper';
-import {useAdminApi} from '@/api/adminApi';
+import {useRateLimitQuery} from '@/api/adminApi';
 import RateLimitCard from './RateLimitCard.vue';
+import {useInterval} from '@/helper';
 
-const adminApi = useAdminApi();
-const {data: rateLimits, refresh: refreshRateLimits} = useQuery({
-  key: () => ['rateLimits'],
-  query: async () => adminApi.getRateLimits(),
-  placeholderData: () => [{}, {}, {}, {}], // placeholder for 4 rate limits
-  staleTime: 10 * 1000,
-});
-useInterval(refreshRateLimits, 10 * 1000); // refresh 10 seconds
+const {data: rateLimits, refresh} = useRateLimitQuery();
+useInterval(refresh, 10 * 1000);
 
 const colors = ['purple', 'teal', 'blue', 'pink', 'lime', 'brown'];
 const getColor = (index) => colors[index % colors.length];
-
 </script>
 
 <template>

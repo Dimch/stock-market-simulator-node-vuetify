@@ -1,3 +1,4 @@
+import {useQuery} from '@pinia/colada';
 import {useClient, data} from './httpClient';
 
 const api = client => ({
@@ -7,3 +8,10 @@ const api = client => ({
 });
 
 export const useAdminApi = () => useClient('/admin', {api});
+
+export const useRateLimitQuery = () => useQuery({
+  key: () => ['rateLimits'],
+  query: async () => useAdminApi().getRateLimits(),
+  placeholderData: () => [{}, {}, {}, {}], // placeholder for 4 rate limits
+  staleTime: 9 * 1000,
+});

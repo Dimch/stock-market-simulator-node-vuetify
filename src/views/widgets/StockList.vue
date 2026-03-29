@@ -1,5 +1,4 @@
 <script setup>
-import {ref} from 'vue';
 import {useProxiedModel} from 'vuetify/lib/composables/proxiedModel';
 import {useQuery} from '@pinia/colada';
 import {useAdminApi} from '@/api/adminApi';

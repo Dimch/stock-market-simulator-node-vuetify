@@ -88,7 +88,7 @@ export class RateLimitService {
   }
 
   async updateLimits() {
-    const limits = this.store.getKeySaltPairs();
+  const limits = this.store.getKeySaltPairs();
     if (!limits?.length) return;
 
     for (const limit of limits) {

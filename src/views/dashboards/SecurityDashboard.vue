@@ -1,4 +1,5 @@
 <script setup>
+import RateLimitList from '@/views/widgets/RateLimitList.vue';
 import RateLimitCharts from '@/views/widgets/chart/RateLimitCharts.vue';
 </script>
 
@@ -7,8 +8,8 @@ import RateLimitCharts from '@/views/widgets/chart/RateLimitCharts.vue';
     <v-col cols="12" md="12" class="pb-0">
       <rate-limit-charts />
     </v-col>
-    <v-col cols="12" md="8">
-      <!-- Rate limit configurations table -->
+    <v-col cols="12" md="12">
+      <rate-limit-list />
     </v-col>
   </v-row>
 </template>

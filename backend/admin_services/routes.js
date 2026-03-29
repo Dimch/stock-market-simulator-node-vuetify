@@ -14,6 +14,9 @@ export const routes = () => {
   admin.get('/rate-limits',
     (_, res) => res.json(rateLimitService.getDashboard()));
 
+  admin.get('/rate-limits/list',
+    (_, res) => res.json(rateLimitService.getDashboard()));
+
   admin.get('/stocks',
     (_, res) => res.json(stockMarketService.getDashboard()));
   
