@@ -1,0 +1,56 @@
+<script setup>
+import {useAdminAuthStore} from '@/stores/auth';
+
+const authStore = useAdminAuthStore();
+</script>
+<template>
+  <v-sheet rounded="0" class="px-4 py-3 sidebar-user">
+    <div class="d-flex align-center">
+      <v-avatar icon="mdi-account-circle" v-tooltip="authStore.user?.name"
+                size="40" color="primary" variant="tonal" />
+      <div class="px-3">
+        <h6 class="text-h6 mb-0">{{ authStore.user?.name }}</h6>
+        <p class="text-lightText text-body-2 mb-0">{{ authStore.user?.email }}</p>
+      </div>
+      <div class="ms-auto">
+        <v-btn variant="flat" size="small" icon rounded>
+          <v-icon icon="mdi-chevron-right" />
+          <v-menu activator="parent" :close-on-content-click="false">
+            <v-sheet rounded="md" width="110" elevation="24">
+              <v-list density="compact">
+                <v-list-item title="Logout" @click="authStore.logout()" />
+                <v-list-item title="Profile" to="/user/profile" />
+                <v-list-item title="My account" to="/user/account" />
+              </v-list>
+            </v-sheet>
+          </v-menu>
+        </v-btn>
+      </div>
+    </div>
+  </v-sheet>
+</template>
+
+<style lang="scss">
+.sidebar-user {
+  border-top: 2px solid rgba(var(--v-theme-borderLight), 0.8);
+  .px-3 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .v-btn {
+    .anticon {
+      transition: 0.5s;
+    }
+    &[aria-expanded='true'] {
+      .anticon {
+        transform: rotate(-90deg);
+        transition: 0.5s;
+      }
+    }
+  }
+}
+</style>

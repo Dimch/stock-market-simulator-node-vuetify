@@ -1,0 +1,26 @@
+.v-theme--dark {
+  .vue3-easy-data-table__message {
+    --easy-table-message-font-color: rgb(var(--v-theme-lightText));
+  }
+  .vue3-easy-data-table {
+    .previous-page__click-button,
+    .next-page__click-button {
+      .arrow {
+        border-top-color: rgb(var(--v-theme-darkText));
+        border-left-color: rgb(var(--v-theme-darkText));
+      }
+    }
+    .previous-page__click-button.first-page .arrow,
+    .next-page__click-button.last-page .arrow {
+      border-color: rgb(var(--v-theme-lightText));
+    }
+  }
+
+  .carousel__icon {
+    fill: rgb(var(--v-border-color));
+  }
+
+  .handle {
+    background: rgb(var(--v-theme-surface)) !important;
+  }
+}
