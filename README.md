@@ -34,19 +34,16 @@ npm install
 
 ### Development Mode
 
-Start both frontend and backend development servers:
+Start both frontend and backend development servers with one command:
 
 ```bash
 # Terminal 1: Start backend with nodemon
 npm run dev
-
-# Terminal 2: Start Vite frontend dev server
-npm run dev:vite
 ```
 
 The application will be available at:
-- **Frontend**: `http://localhost:3000`
-- **Backend API**: `http://localhost:3001`
+- **Frontend Vite**: `http://localhost:3000`
+- **Backend Express**: `http://localhost:3001`
 
 ### Build for Production
 
@@ -144,10 +141,10 @@ Deploy to services like:
 ### Port Already in Use
 
 ```bash
-# Kill process on port 3001
+# Kill backend Express server on port 3001
 lsof -ti:3001 | xargs kill -9
 
-# Kill process on port 3000
+# Kill Vite UI server process on port 3000
 lsof -ti:3000 | xargs kill -9
 ```
 
@@ -173,7 +170,7 @@ Clear browser cookies and restart the development servers.
 - 🎛️ **Administrative Console** - Manage stocks, users, and system configurations
 - 📈 **Stock Price Simulation** - Generate and simulate realistic stock price movements
 - 🔐 **User Authentication** - Secure login with customer and admin role-based access
-- 🛡️ **Security Features** - CSRF protection, session management, rate limiting, helmet.js integration
+- 🛡️ **Security Features** - CSRF protection, session management, rate limiting
 - 💾 **Persistent Storage** - Database integration with comprehensive data models
 - 🎨 **Modern UI** - Material Design with Vuetify components and responsive layouts
 - 📱 **Full REST API** - Complete API endpoints for stock market operations

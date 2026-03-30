@@ -1,5 +1,6 @@
 <script setup>
-import technology from '@/assets/images/landing/technology.svg';
+import { useImageStore } from '@/stores/images';
+const { bannerImage } = useImageStore();
 import Top6Performers from '@/views/widgets/Top6Performers.vue';
 </script>
 
@@ -8,22 +9,20 @@ import Top6Performers from '@/views/widgets/Top6Performers.vue';
     <v-container class="maxWidth">
       <v-row class="spacer align-center">
         <v-col cols="12" lg="8" md="6">
-          <div class="pr-lg-5 pa-10 home-content text-md-start text-center">
+          <div class="pr-lg-5 pa-10 home-content text-md-start text-center position-relative">
             <h1 class="banner-text mb-5 text-on-surface">
-              Carefully Crafted for your <span class="text-primary">Caring Vue</span> Project
+              Master the Market Without
+              <br>
+              <span class="text-primary">Losing Real Money</span>
             </h1>
-            <p class="mb-8 text-h5 font-weight-regular text-on-surface">
-              StockSimulator is a blazing-fast marketplace with Bluetooth built using the Vuetify library.
+            <p class="mb-10 text-h5 font-weight-regular text-on-surface">
+              Welcome to your personal trading sandbox. Simulate market movements, test wild strategies, and discover why financial advisors recommend actual research. All while maintaining the comforting illusion of control.
             </p>
-            <div class="d-flex flex-wrap ga-2 justify-md-start text-center">
-              <v-btn color="primary" size="large" variant="outlined" to="/components/buttons">Explore components</v-btn>
+            <div class="d-flex flex-wrap ga-2 justify-sm-center">
               <v-btn color="primary" size="large" to="/console/admin/dashboards/security"
-                     prepend-icon="mdi-eye" p>
-                Live Preview
+                     variant="flat" prepend-icon="mdi-eye">
+                Jump into the Sandbox
               </v-btn>
-            </div>
-            <div>
-              <v-img :src="technology" alt="technology" width="281" class="mx-md-0 mx-auto mt-8" />
             </div>
           </div>
         </v-col>
@@ -64,8 +63,5 @@ import Top6Performers from '@/views/widgets/Top6Performers.vue';
   @media (max-width: 768px) {
     font-size: 1.825rem;
   }
-}
-.top-6 {
-  
 }
 </style>

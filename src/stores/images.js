@@ -54,14 +54,21 @@ const routeToImageMap = {
   '/500': error404Images,
 };
 
+// Banner images
+import img1 from '@/assets/images/landing/banner-img-1.jpg';
+import img2 from '@/assets/images/landing/banner-img-2.jpg';
+const bannerImages = [img1, img2];
+
 export const useImageStore = defineStore('images', () => {
   const theme = useTheme();
   const route = useRoute();
   const currentTheme = computed(() => theme.global.name.value);
   const bgImageClass = computed(() => sample(routeToImageMap[route?.path]?.[currentTheme.value]));
-  
+  const bannerImage = computed(() => sample(bannerImages));
+
   return {
     currentTheme,
     bgImageClass,
+    bannerImage,
   };
 });
