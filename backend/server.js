@@ -4,7 +4,7 @@ import {stockMarketService} from './stock_market/service.js';
 import {rateLimitService} from './admin_services/rate_limit_service.js';
 
 const app = createApplication();
-const port = 3001;
+const port = process.env.BACKEND_PORT || 3001;
 
 rateLimitService.startUpdate();
 

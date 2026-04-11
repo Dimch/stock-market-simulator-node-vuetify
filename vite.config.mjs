@@ -12,6 +12,17 @@ import Vuetify, {transformAssetUrls} from 'vite-plugin-vuetify';
 import {defineConfig} from 'vite';
 import {fileURLToPath, URL} from 'node:url';
 
+// Proxy configuration helper functions
+const backendUrl = () => `http://localhost:${process.env.BACKEND_PORT}`;
+const backendConf = () => ({
+  target: backendUrl(),
+  changeOrigin: true,
+});
+const proxyConf = paths => paths.reduce((acc, path) => ({
+  ...acc,
+  [path]: backendConf()
+}), {});
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -82,24 +93,17 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
-    proxy: {
-      '/health': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-      },
-      '/admin': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-      },
-      '/csrf-token': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-      },
-      '/stock-market': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-      },
+    port: process.env.FRONTEND_PORT || 3000,
+    proxy: proxyConf([
+      '/health',
+      '/admin',
+      '/csrf-token',
+      '/stock-market',
+    ]),
+    // Below is needed for Docker and WSL compatibility
+    host: true,
+    watch: {
+      usePolling: true,
     },
   },
 })
