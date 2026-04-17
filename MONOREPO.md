@@ -1,278 +1,206 @@
-# Stock Market Simulator - Monorepo Setup
+# Stock Market Simulator Monorepo Guide
 
-This project is now organized as a Turborepo monorepo with two separate packages: backend and frontend.
+This repository is organized as a workspace monorepo with one frontend package and one backend package.
 
-## 📁 Project Structure
+## Quick Start
 
-```
-stock-market-simulator-monorepo/
-├── packages/
-│   ├── backend/              # Node.js/Express backend service
-│   │   ├── app.js
-│   │   ├── server.js
-│   │   ├── package.json
-│   │   ├── Dockerfile
-│   │   ├── admin_services/
-│   │   ├── auth/
-│   │   ├── database/
-│   │   ├── lib/
-│   │   ├── stock_market/
-│   │   ├── user_services/
-│   │   └── test/
-│   │
-│   └── frontend/             # Vue.js frontend application
-│       ├── src/
-│       ├── public/
-│       ├── package.json
-│       ├── Dockerfile
-│       ├── vite.config.mjs
-│       └── index.html
-│
-├── docker-compose.yml        # Orchestration for both services
-├── turbo.json               # Turborepo configuration
-├── package.json             # Root package configuration
-└── README.md
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js >= 18.0.0
-- npm >= 9.0.0
-- Docker (for containerized deployment)
-
-### Installation
-
-Install dependencies for all packages:
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-This will automatically install dependencies for both backend and frontend packages due to the workspace configuration.
-
-## 📝 NPM Scripts
-
-### Development
-
-Start both services in development mode (runs in parallel):
+Run both apps directly on the host:
 
 ```bash
 npm run dev
 ```
 
-Or run individual services:
+Or run the Docker-based development stack:
 
 ```bash
-cd packages/backend && npm run dev
-cd packages/frontend && npm run dev
+npm run docker:build
+npm run docker:up
 ```
 
-### Building
+Default endpoints:
 
-Build all packages:
+- Frontend: `http://localhost:3000`
+- Backend: `http://localhost:3001`
+
+Choose the workflow based on what you need:
+
+- Use `npm run dev` when you want the simplest local setup.
+- Use Docker when you want both apps running in containers while editing source files on the host.
+
+## Structure
+
+```text
+.
+├── docker-compose.yaml
+├── package.json
+├── turbo.json
+└── packages/
+    ├── backend/
+    │   ├── Dockerfile
+    │   ├── package.json
+    │   ├── src/
+    │   └── test/
+    └── frontend/
+        ├── Dockerfile
+        ├── package.json
+        ├── src/
+        └── vite.config.mjs
+```
+
+## Packages
+
+### Backend
+
+Location: `packages/backend`
+
+The backend owns the API surface, authentication, admin-facing operations, stock simulation logic, and tests.
+
+Use this package when you are changing routes, auth flows, stock simulation behavior, or backend tests.
+
+Useful commands:
+
+```bash
+cd packages/backend
+npm run dev
+npm run start
+npm run test
+```
+
+Default port: `3001`
+
+### Frontend
+
+Location: `packages/frontend`
+
+The frontend is the browser application. During development it runs through Vite and proxies backend requests to the API service.
+
+Use this package when you are changing UI, routing, state management, or browser-side integration with backend endpoints.
+
+Useful commands:
+
+```bash
+cd packages/frontend
+npm run dev
+npm run build
+npm run preview
+```
+
+Default port: `3000`
+
+## Root Commands
+
+Install all workspace dependencies:
+
+```bash
+npm install
+```
+
+Run both applications in parallel:
+
+```bash
+npm run dev
+```
+
+Build workspace packages:
 
 ```bash
 npm run build
 ```
 
-Build individual packages:
-
-```bash
-cd packages/backend && npm run build
-cd packages/frontend && npm run build
-```
-
-### Linting
-
-Lint all packages:
-
-```bash
-npm run lint
-```
-
-Fix linting issues:
-
-```bash
-npm run lint:fix
-```
-
-### Testing
-
-Run tests across all packages:
+Run tests:
 
 ```bash
 npm run test
 ```
 
-## 🐳 Docker Deployment
+Lint the monorepo:
 
-### Build and Run with Docker Compose
+```bash
+npm run lint
+```
 
-Build all services:
+Fix lint issues where possible:
+
+```bash
+npm run lint:fix
+```
+
+## Docker Workflow
+
+The repository currently uses a single Docker Compose file at the root:
 
 ```bash
 npm run docker:build
+npm run docker:up
+npm run docker:logs
+npm run docker:down
 ```
 
-Start services:
+What this setup does:
+
+- Runs backend and frontend as separate containers
+- Mounts `packages/backend` and `packages/frontend` from the host into the containers
+- Exposes the frontend on `localhost:3000`
+- Exposes the backend on `localhost:3001`
+- Starts the frontend with Vite using `--host`, which makes it reachable from outside the container
+
+Because the source directories are bind-mounted, you can edit files on the host machine while the applications continue running in Docker.
+
+If you already have the stack running and only changed application source files, rebuilding is usually not necessary. If you changed dependencies or Dockerfiles, rebuild the images before starting the stack again.
+
+## Development Notes
+
+- The frontend Vite server proxies `/health`, `/admin`, `/csrf-token`, and `/stock-market` to the backend.
+- The backend development server runs with `nodemon`, so server changes restart automatically.
+- Docker enables polling for frontend file watching to keep updates reliable in containerized development.
+
+## Typical Workflows
+
+### Work on both apps together
+
+```bash
+npm run dev
+```
+
+### Work inside Docker while editing on the host
 
 ```bash
 npm run docker:up
 ```
 
-View logs:
-
-```bash
-npm run docker:logs
-```
-
-Stop services:
-
-```bash
-npm run docker:down
-```
-
-### Service Access
-
-- **Frontend**: http://localhost:3000
-- **Backend**: http://localhost:3001
-- **Backend from Frontend**: http://backend:3001 (within Docker network)
-
-## 📦 Package Details
-
-### Backend Package
-
-Located in `packages/backend/`
-
-- **Framework**: Express.js
-- **Port**: 3001
-- **Key Features**:
-  - Authentication (Passport.js)
-  - Rate limiting
-  - Admin services
-  - Stock market simulation logic
-  - Database integration
-
-**Start backend in development:**
+### Work on just one package
 
 ```bash
 cd packages/backend && npm run dev
-```
-
-### Frontend Package
-
-Located in `packages/frontend/`
-
-- **Framework**: Vue 3 with Vuetify
-- **Build Tool**: Vite
-- **Port**: 3000
-- **Key Features**:
-  - Responsive UI components (Vuetify)
-  - State management (Pinia)
-  - Routing (Vue Router)
-  - i18n support
-
-**Start frontend in development:**
-
-```bash
 cd packages/frontend && npm run dev
 ```
 
-## 🔧 Turborepo Configuration
+## Troubleshooting
 
-The `turbo.json` file configures:
+### Ports already in use
 
-- **Pipeline**: Task dependencies and caching
-- **Build cache**: Optimizes incremental builds
-- **Task outputs**: Specifies which files to cache per task
+The default ports are `3000` for the frontend and `3001` for the backend. Stop any existing process using those ports before starting the apps again.
 
-Tasks are configured to:
-- Cache build outputs
-- Use dependency graphs for efficient execution
-- Support parallel execution where possible
+### Docker rebuilds
 
-## 📊 Dependencies Management
-
-### Backend Dependencies
-
-Core dependencies:
-- `express` - Web framework
-- `passport` - Authentication
-- `pino` - Logging
-- `argon2` - Password hashing
-- And more (see `packages/backend/package.json`)
-
-### Frontend Dependencies
-
-Core dependencies:
-- `vue` - Progressive JavaScript framework
-- `vuetify` - Material Design component framework
-- `vite` - Next generation frontend tooling
-- `pinia` - State management
-- `vue-router` - Client-side routing
-- And more (see `packages/frontend/package.json`)
-
-## 🔐 Environment Variables
-
-Create `.env` files in each package as needed:
-
-**Backend** (`packages/backend/.env`):
-```
-NODE_ENV=development
-PORT=3001
-```
-
-**Frontend** (`packages/frontend/.env`):
-```
-VITE_API_BASE_URL=http://localhost:3001
-```
-
-For Docker, environment variables are configured in `docker-compose.yml`.
-
-## 🤝 Contributing
-
-When adding new dependencies:
-
-1. Install to the specific package:
-   ```bash
-   cd packages/backend  # or frontend
-   npm install <package-name>
-   ```
-
-2. Install dev dependencies:
-   ```bash
-   npm install --save-dev <package-name>
-   ```
-
-## 🐛 Troubleshooting
-
-### Port already in use
-
-Change ports in respective `package.json` files or `docker-compose.yml`
-
-### Dependencies not installing
-
-Clear npm cache and reinstall:
+If dependencies or Dockerfiles change, rebuild before bringing the stack back up:
 
 ```bash
-npm cache clean --force
-rm -rf node_modules packages/*/node_modules package-lock.json
+npm run docker:build
+npm run docker:up
+```
+
+### Fresh install
+
+If workspace dependencies get out of sync:
+
+```bash
+rm -rf node_modules packages/*/node_modules
 npm install
 ```
-
-### Docker build issues
-
-Rebuild without cache:
-
-```bash
-docker-compose build --no-cache
-```
-
-## 📚 Additional Resources
-
-- [Turborepo Documentation](https://turbo.build)
-- [Vue 3 Documentation](https://vuejs.org)
-- [Vuetify Documentation](https://vuetifyjs.com)
-- [Express.js Documentation](https://expressjs.com)

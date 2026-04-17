@@ -1,3 +1,8 @@
+# Development Compose
+# - Source code is bind-mounted from the host into both containers.
+# - Backend restarts through nodemon when server files change.
+# - Frontend runs Vite with --host so it is reachable from the host machine.
+# - CHOKIDAR polling is enabled to keep file watching reliable in Docker.
 services:
   backend:
     build:
