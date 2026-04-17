@@ -1,5 +1,5 @@
 import {createApplication} from './app.js';
-import {spawnVite} from './server-vite.js';
+// import {spawnVite} from './server-vite.js';
 import {stockMarketService} from './stock_market/service.js';
 import {rateLimitService} from './admin_services/rate_limit_service.js';
 
