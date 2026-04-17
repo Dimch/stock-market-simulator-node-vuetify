@@ -8,7 +8,7 @@
     "dev:vite": "vite",
     "docker:build": "docker build -t stock-market-simulator .",
     "docker:run": "docker run -p 3000:3000 -d --rm --name stock-market-simulator-app stock-market-simulator",
-    "docker:run-dev": "docker run -p 3000:3000 -d --rm -v $(pwd)/backend:/app/backend -v $(pwd)/src:/app/src -v $(pwd)/public:/app/public --name stock-market-simulator-app stock-market-simulator",
+    "docker:dev": "docker run -p 3000:3000 -d --rm -v $(pwd)/backend:/app/backend -v $(pwd)/src:/app/src -v $(pwd)/public:/app/public --name stock-market-simulator-app stock-market-simulator",
     "docker:stop": "docker stop stock-market-simulator-app",
     "docker": "npm run docker:build && npm run docker:run",
     "build": "vite build",
