@@ -2,7 +2,7 @@
   "name": "stock-market-simulator-frontend",
   "private": true,
   "type": "module",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "PORT=3000 vite",
     "docker:dev": "vite",

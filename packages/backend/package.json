@@ -2,7 +2,7 @@
   "name": "stock-market-simulator-backend",
   "private": true,
   "type": "module",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "PORT=3001 nodemon ./src/server.js",
     "build": "echo 'Backend requires no build step'",
@@ -28,8 +28,7 @@
     "pino": "^10.1.0",
     "pino-http": "^11.0.0",
     "sliding-window-limiter": "^1.1.1",
-    "uuid": "^13.0.0",
-    "vite-express": "^0.21.1"
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "jest": "^30.3.0",
