@@ -12,8 +12,17 @@ import Vuetify, {transformAssetUrls} from 'vite-plugin-vuetify';
 import {defineConfig} from 'vite';
 import {fileURLToPath, URL} from 'node:url';
 
+if (!process.env.BACKEND_BASE_URL) {
+  console.warn('BACKEND_BASE_URL environment variable is not set. Defaulting to 3001.');
+  process.env.BACKEND_BASE_URL = 'http://localhost:3001';
+}
+if (!process.env.PORT) {
+  console.warn('PORT environment variable is not set. Defaulting to 3000.');
+  process.env.PORT = 3000;
+}
+
 // Proxy configuration helper functions
-const backendUrl = () => `http://localhost:${process.env.BACKEND_PORT}`;
+const backendUrl = () => process.env.BACKEND_BASE_URL;
 const backendConf = () => ({
   target: backendUrl(),
   changeOrigin: true,
@@ -90,7 +99,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: process.env.FRONTEND_PORT || 3000,
+    port: process.env.PORT || 3000,
     proxy: proxyConf([
       '/health',
       '/admin',

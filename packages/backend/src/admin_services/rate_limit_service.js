@@ -2,7 +2,7 @@ import fp from 'lodash/fp.js';
 import {Duration} from 'luxon';
 import {RateLimits, RateLimitConfigs} from '../database/index.js';
 import {RateLimiter} from 'sliding-window-limiter';
-import {store} from '../admin_services/rate_limit_store_adapter.js';
+import {store} from './rate_limit_store_adapter.js';
 const {isInteger, map, reduce, startCase, sum} = fp;
 
 const UNITS = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'];

@@ -83,7 +83,7 @@ export class Stocks {
   }
 
   async updateAllPrices(volatility = 0.02) {
-    const {updatePrice} = await import('../../lib/stockSimulator.js');
+    const {updatePrice} = await import('../../src/lib/stockSimulator.js');
     const stocks = this.getAllStocks();
 
     for (const stock of stocks) {

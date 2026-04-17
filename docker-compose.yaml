@@ -1,0 +1,40 @@
+services:
+  backend:
+    build:
+      context: ./packages/backend
+      dockerfile: Dockerfile
+    container_name: stock-simulator-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+    volumes:
+      - ./packages/backend:/app
+      - /app/node_modules
+    restart: unless-stopped
+    networks:
+      - stock-simulator-network
+
+  frontend:
+    build:
+      context: ./packages/frontend
+      dockerfile: Dockerfile
+    container_name: stock-simulator-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - BACKEND_BASE_URL=http://backend:3001
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./packages/frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - stock-simulator-network
+
+networks:
+  stock-simulator-network:
+    driver: bridge
