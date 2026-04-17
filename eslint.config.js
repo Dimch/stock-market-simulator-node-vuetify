@@ -2,7 +2,7 @@ import {defineConfig} from 'eslint/config';
 import vuetify from 'eslint-config-vuetify';
 
 export default vuetify({
-  'rules': {
+  rules: {
     '@stylistic/array-bracket-spacing': 0,
     '@stylistic/arrow-parens': 0,
     '@stylistic/comma-dangle': 0,
@@ -11,7 +11,6 @@ export default vuetify({
     '@stylistic/object-curly-spacing': 0,
     '@stylistic/semi': 0,
     '@stylistic/space-before-function-paren': 0,
-    '@stylistic/quote-props': 0,
     'antfu/top-level-function': 0,
     'perfectionist/sort-imports': 0,
     'perfectionist/sort-named-imports': 0,

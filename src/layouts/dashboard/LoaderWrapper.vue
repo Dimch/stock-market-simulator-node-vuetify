@@ -6,8 +6,8 @@ const uiStore = useUIStore();
 const {isLoading} = storeToRefs(uiStore);
 const wrapperClass = computed(() => ({
   'page-loader': true,
-  loading: isLoading.value,
-  hidden: !isLoading.value
+  'loading': isLoading.value,
+  'hidden': !isLoading.value
 }));
 </script>
 
