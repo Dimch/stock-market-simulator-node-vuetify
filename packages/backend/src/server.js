@@ -4,7 +4,12 @@ import {stockMarketService} from './stock_market/service.js';
 import {rateLimitService} from './admin_services/rate_limit_service.js';
 
 const app = createApplication();
-const port = process.env.BACKEND_PORT || 3001;
+
+if (!process.env.BACKEND_PORT) {
+  console.error('BACKEND_PORT environment variable is not set. Defaulting to 3001.');
+  process.env.BACKEND_PORT = 3001;
+}
+const port = process.env.BACKEND_PORT;
 
 rateLimitService.startUpdate();
 
