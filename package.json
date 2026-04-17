@@ -14,10 +14,10 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
-    "docker:build": "docker-compose build",
-    "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down",
-    "docker:logs": "docker-compose logs -f"
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
   },
   "devDependencies": {
     "eslint": "^9.35.0",

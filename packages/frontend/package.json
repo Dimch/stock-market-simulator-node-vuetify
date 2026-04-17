@@ -4,7 +4,8 @@
   "type": "module",
   "version": "0.2.0",
   "scripts": {
-    "dev": "PORT=3000 BACKEND_PORT=3001 vite",
+    "dev": "PORT=3000 vite",
+    "docker:dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
