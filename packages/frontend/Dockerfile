@@ -21,9 +21,9 @@ RUN npm install -g serve
 
 COPY --from=builder /app/dist ./dist
 
-ARG FRONTEND_PORT=3000
-ENV PORT=$FRONTEND_PORT
+ARG PORT=3000
+ENV PORT=$PORT
 
-EXPOSE $FRONTEND_PORT
+EXPOSE $PORT
 
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["serve", "-s", "dist", "-l", "$PORT"]

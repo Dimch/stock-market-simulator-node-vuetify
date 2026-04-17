@@ -4,7 +4,7 @@
   "type": "module",
   "version": "0.2.0",
   "scripts": {
-    "dev": "BACKEND_PORT=3001 nodemon ./src/server.js",
+    "dev": "PORT=3001 nodemon ./src/server.js",
     "build": "echo 'Backend requires no build step'",
     "start": "node ./src/server.js",
     "test": "node --test test/**/*.test.js"

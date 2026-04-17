@@ -8,9 +8,9 @@ RUN npm install --production
 
 COPY . .
 
-ARG BACKEND_PORT=3001
-ENV PORT=$BACKEND_PORT
+ARG PORT=3001
+ENV PORT=$PORT
 
-EXPOSE $BACKEND_PORT
+EXPOSE $PORT
 
 CMD ["npm", "start"]

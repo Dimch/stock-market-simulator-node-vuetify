@@ -16,9 +16,9 @@ if (!process.env.BACKEND_PORT) {
   console.warn('BACKEND_PORT environment variable is not set. Defaulting to 3001.');
   process.env.BACKEND_PORT = 3001;
 }
-if (!process.env.FRONTEND_PORT) {
-  console.warn('FRONTEND_PORT environment variable is not set. Defaulting to 3000.');
-  process.env.FRONTEND_PORT = 3000;
+if (!process.env.PORT) {
+  console.warn('PORT environment variable is not set. Defaulting to 3000.');
+  process.env.PORT = 3000;
 }
 
 // Proxy configuration helper functions
@@ -99,7 +99,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: process.env.FRONTEND_PORT || 3000,
+    port: process.env.PORT || 3000,
     proxy: proxyConf([
       '/health',
       '/admin',

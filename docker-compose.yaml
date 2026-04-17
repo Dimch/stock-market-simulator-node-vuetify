@@ -4,12 +4,11 @@ services:
       context: ./packages/backend
       dockerfile: Dockerfile
       args:
-        BACKEND_PORT: 3001
+        PORT: 3001
     container_name: stock-simulator-backend
     ports:
       - "3001:3001"
     environment:
-      - NODE_ENV=production
       - PORT=3001
     volumes:
       - ./packages/backend:/app
@@ -23,13 +22,14 @@ services:
       context: ./packages/frontend
       dockerfile: Dockerfile
       args:
-        FRONTEND_PORT: 3000
+        PORT: 3000
+        BACKEND_PORT: 3001
     container_name: stock-simulator-frontend
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=production
       - PORT=3000
+      - BACKEND_PORT=3001
       - VITE_API_BASE_URL=http://backend:3001
     volumes:
       - ./packages/frontend:/app

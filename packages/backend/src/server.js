@@ -5,11 +5,11 @@ import {rateLimitService} from './admin_services/rate_limit_service.js';
 
 const app = createApplication();
 
-if (!process.env.BACKEND_PORT) {
-  console.error('BACKEND_PORT environment variable is not set. Defaulting to 3001.');
-  process.env.BACKEND_PORT = 3001;
+if (!process.env.PORT) {
+  console.error('PORT environment variable is not set. Defaulting to 3001.');
+  process.env.PORT = 3001;
 }
-const port = process.env.BACKEND_PORT;
+const port = process.env.PORT;
 
 rateLimitService.startUpdate();
 
