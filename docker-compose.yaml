@@ -3,8 +3,6 @@ services:
     build:
       context: ./packages/backend
       dockerfile: Dockerfile
-      args:
-        PORT: 3001
     container_name: stock-simulator-backend
     ports:
       - "3001:3001"
@@ -21,9 +19,6 @@ services:
     build:
       context: ./packages/frontend
       dockerfile: Dockerfile
-      args:
-        PORT: 3000
-        BACKEND_PORT: 3001
     container_name: stock-simulator-frontend
     ports:
       - "3000:3000"
