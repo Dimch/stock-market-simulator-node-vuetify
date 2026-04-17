@@ -1,4 +1,2 @@
-import Header from './Header.vue';
-import Sidebar from './Sidebar.vue';
-
-export {Header, Sidebar};
+export {default as Header} from './Header.vue';
+export {default as Sidebar} from './Sidebar.vue';

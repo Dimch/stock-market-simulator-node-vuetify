@@ -13,7 +13,7 @@ const generateCategoryLabel = (unit, width) => {
   return index => {
     if (index === 0) return 'Now';
     const value = index * width;
-    return `${value} ${unit}${value !== 1 ? 's' : ''} ago`;
+    return `${value} ${unit}${value === 1 ? '' : 's'} ago`;
   };
 };
 const generateCategories = (unit, width) => flow(times(identity), map(generateCategoryLabel(unit, width)));
@@ -29,7 +29,7 @@ use([SVGRenderer, GridComponent, TooltipComponent, BarChart]);
 const humanizeDuration = computed(() => {
   const {size, unit} = props.rateLimit;
   if (!size || !unit) return '';
-  return `${size > 1 ? size : ''} ${unit}${size !== 1 ? 's' : ''}`;
+  return `${size > 1 ? size : ''} ${unit}${size === 1 ? '' : 's'}`;
 });
 
 const chartOptions = computed(() => ({
@@ -95,7 +95,7 @@ const chipColor = computed(() => {
     return 'warning';
   }
   return 'success';
-}); 
+});
 </script>
 
 <template>

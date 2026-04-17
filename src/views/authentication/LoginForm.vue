@@ -46,10 +46,10 @@ const validate = async (values, {setErrors}) => {
                     color="primary" hide-details="auto" :type="passType" class="mt-2">
         <template #append-inner>
           <v-btn color="secondary" icon rounded variant="text">
-            <v-icon :icon="showPass ? 'mdi-eye' : 'mdi-eye-off'" 
+            <v-icon :icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
                     @click="showPass = !showPass" />
           </v-btn>
-        </template> 
+        </template>
       </v-text-field>
     </div>
 

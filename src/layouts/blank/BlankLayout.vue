@@ -9,7 +9,7 @@
           <blank-footer />
         </v-container>
       </v-main>
-    </v-layout> 
+    </v-layout>
   </v-locale-provider>
 </template>
 

@@ -7,7 +7,7 @@ const messages = {
   en,
   fr,
   ro,
-  zh
+  zh,
 };
 
 export default messages;

@@ -4,6 +4,10 @@ import {useRoute} from 'vue-router';
 import {useTheme} from 'vuetify';
 import {sample} from 'lodash/fp';
 
+// Banner images
+import img1 from '@/assets/images/landing/banner-img-1.jpg';
+import img2 from '@/assets/images/landing/banner-img-2.jpg';
+
 const constructionImages = {
   light: [
     'bg-construction-image-1',
@@ -53,10 +57,6 @@ const routeToImageMap = {
   '/404': error404Images,
   '/500': error404Images,
 };
-
-// Banner images
-import img1 from '@/assets/images/landing/banner-img-1.jpg';
-import img2 from '@/assets/images/landing/banner-img-2.jpg';
 const bannerImages = [img1, img2];
 
 export const useImageStore = defineStore('images', () => {

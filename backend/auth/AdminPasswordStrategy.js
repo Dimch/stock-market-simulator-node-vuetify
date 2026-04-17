@@ -1,9 +1,9 @@
 import passport from 'passport';
 import fp from 'lodash/fp.js';
-const {cloneDeep} = fp;
 import argon2 from 'argon2';
 import {Strategy as LocalStrategy} from 'passport-local';
 import {Admins} from '../database/index.js';
+const {cloneDeep} = fp;
 
 passport.use('admin', new LocalStrategy(
   {
@@ -25,7 +25,7 @@ passport.use('admin', new LocalStrategy(
     } catch (err) {
       return done(err);
     }
-  }
+  },
 ));
 
 passport.serializeUser((user, done) => {

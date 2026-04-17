@@ -9,8 +9,8 @@ export const routes = () => {
   admin.use(...authRoutes('admin'));
 
   admin.get('/',
-    (_, res) => res.send('Admin Services'));  //stub route
-  
+    (_, res) => res.send('Admin Services')); // stub route
+
   admin.get('/rate-limits',
     (_, res) => res.json(rateLimitService.getDashboard()));
 
@@ -19,9 +19,9 @@ export const routes = () => {
 
   admin.get('/stocks',
     (_, res) => res.json(stockMarketService.getDashboard()));
-  
+
   admin.get('/stocks/:ticker/:periods',
-    (req, res) => res.json(stockMarketService.getPriceHistory(req.params.ticker, parseInt(req.params.periods))));
-  
+    (req, res) => res.json(stockMarketService.getPriceHistory(req.params.ticker, Number.parseInt(req.params.periods))));
+
   return ['/admin', admin];
 };

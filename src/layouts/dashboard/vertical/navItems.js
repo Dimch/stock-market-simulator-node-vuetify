@@ -17,6 +17,6 @@ export default [
     id: 'statistics',
     title: 'Statistics',
     icon: 'mdi-chart-timeline',
-    to: '/admin/statistics'
+    to: '/admin/statistics',
   },
 ];

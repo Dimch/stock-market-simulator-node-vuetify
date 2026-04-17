@@ -1,6 +1,6 @@
 import fp from 'lodash/fp.js';
-const {defaults} = fp;
 import argon2 from 'argon2';
+const {defaults} = fp;
 
 export const init = async (db) => {
   if (!db.isOpen) throw new Error('Database is not open');
@@ -27,10 +27,10 @@ export const init = async (db) => {
 
 const DefaultCustomer = () => ({
   username: 'default_user',
-  password: 'password', 
+  password: 'password',
   name: 'Default Customer',
   ip: '127.0.0.1',
-  balance: 100000,
+  balance: 100_000,
 });
 
 export class Customers {
@@ -43,7 +43,7 @@ export class Customers {
     return new Customers(db);
   }
 
-  new(customer = {username, password, ip, balance}) {
+  new(customer) {
     const stmt = this.db.prepare(`
       insert into customers (
         username,

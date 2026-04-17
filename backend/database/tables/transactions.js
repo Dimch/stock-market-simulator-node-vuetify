@@ -25,7 +25,7 @@ export class Transactions {
     return new Transactions(db);
   }
 
-  new(transaction = {customerId, stockId, amount, price}) {
+  new(transaction) {
     const stmt = this.db.prepare(`
       insert into transactions (
         customer_id,

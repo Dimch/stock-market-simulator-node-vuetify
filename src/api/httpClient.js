@@ -15,7 +15,7 @@ export const useClient = (baseURL = '', config) => {
   const {api, csrf} = defaultConfig(config);
   let client = clients[baseURL];
   if (client) return client;
-  
+
   const axiosInstance = axios.create({baseURL});
   if (csrf) {
     // set CSRF token for each request

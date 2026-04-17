@@ -1,4 +1,4 @@
-import {Router}  from 'express';
+import {Router} from 'express';
 import {stockMarketService} from './service.js';
 import {routes as authRoutes} from '../auth/index.js';
 
@@ -28,9 +28,9 @@ export const routes = () => {
   // router.post('/tick', (req, res) => {
   //   const volatility = req.body?.volatility ?? 0.02;
   //   const updates = stockMarketService.simulateTick(volatility);
-  //   res.json({ 
+  //   res.json({
   //     message: 'Market tick simulated',
-  //     updates 
+  //     updates
   //   });
   // });
 
@@ -41,9 +41,9 @@ export const routes = () => {
    */
   router.get('/history/:ticker', (req, res) => {
     const ticker = req.params.ticker.toUpperCase();
-    const periods = parseInt(req.query.periods) || 60;
+    const periods = Number.parseInt(req.query.periods) || 60;
     const history = stockMarketService.getPriceHistory(ticker, periods);
-    
+
     if (!history) {
       return res.status(404).json({error: 'Stock not found'});
     }
@@ -58,18 +58,17 @@ export const routes = () => {
   // router.post('/reset/:ticker', (req, res) => {
   //   const ticker = req.params.ticker.toUpperCase();
   //   const price = req.body?.price;
-    
+
   //   if (typeof price !== 'number' || price <= 0) {
   //     return res.status(400).json({error: 'Invalid price'});
   //   }
-    
+
   //   const stock = stockMarketService.resetPrice(ticker, price);
   //   if (!stock) {
   //     return res.status(404).json({error: 'Stock not found'});
   //   }
   //   res.json(stock);
   // });
-
 
   return ['/stock-market', router];
 };

@@ -20,7 +20,7 @@ useInterval(refreshStocks, REFRESH_INTERVAL);
     Top 6 Performers
   </v-toolbar-title>
   <v-row class="mb-0">
-    <template v-for="stock in stocks">
+    <template v-for="stock in stocks" :key="stock.ticker">
       <v-col cols="12" sm="12">
         <ticker-widget :stock="stock" />
       </v-col>

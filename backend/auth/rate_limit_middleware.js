@@ -1,8 +1,8 @@
 import fp from 'lodash/fp.js';
-const {snakeCase} = fp;
 import {RateLimiter} from 'sliding-window-limiter';
 import {store} from '../admin_services/rate_limit_store_adapter.js';
 import {RateLimitConfigs} from '../database/index.js';
+const {snakeCase} = fp;
 
 export class RateLimit {
   constructor(key, salt) {
@@ -44,6 +44,6 @@ export const limitAdminLoginByUser = strategyName => async (req, res, next) => {
   if (await limit.update(1))
     return next();
   req.logout(() => res.status(429)
-    .send('Too many login attempts for this user, please try again later.')
+    .send('Too many login attempts for this user, please try again later.'),
   );
 };

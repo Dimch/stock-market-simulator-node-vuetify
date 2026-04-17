@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps({
+defineProps({
   stock: {type: Object, required: true}, // stock ticker data
 });
 const toMoney = price => Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(price);

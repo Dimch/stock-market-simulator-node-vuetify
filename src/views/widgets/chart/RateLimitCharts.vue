@@ -12,9 +12,9 @@ const getColor = (index) => colors[index % colors.length];
 
 <template>
   <v-row class="mb-0">
-    <template v-for="(rateLimit, idx) in rateLimits">
+    <template v-for="(rateLimit, idx) in rateLimits" :key="idx">
       <v-col cols="12" sm="6" md="6">
-        <rate-limit-card :rate-limit="rateLimit" :color="getColor(idx)" />  
+        <rate-limit-card :rate-limit="rateLimit" :color="getColor(idx)" />
       </v-col>
     </template>
   </v-row>

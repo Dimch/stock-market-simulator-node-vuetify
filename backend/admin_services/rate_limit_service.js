@@ -1,9 +1,9 @@
 import fp from 'lodash/fp.js';
-const {isInteger, map, reduce, startCase, sum} = fp;
 import {Duration} from 'luxon';
 import {RateLimits, RateLimitConfigs} from '../database/index.js';
 import {RateLimiter} from 'sliding-window-limiter';
 import {store} from '../admin_services/rate_limit_store_adapter.js';
+const {isInteger, map, reduce, startCase, sum} = fp;
 
 const UNITS = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'];
 
@@ -38,7 +38,7 @@ export class RateLimitInfo {
     this.width = config.width;
     this.bucketUnit = bucketUnit;
   }
-  
+
   get value() {
     return sum(this.data);
   }

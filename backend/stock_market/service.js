@@ -3,10 +3,10 @@
  * Manages stock prices and market simulation
  */
 import fp from 'lodash/fp.js';
-const {first, flow, last, map, orderBy, slice} = fp;
 import {DateTime} from 'luxon';
 import {Stocks, StockPrices} from '../database/index.js';
 import {generatePriceSequence, updatePrice} from '../lib/stockSimulator.js';
+const {first, flow, last, map, orderBy, slice} = fp;
 
 const getPrices = map('price');
 export function getTimeLabels(startDate = DateTime.now(), periodRange) {
@@ -61,9 +61,9 @@ export class StockMarketService {
   initializeStocks() {
     const stocks = this.getAllStocks();
     console.info(`Initializing stock price data for ${stocks.length} stocks...`);
-    stocks.forEach(stock => {
+    for (const stock of stocks) {
       this.initializeStockPriceData(stock.ticker);
-    });
+    }
   }
 
   /* Initialize stock price data in journal,
@@ -74,14 +74,14 @@ export class StockMarketService {
   initializeStockPriceData(ticker, initialPeriods = 60 * 24) {
     const stock = this.getStock(ticker);
     if (!stock) throw new Error(`Stock with ticker ${ticker} not found`);
-    
+
     // Generate initial price sequence
     const generated = generatePriceSequence(stock.price, initialPeriods, {reverse: true});
     // Record generated prices in journal
-    generated.forEach((price, idx) => {
+    for (const [idx, price] of generated.entries()) {
       const roundedPrice = Math.round(price * 100) / 100;
       this.stockPrices.recordPrice(ticker, roundedPrice, idx);
-    });
+    }
   }
 
   /**
@@ -108,7 +108,7 @@ export class StockMarketService {
 
   calculateChange(stock, periods = 60, returnPrices = true) {
     const recordedPrices = this.stockPrices.getPriceHistory(stock.ticker, periods);
-    
+
     const prices = getPrices(recordedPrices);
     const firstPrice = first(prices) || stock.price;
     const lastPrice = last(prices) || stock.price;

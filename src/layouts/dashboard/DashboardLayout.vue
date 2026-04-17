@@ -17,7 +17,7 @@ const applicationClass = computed(() => ({
   'boxed-layout': false,
   'rtl-layout': false,
   'dark-layout': theme.current.value.dark,
-  'light-layout': !theme.current.value.dark
+  'light-layout': !theme.current.value.dark,
 }));
 
 // Responsive height calculation for the main content area

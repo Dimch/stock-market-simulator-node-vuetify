@@ -15,20 +15,20 @@ const footerLink = computed(() =>
   [
     {
       title: 'About us',
-      link: 'https://github.com/Dimch'
+      link: 'https://github.com/Dimch',
     },
     {
       title: 'Privacy',
-      link: 'privacy-policy'
+      link: 'privacy-policy',
     },
     {
       title: 'Terms',
-      link: 'privacy-policy'
-    }
+      link: 'privacy-policy',
+    },
   ].map((item) => ({
     ...item,
-    link: item.link.startsWith('http') ? item.link : `${relativeURL.value}${item.link}`
-  }))
+    link: item.link.startsWith('http') ? item.link : `${relativeURL.value}${item.link}`,
+  })),
 );
 </script>
 <template>
@@ -40,7 +40,7 @@ const footerLink = computed(() =>
         </p>
       </v-col>
       <v-col class="text-end" cols="6">
-        <template v-for="item in footerLink">
+        <template v-for="(item, idx) in footerLink" :key="idx">
            <a :href="item.link" target="_blank" class="mx-2 text-caption">
              {{ item.title }}
            </a>

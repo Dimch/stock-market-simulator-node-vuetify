@@ -4,7 +4,10 @@ import {string} from 'yup';
 import {useI18n} from 'vue-i18n';
 const {t} = useI18n();
 
-const props = defineProps({item: Object, level: Number});
+defineProps({
+  item: {type: Object},
+  level: {type: Number},
+});
 
 const relativeURL = ref(string);
 
@@ -33,7 +36,7 @@ onMounted(async () => {
     <!---If any chip or label-->
     <template v-if="item.chip" #append>
       <v-chip label :color="item.chipColor" class="sidebarchip hide-menu"
-              size="small" :variant="item.chipVariant" :prepend-icon="item.chipIcon" >
+              size="small" :variant="item.chipVariant" :prepend-icon="item.chipIcon">
         {{ item.chip }}
       </v-chip>
     </template>

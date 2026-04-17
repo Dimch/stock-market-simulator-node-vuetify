@@ -17,7 +17,7 @@ setTimeout(() => {
       console.error('Error in simulateTick:', err);
     }
   }, 60 * 1000); // Update prices every minute
-}, 10000); // Start after 5 seconds
+}, 10_000); // Start after 5 seconds
 
 spawnVite();
 

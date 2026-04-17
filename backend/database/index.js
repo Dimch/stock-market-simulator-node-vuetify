@@ -29,8 +29,6 @@ export const Transactions = TransactionsRepo.create(db);
 export const RateLimits = RateLimitsRepo.create(db);
 export const RateLimitConfigs = RateLimitConfigsRepo.create(db);
 
-export {RateLimitsRepo};
-
 await initAdmins(db);
 await initCustomers(db);
 initStocks(db);
@@ -39,3 +37,4 @@ initTransactions(db);
 initCustomerStocks(db);
 initRateLimits(db);
 initRateLimitConfigs(db);
+export {RateLimits as RateLimitsRepo} from './tables/rate_limits.js';
