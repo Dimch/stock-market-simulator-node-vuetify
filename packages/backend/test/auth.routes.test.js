@@ -1,6 +1,6 @@
 import request from 'supertest';
 import {beforeEach, describe, expect, it} from 'vitest';
-import {createApplication} from '../app.js';
+import {createApplication} from '../src/app.js';
 
 const ADMIN_CREDENTIALS = {
   username: 'admin@example.com',
