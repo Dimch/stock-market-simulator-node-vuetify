@@ -40,7 +40,7 @@ const footerLink = computed(() =>
         </p>
       </v-col>
       <v-col class="text-end" cols="6">
-        <template v-for="item in footerLink">
+        <template v-for="(item, idx) in footerLink" :key="idx">
            <a :href="item.link" target="_blank" class="mx-2 text-caption">
              {{ item.title }}
            </a>

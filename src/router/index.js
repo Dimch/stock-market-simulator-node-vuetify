@@ -23,13 +23,13 @@ const router = createRouter({
 // Authentication guard
 router.beforeEach(async (to, from) => {
   const publicPages = ['/'];
-  
+
   const isPublicPage = publicPages.includes(to.path);
   const authRequired = !isPublicPage && to.matched.some((record) => record.meta?.requiresAuth);
   const auth = useAuthStore(to.meta?.authStrategy || 'admin');
   const isAuthenticated = await auth.isAuthenticated();
   // console.debug('Navigating to:', to.fullPath, 'Auth required:', authRequired, 'is authenticated:', isAuthenticated);
-  
+
   if (authRequired && !isAuthenticated) {
     // redirect to login
     auth.returnUrl = to.fullPath;
@@ -64,7 +64,7 @@ router.afterEach(() => {
 });
 
 // Workaround for https://github.com/vitejs/vite/issues/11804
-router.onError( (err, to) => {
+router.onError((err, to) => {
   if (err?.message?.includes?.('Failed to fetch dynamically imported module')) {
     if (localStorage.getItem('vuetify:dynamic-reload')) {
       console.error('Dynamic import error, reloading page did not fix it', err);

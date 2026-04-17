@@ -1,8 +1,8 @@
 import fp from 'lodash/fp.js';
-const {snakeCase} = fp;
 import {RateLimiter} from 'sliding-window-limiter';
 import {store} from '../admin_services/rate_limit_store_adapter.js';
 import {RateLimitConfigs} from '../database/index.js';
+const {snakeCase} = fp;
 
 export class RateLimit {
   constructor(key, salt) {

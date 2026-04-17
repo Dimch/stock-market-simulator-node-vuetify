@@ -18,10 +18,7 @@ const backendConf = () => ({
   target: backendUrl(),
   changeOrigin: true,
 });
-const proxyConf = paths => paths.reduce((acc, path) => ({
-  ...acc,
-  [path]: backendConf()
-}), {});
+const proxyConf = paths => Object.fromEntries(paths.map((path) => [path, backendConf()]));
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -70,7 +67,7 @@ export default defineConfig({
     ],
     entries: ['./src/**/*.vue'],
   },
-  define: {'process.env': { }},
+  define: {'process.env': {}},
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url)),

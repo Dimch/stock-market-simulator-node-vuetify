@@ -35,7 +35,7 @@ export class RateLimitConfigs {
     return new RateLimitConfigs(db);
   }
 
-  save(config = {key, description, max, size, width, unit}) {
+  save(config) {
     const stmt = this.db.prepare(`
       insert into rate_limit_configs (
         key,

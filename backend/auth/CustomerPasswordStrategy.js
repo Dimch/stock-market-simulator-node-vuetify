@@ -1,9 +1,9 @@
 import passport from 'passport';
 import fp from 'lodash/fp.js';
-const {cloneDeep} = fp;
 import argon2 from 'argon2';
 import {Strategy as LocalStrategy} from 'passport-local';
 import {Customers} from '../database/index.js';
+const {cloneDeep} = fp;
 
 passport.use('customer', new LocalStrategy(
   {
@@ -12,7 +12,7 @@ passport.use('customer', new LocalStrategy(
   },
   async (username, password, done) => {
     try {
-      const user = await Customers.getByUsername(username);  // Example: fetch by IP or modify as needed
+      const user = await Customers.getByUsername(username); // Example: fetch by IP or modify as needed
       console.log('Authenticating user:', username, user ? 'found' : 'not found');
       if (!user) {
         return done(null, false, {message: 'Incorrect username or password'});

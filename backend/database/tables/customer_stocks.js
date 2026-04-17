@@ -27,16 +27,26 @@ export class CustomerStocks {
     return new CustomerStocks(db);
   }
 
-  save(customerStock = {customerId, stockId, amount, balanceAmount}) {
+  save(customerStock) {
     const stmt = this.db.prepare(`
-      insert into customer_stocks (customer_id, stock_id, amount, balance_amount)
-      values (:customerId, :stockId, :amount, :balanceAmount)
+      insert into customer_stocks (
+        customer_id,
+        stock_id,
+        amount,
+        balance_amount
+      )
+      values (
+        :customerId,
+        :stockId,
+        :amount,
+        :balanceAmount
+      )
       on conflict(customer_id, stock_id) do update set
         amount = excluded.amount,
         balance_amount = excluded.balance_amount,
         updated_at = current_timestamp
     `);
-    
+
     stmt.run(customerStock);
   }
 };

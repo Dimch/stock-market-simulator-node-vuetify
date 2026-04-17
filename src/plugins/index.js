@@ -18,6 +18,7 @@ import print from 'vue3-print-nb';
 // i18
 import {createI18n} from 'vue-i18n';
 import messages from '@/utils/locales/messages';
+import {vMaska} from 'maska/vue';
 const i18n = createI18n({
   legacy: false,
   locale: 'en',
@@ -25,7 +26,6 @@ const i18n = createI18n({
   silentTranslationWarn: true,
   silentFallbackWarn: true
 });
-import {vMaska} from 'maska/vue';
 
 export const registerPlugins = app => app
   .use(pinia)

@@ -1,9 +1,9 @@
 <script setup>
 import {useI18n} from 'vue-i18n';
-const {t} = useI18n();
 
 import NavItem from './NavItem.vue';
 import NavCollapse from '../horizontal/NavCollapse.vue';
+const {t} = useI18n();
 
 const props = defineProps({item: Object, level: Number});
 </script>
@@ -16,8 +16,8 @@ const props = defineProps({item: Object, level: Number});
     <!-- ---------------------------------------------- -->
     <!---Dropdown  -->
     <!-- ---------------------------------------------- -->
-    <template #activator="{props}">
-      <v-list-item v-bind="props" :value="item.title" rounded class="mb-1" color="primary">
+    <template #activator="{props: actProps}">
+      <v-list-item v-bind="actProps" :value="item.title" rounded class="mb-1" color="primary">
         <!---Icon  -->
         <template #prepend>
           <v-icon class="iconClass" size="small">mdi-{{ item.icon }}</v-icon>

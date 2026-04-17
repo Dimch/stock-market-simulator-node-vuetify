@@ -40,7 +40,7 @@ export class Stocks {
     return new Stocks(db);
   }
 
-  setPrice(stock = {ticker: '', price}) {
+  setPrice(stock) {
     const stmt = this.db.prepare(`
       update stocks
       set
@@ -49,7 +49,7 @@ export class Stocks {
       where
         ticker = :ticker;
     `);
-    
+
     stmt.run(stock);
   }
 
@@ -85,10 +85,10 @@ export class Stocks {
   async updateAllPrices(volatility = 0.02) {
     const {updatePrice} = await import('../../lib/stockSimulator.js');
     const stocks = this.getAllStocks();
-    
-    stocks.forEach(stock => {
+
+    for (const stock of stocks) {
       const newPrice = updatePrice(stock.price, volatility);
       this.setPrice({ticker: stock.ticker, price: Math.round(newPrice * 100) / 100});
-    });
+    }
   }
 };

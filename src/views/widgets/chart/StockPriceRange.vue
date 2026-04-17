@@ -71,7 +71,7 @@ const periodOptions = [
   {title: '12 hours', value: 12 * 60},
   {title: '24 hours', value: 24 * 60},
 ];
-const periodRange = ref(1 * 60);  // last hour data with 1 min interval
+const periodRange = ref(1 * 60); // last hour data with 1 min interval
 
 const adminApi = useAdminApi();
 const {data: stock, refresh: refreshStock} = useQuery({

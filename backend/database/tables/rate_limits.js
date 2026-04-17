@@ -1,6 +1,6 @@
 import fp from 'lodash/fp.js';
-const {map} = fp;
 import {parseJson} from '../helpers.js';
+const {map} = fp;
 
 const parseWindow = parseJson('window');
 

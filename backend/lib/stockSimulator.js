@@ -22,7 +22,7 @@ const randomNormal = () => {
  * @param {number} dt - Time step as fraction of year (e.g., 1/252 for daily)
  * @returns {number} Next simulated price
  */
-export const generateNextPrice = (currentPrice, drift = 0.0001, volatility = 0.02, dt = 1/252) => {
+export const generateNextPrice = (currentPrice, drift = 0.0001, volatility = 0.02, dt = 1 / 252) => {
   const randomComponent = randomNormal() * Math.sqrt(dt);
   const geometricReturn = (drift * dt) + (volatility * randomComponent);
   return currentPrice * Math.exp(geometricReturn);
@@ -37,10 +37,10 @@ export const generateNextPrice = (currentPrice, drift = 0.0001, volatility = 0.0
  */
 export const generatePriceSequence = (initialPrice, periods = 100, options = {}) => {
   const {
-    drift = 0.0001,      // Slight uptrend
-    volatility = 0.02,   // 2% daily volatility
-    dt = 1/252,          // Daily time step (252 trading days/year)
-    reverse = false,     // If true, generate sequence backwards
+    drift = 0.0001, // Slight uptrend
+    volatility = 0.02, // 2% daily volatility
+    dt = 1 / 252, // Daily time step (252 trading days/year)
+    reverse = false, // If true, generate sequence backwards
   } = options;
 
   let currentPrice = initialPrice;
@@ -53,7 +53,7 @@ export const generatePriceSequence = (initialPrice, periods = 100, options = {})
     initialPrice,
     ...times(fromCurrentPrice, periods),
   ];
-  return reverse ? prices.reverse() : prices;
+  return reverse ? prices.toReversed() : prices;
 };
 
 /**
@@ -64,7 +64,7 @@ export const generatePriceSequence = (initialPrice, periods = 100, options = {})
  * @returns {number} Updated price
  */
 export const updatePrice = (currentPrice, volatility = 0.02) => {
-  return generateNextPrice(currentPrice, 0.00005, volatility, 1 / 252);
+  return generateNextPrice(currentPrice, 0.000_05, volatility, 1 / 252);
 };
 
 /**

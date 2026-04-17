@@ -1,7 +1,7 @@
 <script setup>
-import { useImageStore } from '@/stores/images';
-const { bannerImage } = useImageStore();
+import {useImageStore} from '@/stores/images';
 import Top6Performers from '@/views/widgets/Top6Performers.vue';
+useImageStore();
 </script>
 
 <template>

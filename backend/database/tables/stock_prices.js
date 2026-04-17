@@ -53,7 +53,7 @@ export class StockPrices {
       order by period desc
       limit ?
     `);
-    return stmt.all(ticker, periods).reverse();
+    return stmt.all(ticker, periods).toReversed();
   }
 
   /**

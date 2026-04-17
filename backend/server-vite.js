@@ -12,13 +12,13 @@ export const spawnVite = () => {
   child.on('error', err => console.error('Error in Vite child process', {error: err.message}));
 
   child.on('exit', (code, signal) => {
-    if (code !== 0) {
+    if (code === 0) {
+      console.info('Vite exited gracefully');
+    } else {
       console.warn(`Vite exited with code ${code} and signal ${signal}`);
       // restart the consumer if it exits unexpectedly
       console.info('Restarting Vite...');
       process.nextTick(spawnVite);
-    } else {
-      console.info('Vite exited gracefully');
     }
   });
 };

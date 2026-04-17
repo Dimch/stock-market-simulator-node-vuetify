@@ -35,7 +35,7 @@ export class Admins {
     return new Admins(db);
   }
 
-  new(admin = {name, email, password}) {
+  new(admin) {
     const stmt = this.db.prepare(`
       insert into admins (
         name,

@@ -1,6 +1,6 @@
 import fp from 'lodash/fp.js';
-const {split} = fp;
 import {RateLimitsRepo, db} from '../database/index.js';
+const {split} = fp;
 
 const getKeySalt = split('§');
 
@@ -8,7 +8,7 @@ export class RateLimitStoreAdapter extends RateLimitsRepo {
   constructor(db) {
     super(db);
   }
-  
+
   static create(db) {
     return new RateLimitStoreAdapter(db);
   }

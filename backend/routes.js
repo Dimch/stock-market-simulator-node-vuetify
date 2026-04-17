@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import session from "express-session";
+import session from 'express-session';
 import passport from 'passport';
 import {csrfSync} from 'csrf-sync';
 import cors from 'cors';
@@ -39,7 +39,7 @@ export const createApplicationRoutes = (app) => {
     name: 'cookieJar',
     httpOnly: true,
     secure: true,
-    maxAge: 30 * 60 * 1000,         // 30 minutes
+    maxAge: 30 * 60 * 1000, // 30 minutes
     secret: 'supersecretkey',
     resave: false,
     saveUninitialized: true,
@@ -47,7 +47,7 @@ export const createApplicationRoutes = (app) => {
   app.use(passport.session());
   app.use(csrfSynchronisedProtection);
   app.get('/csrf-token', (req, res) => res.json({csrfToken: req.csrfToken()}));
-  
+
   app.use(...adminRoutes());
   app.use(...stockMarketRoutes());
 

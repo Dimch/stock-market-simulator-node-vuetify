@@ -1,7 +1,7 @@
-import express from "express";
-import helmet from "helmet";
+import express from 'express';
+import helmet from 'helmet';
 import pino from 'pino';
-import PinoHttp from "pino-http";
+import PinoHttp from 'pino-http';
 import {createApplicationRoutes} from './routes.js';
 
 const logger = pino({name: 'backend/app'});
@@ -34,9 +34,9 @@ export const createApplication = (createRoutes = createApplicationRoutes) => {
     // if (err.type === 'ForbiddenError') {
     if (err.status)
       return res.status(err.status).send(err.message);
-    //}
+    // }
     res.status(500).send('Oops...');
   });
-  
+
   return app;
 };

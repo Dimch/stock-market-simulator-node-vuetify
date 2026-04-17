@@ -19,11 +19,11 @@ const miniSidebar = shallowRef(false);
     <div class="pa-5">
       <logo />
     </div>
-    
+
     <perfect-scrollbar class="scrollnavbar" :options="{suppressScrollX: true}">
       <v-list aria-busy="true" aria-label="menu list">
-        <template v-for="item in sidebarMenu">
-          <nav-group v-if="item.header" :item="item" :key="item.title" />
+        <template v-for="item in sidebarMenu" :key="item.title">
+          <nav-group v-if="item.header" :item="item" />
           <v-divider v-else-if="item.divider" class="my-3" />
           <nav-collapse v-else-if="item.children" class="leftPadding" :item="item" :level="0" />
           <nav-item v-else :item="item" />
