@@ -5,7 +5,7 @@ export default vuetify({
   rules: {
     '@stylistic/array-bracket-spacing': 0,
     '@stylistic/arrow-parens': 0,
-    '@stylistic/comma-dangle': 0,
+    '@stylistic/comma-dangle': ['error', 'always-multiline'],
     '@stylistic/comma-spacing': 0,
     '@stylistic/indent': 0,
     '@stylistic/object-curly-spacing': 0,

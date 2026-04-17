@@ -2,16 +2,16 @@
 const props = defineProps({
   title: {
     type: String,
-    default: ''
+    default: '',
   },
   breadcrumbs: {
     type: Array,
-    default: () => []
+    default: () => [],
   },
   icon: {
     type: String,
-    default: ''
-  }
+    default: '',
+  },
 });
 </script>
 

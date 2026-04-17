@@ -25,7 +25,7 @@ passport.use('admin', new LocalStrategy(
     } catch (err) {
       return done(err);
     }
-  }
+  },
 ));
 
 passport.serializeUser((user, done) => {

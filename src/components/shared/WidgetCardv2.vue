@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps({
   title: String,
-  hideaction: Boolean
+  hideaction: Boolean,
 });
 </script>
 

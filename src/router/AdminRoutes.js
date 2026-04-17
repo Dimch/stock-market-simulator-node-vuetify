@@ -43,7 +43,7 @@ const AdminRoutes = {
       path: 'widget/statistics',
       redirect: '/construction',
     },
-  ]
+  ],
 };
 
 export default AdminRoutes;

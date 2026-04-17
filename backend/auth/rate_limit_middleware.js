@@ -44,6 +44,6 @@ export const limitAdminLoginByUser = strategyName => async (req, res, next) => {
   if (await limit.update(1))
     return next();
   req.logout(() => res.status(429)
-    .send('Too many login attempts for this user, please try again later.')
+    .send('Too many login attempts for this user, please try again later.'),
   );
 };

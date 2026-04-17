@@ -15,20 +15,20 @@ const footerLink = computed(() =>
   [
     {
       title: 'About us',
-      link: 'https://github.com/Dimch'
+      link: 'https://github.com/Dimch',
     },
     {
       title: 'Privacy',
-      link: 'privacy-policy'
+      link: 'privacy-policy',
     },
     {
       title: 'Terms',
-      link: 'privacy-policy'
-    }
+      link: 'privacy-policy',
+    },
   ].map((item) => ({
     ...item,
-    link: item.link.startsWith('http') ? item.link : `${relativeURL.value}${item.link}`
-  }))
+    link: item.link.startsWith('http') ? item.link : `${relativeURL.value}${item.link}`,
+  })),
 );
 </script>
 <template>

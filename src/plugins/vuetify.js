@@ -22,7 +22,7 @@ const light = {
     'chart-opacity': 0.6,
     'half-opacity': 0.5,
     'high-opacity': 1,
-    'shadow-opacity': 0.08
+    'shadow-opacity': 0.08,
   },
   colors: {
     'primary': PrimaryColor,
@@ -52,8 +52,8 @@ const light = {
     'linkedin': '#0e76a8',
     'gray100': '#f5f5f5',
     'primary200': '#a1d2ff',
-    'secondary200': '#eeeeee'
-  }
+    'secondary200': '#eeeeee',
+  },
 };
 
 const dark = {
@@ -64,7 +64,7 @@ const dark = {
       'linear-gradient(250.38deg, rgba(var(--v-theme-primary), var(--v-shadow-opacity)) 2.39%, rgba(var(--v-theme-primary), var(--v-half-opacity)) 34.42%, rgb(var(--v-theme-darkprimary)) 60.95%, rgba(var(--v-theme-darkprimary), var(--v-medium-opacity)) 84.83%, rgb(var(--v-theme-darkprimary)) 104.37%)',
     'gradientRtl':
       'linear-gradient(250.38deg, rgb(var(--v-theme-darkprimary)) 2.39%, rgba(var(--v-theme-darkprimary), var(--v-medium-opacity)) 34.42%, rgb(var(--v-theme-darkprimary)) 60.95%, rgba(var(--v-theme-primary), var(--v-half-opacity)) 84.83%, rgba(var(--v-theme-primary), var(--v-shadow-opacity)) 104.37%)',
-    'card-shadow': '0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.20)'
+    'card-shadow': '0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.20)',
   },
   colors: {
     'primary': PrimaryColor,
@@ -95,8 +95,8 @@ const dark = {
     'linkedin': '#0e76a8',
     'gray100': '#141414',
     'primary200': '#8dc5f8',
-    'secondary200': '#bdbdbd'
-  }
+    'secondary200': '#bdbdbd',
+  },
 };
 
 export default createVuetify({
@@ -107,19 +107,19 @@ export default createVuetify({
     defaultTheme: 'system',
     themes: {
       light,
-      dark
-    }
+      dark,
+    },
   },
   defaults: {
     VBtn: {},
     VCard: {
-      rounded: 'md'
+      rounded: 'md',
     },
     VTextField: {
-      rounded: 'lg'
+      rounded: 'lg',
     },
     VTooltip: {
-      location: 'top'
-    }
-  }
+      location: 'top',
+    },
+  },
 });

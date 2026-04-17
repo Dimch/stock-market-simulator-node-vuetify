@@ -5,6 +5,6 @@ export const useUIStore = defineStore('ui', () => {
   const isLoading = ref(false);
 
   return {
-    isLoading
+    isLoading,
   };
 });

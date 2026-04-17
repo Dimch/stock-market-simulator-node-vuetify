@@ -24,7 +24,7 @@ const i18n = createI18n({
   locale: 'en',
   messages,
   silentTranslationWarn: true,
-  silentFallbackWarn: true
+  silentFallbackWarn: true,
 });
 
 export const registerPlugins = app => app

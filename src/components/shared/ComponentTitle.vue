@@ -3,7 +3,7 @@ const props = defineProps({
   title: String,
   subContent: String,
   path: String,
-  link: String
+  link: String,
 });
 </script>
 
