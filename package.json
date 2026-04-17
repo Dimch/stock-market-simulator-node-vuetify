@@ -13,7 +13,7 @@
     "docker": "npm run docker:build && npm run docker:run",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --fix",
+    "lint": "eslint .",
     "test": "vitest",
     "prepare": "node .husky/install.js"
   },
