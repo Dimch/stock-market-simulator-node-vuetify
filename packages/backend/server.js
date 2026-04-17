@@ -19,7 +19,7 @@ setTimeout(() => {
   }, 60 * 1000); // Update prices every minute
 }, 10_000); // Start after 5 seconds
 
-spawnVite();
+// spawnVite();
 
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
