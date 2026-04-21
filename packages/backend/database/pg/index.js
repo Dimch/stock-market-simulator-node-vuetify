@@ -6,3 +6,4 @@ export {RateLimits} from './tables/rate_limits.js';
 export {StockPrices} from './tables/stock_prices.js';
 export {Stocks} from './tables/stocks.js';
 export {Transactions} from './tables/transactions.js';
+export {RateLimitStoreAdapter as store} from './tables/rate_limit_store_adapter.js';

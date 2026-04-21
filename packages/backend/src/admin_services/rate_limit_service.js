@@ -1,8 +1,7 @@
 import fp from 'lodash/fp.js';
 import {Duration} from 'luxon';
-import {RateLimits, RateLimitConfigs} from '../../database/sqlite/index.js';
+import {RateLimits, RateLimitConfigs, store} from '../../database/index.js';
 import {RateLimiter} from 'sliding-window-limiter';
-import {store} from './rate_limit_store_adapter.js';
 const {isInteger, map, reduce, startCase, sum} = fp;
 
 const UNITS = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'];

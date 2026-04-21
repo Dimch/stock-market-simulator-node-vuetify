@@ -4,7 +4,7 @@
  */
 import fp from 'lodash/fp.js';
 import {DateTime} from 'luxon';
-import {Stocks, StockPrices} from '../../database/sqlite/index.js';
+import {Stocks, StockPrices} from '../../database/index.js';
 import {generatePriceSequence, updatePrice} from '../lib/stockSimulator.js';
 const {first, flow, last, map, orderBy, slice} = fp;
 
