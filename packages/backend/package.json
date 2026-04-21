@@ -2,7 +2,7 @@
   "name": "stock-market-simulator-backend",
   "private": true,
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "dev": "PORT=3001 nodemon ./src/server.js",
     "build": "echo 'Backend requires no build step'",
