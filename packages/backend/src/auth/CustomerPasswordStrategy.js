@@ -2,7 +2,7 @@ import passport from 'passport';
 import fp from 'lodash/fp.js';
 import argon2 from 'argon2';
 import {Strategy as LocalStrategy} from 'passport-local';
-import {Customers} from '../database/index.js';
+import {Customers} from '../../database/sqlite/index.js';
 const {cloneDeep} = fp;
 
 passport.use('customer', new LocalStrategy(

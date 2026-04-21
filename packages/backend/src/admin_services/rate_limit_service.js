@@ -1,6 +1,6 @@
 import fp from 'lodash/fp.js';
 import {Duration} from 'luxon';
-import {RateLimits, RateLimitConfigs} from '../database/index.js';
+import {RateLimits, RateLimitConfigs} from '../../database/sqlite/index.js';
 import {RateLimiter} from 'sliding-window-limiter';
 import {store} from './rate_limit_store_adapter.js';
 const {isInteger, map, reduce, startCase, sum} = fp;

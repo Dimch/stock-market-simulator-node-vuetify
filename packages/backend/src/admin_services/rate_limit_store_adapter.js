@@ -1,5 +1,5 @@
 import fp from 'lodash/fp.js';
-import {RateLimitsRepo, db} from '../database/index.js';
+import {RateLimitsRepo, db} from '../../database/sqlite/index.js';
 const {split} = fp;
 
 const getKeySalt = split('§');
