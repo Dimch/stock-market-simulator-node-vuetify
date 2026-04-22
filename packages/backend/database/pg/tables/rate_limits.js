@@ -39,7 +39,8 @@ export class RateLimits {
       `,
       values: [key, salt],
     };
-    return exec(query).then(one);
+    const limit = await exec(query).then(one);
+    return limit ? limit.window : null;
   }
 
   static async getKeySaltPairs() {
