@@ -5,24 +5,6 @@ const {flow, get} = fp;
 
 const getPrice = flow(rows, get('price'));
 
-//   // Populate with some default stocks
-//   db.exec(`
-//     insert or ignore into stocks (ticker, name, price)
-//     values
-//       ('ZVEX', 'Zephyr Vex Technologies', 150.00),
-//       ('NRVS', 'NervousCore Systems', 2800.00),
-//       ('PYRO', 'Pyro Digital Solutions', 300.00),
-//       ('KORI', 'Kinetic OR Industries', 3500.00),
-//       ('VELT', 'Vault Entertainment', 600.00),
-//       ('OXEN', 'OxenMind Computing', 350.00),
-//       ('SFFL', 'SaffronFlow Innovations', 700.00),
-//       ('QAUM', 'Quantum Analytics', 2200.00),
-//       ('RXOL', 'Radius Box Solutions', 450.00),
-//       ('PRZU', 'Zaibatzu Pharmaceuticals', 1800.00),
-//       ('AMLG', 'Amalgam Amalgamation', 550.00),
-//       ('UZEN', 'UltraZen Networks', 1200.00);
-//   `);
-
 export class Stocks {
   static async setPrice(stock) {
     const {ticker, price} = stock;

@@ -1,20 +1,17 @@
 import {exec, one} from '../client.js';
 import argon2 from 'argon2';
 
-// export const init = async (db) => {
-//   if (!db.isOpen) throw new Error('Database is not open');
-//
-//   // Check if a default admin user exists
-//   const adminExists = Admins.create(db).getByEmail('admin@example.com');
-//   if (adminExists) return;
-//   // Create a default admin user
-//   const hashedPassword = await argon2.hash('password');
-//   Admins.create(db).new({
-//     name: 'Admin',
-//     email: 'admin@example.com',
-//     password: hashedPassword,
-//   });
-// };
+export const init = async () => {
+  const email = 'admin@example.com';
+
+  // Check if a default admin user exists
+  const adminExists = await Admins.getByEmail(email);
+  if (adminExists) return;
+
+  // Create a default admin user
+  const password = await argon2.hash('password');
+  await Admins.new({name: 'Admin', email, password});
+};
 
 export class Admins {
   static async new(admin) {

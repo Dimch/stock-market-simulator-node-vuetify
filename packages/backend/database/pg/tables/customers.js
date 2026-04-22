@@ -1,33 +1,18 @@
-import {exec, rows, one} from '../client.js';
-import fp from 'lodash/fp.js';
+import {exec, one} from '../client.js';
 import argon2 from 'argon2';
-const {defaults} = fp;
 
-// export const init = async (db) => {
-//   if (!db.isOpen) throw new Error('Database is not open');
-//
-//   db.exec(`
-//     create table if not exists customers (
-//       id          integer primary key not null,
-//       username    text unique not null,
-//       password    text not null,
-//       name        text not null,
-//       ip          text not null,
-//       balance     real default 100000 not null,
-//       created_at  datetime default current_timestamp not null
-//     )
-//   `);
-//
-//   // Check if a default customer user exists
-//   const customerExists = Customers.create(db).getByIp(DefaultCustomer().ip);
-//   if (customerExists) return;
-//   // Create a default customer user
-//   const hashedPassword = await argon2.hash('password');
-//   Customers.create(db).new({...DefaultCustomer(), password: hashedPassword});
-// };
+export const init = async () => {
+  // Check if a default customer user exists
+  const customerExists = await Customers.getByIp(DefaultCustomer().ip);
+  if (customerExists) return;
+
+  // Create a default customer user
+  const hashedPassword = await argon2.hash('password');
+  await Customers.new({...DefaultCustomer(), password: hashedPassword});
+};
 
 const DefaultCustomer = () => ({
-  username: 'default_user',
+  username: 'guest',
   password: 'password',
   name: 'Default Customer',
   ip: '127.0.0.1',

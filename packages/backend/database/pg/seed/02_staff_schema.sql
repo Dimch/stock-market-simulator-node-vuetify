@@ -1,25 +1,24 @@
 -- Create schema for administration staff data
 create schema staff;
 comment
-on schema staff is 'Website''s administration console related data, e.g. users and rate limits';
+on schema staff is 'Website''s administration console related data, e.g. administrators and rate limits';
 alter
 schema staff owner to postgres;
 
-create table staff.users
+create table staff.admins
 (
   id        serial
-    constraint users_pk
+    constraint admins_pk
       primary key,
   name      varchar(255)              not null,
   email     varchar(255)              not null,
   password  text                      not null,
   crated_at timestamptz default now() not null
 );
-comment
-on table staff.users is 'Administration staff';
-alter table staff.users owner to postgres;
-create unique index users_email_uindex
-  on staff.users (email);
+comment on table staff.admins is 'Administration staff';
+alter table staff.admins owner to postgres;
+create unique index admins_email_uindex
+  on staff.admins (email);
 
 create table staff.rate_limits
 (
