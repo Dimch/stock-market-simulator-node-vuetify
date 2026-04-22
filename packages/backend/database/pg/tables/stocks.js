@@ -1,9 +1,9 @@
-import {exec, rows} from '../client.js';
+import {exec, rows, one} from '../client.js';
 import fp from 'lodash/fp.js';
 
 const {flow, get} = fp;
 
-const getPrice = flow(rows, get('price'));
+const getPrice = flow(one, get('price'));
 
 export class Stocks {
   static async setPrice(stock) {
@@ -45,7 +45,7 @@ export class Stocks {
       `,
       values: [ticker],
     };
-    return exec(query).then(rows);
+    return exec(query).then(one);
   }
 
   static async getAllStocks() {
