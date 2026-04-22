@@ -1,4 +1,4 @@
-import {exec, rows} from '../client.js';
+import {exec, one, rows} from '../client.js';
 
 export class RateLimits {
   // Implementation of Store interface for sliding-window-limiter package.
@@ -37,7 +37,7 @@ export class RateLimits {
       `,
       values: [key, salt],
     };
-    return exec(query).then(rows);
+    return exec(query).then(one);
   }
 
   static async getKeySaltPairs() {
