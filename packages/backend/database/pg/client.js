@@ -9,9 +9,9 @@ types.setTypeParser(types.builtins.DATE, dateTimeParser);
 types.setTypeParser(types.builtins.NUMERIC, (value) => value ? parseFloat(value) : 0);
 
 const config = {
-  host: 'localhost',
+  host: 'stock-simulator-db',
   database: 'stock_simulator_dev',
-  username: 'postgres',
+  user: 'postgres',
   password: 'postgres',
 };
 const pool = new Pool(config);
