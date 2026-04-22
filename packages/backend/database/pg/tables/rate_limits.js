@@ -13,7 +13,7 @@ export class RateLimits {
           buckets
         )
         values ($1, $2, $3)
-        on conflict(key, salt) do
+        on conflict("key", salt) do
         update set
           buckets = excluded.buckets,
           updated_at = current_timestamp;
@@ -28,10 +28,12 @@ export class RateLimits {
   static async get(key, salt) {
     const query = {
       text: `
-        select buckets, updated_at
+        select
+          buckets as "window",
+          updated_at
         from staff.rate_limits
         where
-          key = $1
+          "key" = $1
           and salt = $2
         limit 1;
       `,
@@ -43,7 +45,8 @@ export class RateLimits {
   static async getKeySaltPairs() {
     const query = {
       text: `
-        select key,
+        select
+          "key",
           salt,
           updated_at,
           buckets as "window"
@@ -56,11 +59,12 @@ export class RateLimits {
   static async getByKey(key) {
     const query = {
       text: `
-        select salt,
+        select
+          salt,
           buckets as "window",
           updated_at
         from rate_limits
-        where key = :key
+        where key = $1
         order by salt asc;
       `,
       values: [key],
