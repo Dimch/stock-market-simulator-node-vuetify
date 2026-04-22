@@ -5,7 +5,7 @@ const {split} = fp;
 const getKeySalt = split('§');
 
 export class RateLimitStoreAdapter {
-  static async makeKey(key, salt) {
+  static makeKey(key, salt) {
     return `${key}§${salt}`;
   }
 
