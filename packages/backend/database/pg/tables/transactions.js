@@ -5,7 +5,7 @@ export class Transactions {
     const {customerId, stockId, amount, price} = transaction;
     const query = {
       text: `
-        insert into transactions (
+        insert into market.transactions (
           customer_id,
           stock_id,
           amount,
@@ -27,7 +27,7 @@ export class Transactions {
     const query = {
       text: `
         select *
-        from transactions
+        from market.transactions
         where customer_id = ?
         limit 5;
       `,

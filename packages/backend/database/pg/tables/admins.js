@@ -17,12 +17,12 @@ export class Admins {
   static async new(admin) {
     const query = {
       text: `
-        insert into admins (
+        insert into staff.admins (
           name,
           email,
           password
         )
-        values ($1, $2, $3, $4));
+        values ($1, $2, $3);
         `,
       values: [
         admin.name,
@@ -37,7 +37,7 @@ export class Admins {
     const query = {
       text: `
         select *
-        from admins
+        from staff.admins
         where email = $1
         limit 1;
         `,

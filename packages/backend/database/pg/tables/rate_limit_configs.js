@@ -5,7 +5,7 @@ export class RateLimitConfigs {
     const {key, name, description, max, size, width, unit} = config;
     const query = {
       text: `
-        insert into rate_limit_configs (
+        insert into staff.rate_limit_configs (
           key,
           name,
           description,
@@ -34,7 +34,7 @@ export class RateLimitConfigs {
     const query = {
       text: `
         select *
-        from rate_limit_configs
+        from staff.rate_limit_configs
         where key = $1
         limit 1;
       `,
@@ -47,7 +47,7 @@ export class RateLimitConfigs {
     const query = {
       text: `
         select *
-        from rate_limit_configs;
+        from staff.rate_limit_configs;
       `,
     };
     return exec(query).then(rows);

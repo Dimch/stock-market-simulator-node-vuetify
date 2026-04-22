@@ -42,7 +42,7 @@ create table market.customers
   name       varchar(255)              not null,
   ip         varchar(100)              not null,
   balance    money       default 0     not null,
-  created_at timestamptz               not null,
+  created_at timestamptz default now() not null,
   updated_at timestamptz default now() not null
 );
 alter table market.customers owner to postgres;

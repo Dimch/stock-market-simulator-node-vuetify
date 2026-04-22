@@ -5,7 +5,7 @@ export class CustomerStocks {
     const {customerId, stockId, amount, balanceAmount} = customerStock;
     const query = {
       text: `
-        insert into customer_stocks (
+        insert into market.customer_stocks (
           customer_id,
           stock_id,
           amount,

@@ -7,7 +7,7 @@ export class RateLimits {
   static async set(key, salt, buckets) {
     const query = {
       text: `
-        insert into rate_limits (
+        insert into staff.rate_limits (
           key,
           salt,
           buckets
@@ -29,7 +29,7 @@ export class RateLimits {
     const query = {
       text: `
         select buckets, updated_at
-        from rate_limits
+        from staff.rate_limits
         where
           key = $1
           and salt = $2
@@ -47,7 +47,7 @@ export class RateLimits {
           salt,
           updated_at,
           buckets as "window"
-        from rate_limits;
+        from staff.rate_limits;
       `,
     };
     return exec(query).then(rows);

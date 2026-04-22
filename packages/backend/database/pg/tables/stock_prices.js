@@ -12,7 +12,7 @@ export class StockPrices {
   static async recordPrice(ticker, price, period) {
     const query = {
       text: `
-        insert into stock_prices (ticker, price, period)
+        insert into market.stock_prices (ticker, price, period)
         values ($1, $2, $3);
       `,
       values: [ticker, price, period],
@@ -30,7 +30,7 @@ export class StockPrices {
     const query = {
       text: `
         select price
-        from stock_prices
+        from market.stock_prices
         where ticker = $1
         order by period desc
         limit $2;
@@ -47,8 +47,8 @@ export class StockPrices {
   static async getRecordCount(ticker) {
     const query = {
       text: `
-        select count(*) as count
-        from stock_prices
+        select count(*) as "count"
+        from market.stock_prices
         where ticker = $1
       `,
       values: [ticker],
@@ -62,11 +62,11 @@ export class StockPrices {
   static async clearHistory(ticker = null) {
     const query = ticker
       ? ({
-        text: `delete from stock_prices where ticker = $1;`,
+        text: `delete from market.stock_prices where ticker = $1;`,
         values: [ticker],
       })
       : ({
-        text: `delete from stock_prices`,
+        text: `delete from market.stock_prices`,
       });
     await exec(query);
   }

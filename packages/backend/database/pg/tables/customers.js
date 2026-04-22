@@ -24,7 +24,7 @@ export class Customers {
     const {username, password, name, ip, balance} = customer;
     const query = {
       text: `
-        insert into customers (
+        insert into market.customers (
           username,
           password,
           name,
@@ -42,7 +42,7 @@ export class Customers {
     const query = {
       text: `
         select *
-        from customers
+        from market.customers
         where ip = $1
         limit 1;
       `,
@@ -55,7 +55,7 @@ export class Customers {
     const query = {
       text: `
         select *
-        from customers
+        from market.customers
         where username = $1
           limit 1;
       `,

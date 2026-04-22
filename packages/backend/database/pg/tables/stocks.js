@@ -10,7 +10,7 @@ export class Stocks {
     const {ticker, price} = stock;
     const query = {
       text: `
-        update stocks
+        update market.stocks
         set
           price = $1,
           updated_at = now()
@@ -26,7 +26,7 @@ export class Stocks {
     const query = {
       text: `
         select price
-        from stocks
+        from market.stocks
         where ticker = $1
         limit 1;
       `,
@@ -39,7 +39,7 @@ export class Stocks {
     const query = {
       text: `
         select id, ticker, name, price, updated_at
-        from stocks
+        from market.stocks
         where ticker = $1
         limit 1
       `,
@@ -52,7 +52,7 @@ export class Stocks {
     const query = {
       text: `
         select id, ticker, name, price, updated_at
-        from stocks
+        from market.stocks
         order by ticker;
       `,
     };
