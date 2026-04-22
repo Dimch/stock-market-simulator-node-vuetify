@@ -5,8 +5,8 @@ import {routes as authRoutes} from '../auth/index.js';
 export const routes = () => {
   const router = Router();
 
-  router.get('/stocks/hot', (_, res) => {
-    res.json(stockMarketService.getTop(6));
+  router.get('/stocks/hot', async (_, res) => {
+    res.json(await stockMarketService.getTop(6));
   });
 
   router.use(...authRoutes('customer'));
@@ -15,8 +15,8 @@ export const routes = () => {
    * GET /stock-market/stocks
    * Returns all stocks with current prices
    */
-  router.get('/stocks', (_, res) => {
-    const dashboard = stockMarketService.getDashboard();
+  router.get('/stocks', async (_, res) => {
+    const dashboard = await stockMarketService.getDashboard();
     res.json(dashboard);
   });
 

@@ -10,11 +10,11 @@ export class RateLimit {
   }
 
   static async init(key, salt = '') {
-    return await new RateLimit(key, salt).load();
+    return new RateLimit(key, salt).load();
   }
 
   async load() {
-    const {size, width, unit, max, updated_at} = RateLimitConfigs.get(this.key);
+    const {size, width, unit, max, updated_at} = await RateLimitConfigs.get(this.key);
     this.updatedAt = updated_at;
     this.limiter = await RateLimiter.load({
       name: store.makeKey(this.key, this.salt),

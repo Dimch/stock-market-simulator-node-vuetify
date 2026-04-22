@@ -12,7 +12,7 @@ const getPrices = map('price');
 export function getTimeLabels(startDate = DateTime.now(), periodRange) {
   const now = startDate.startOf('minute');
   return Array.from({length: periodRange}, (_, i) => now.minus({minutes: periodRange - i}).toFormat('HH:mm'));
-};
+}
 
 export class StockMarketService {
   constructor(StocksDb = Stocks, StockPricesDb = StockPrices) {
@@ -23,56 +23,61 @@ export class StockMarketService {
   /**
    * Get all stocks with current prices
    */
-  getAllStocks() {
+  async getAllStocks() {
     return this.stocks.getAllStocks();
   }
 
   /**
    * Get a single stock by ticker
    */
-  getStock(ticker) {
+  async getStock(ticker) {
     return this.stocks.getStock(ticker);
   }
 
   /**
    * Simulate a market tick - update all prices with realistic movement
    */
-  simulateTick(volatility = 0.02) {
-    const stocks = this.getAllStocks();
-    const updates = stocks.map(stock => {
-      const newPrice = updatePrice(stock.price, volatility);
+  async simulateTick(volatility = 0.02) {
+    const stocks = await this.getAllStocks();
+    const updates = [];
+    for (const stock of stocks) {
+      const newPrice = await updatePrice(stock.price, volatility);
       // Round to 2 decimal places
       const roundedPrice = Math.round(newPrice * 100) / 100;
-      this.stocks.setPrice({ticker: stock.ticker, price: roundedPrice});
+      await this.stocks.setPrice({ticker: stock.ticker, price: roundedPrice});
       // Record in price journal
-      const period = this.stockPrices.getRecordCount(stock.ticker);
-      this.stockPrices.recordPrice(stock.ticker, roundedPrice, period);
-      return {
+      const period = await this.stockPrices.getRecordCount(stock.ticker);
+      await this.stockPrices.recordPrice(stock.ticker, roundedPrice, period);
+      updates.push({
         ticker: stock.ticker,
         oldPrice: stock.price,
         newPrice: roundedPrice,
         change: roundedPrice - stock.price,
         changePercent: (roundedPrice - stock.price) / stock.price,
-      };
-    });
+      });
+    }
     return updates;
   }
 
-  initializeStocks() {
-    const stocks = this.getAllStocks();
+  async initializeStocks() {
+    const stocks = await this.getAllStocks();
+    console.info(`Deleting stock price data for ${stocks.length} stocks...`);
+    await this.stockPrices.clearHistory();
     console.info(`Initializing stock price data for ${stocks.length} stocks...`);
     for (const stock of stocks) {
-      this.initializeStockPriceData(stock.ticker);
+      await this.initializeStockPriceData(stock.ticker);
     }
+    console.info('Stock prices initialized.');
   }
 
   /* Initialize stock price data in journal,
    * By default generate 24 hours of minute-level data.
+   * TODO: run stock initialization process in the async flow.
    * @param {string} ticker - Stock ticker symbol
    * @param {number} initialPeriods - Number of initial periods to generate
    */
-  initializeStockPriceData(ticker, initialPeriods = 60 * 24) {
-    const stock = this.getStock(ticker);
+  async initializeStockPriceData(ticker, initialPeriods = 60 * 24) {
+    const stock = await this.getStock(ticker);
     if (!stock) throw new Error(`Stock with ticker ${ticker} not found`);
 
     // Generate initial price sequence
@@ -80,7 +85,7 @@ export class StockMarketService {
     // Record generated prices in journal
     for (const [idx, price] of generated.entries()) {
       const roundedPrice = Math.round(price * 100) / 100;
-      this.stockPrices.recordPrice(ticker, roundedPrice, idx);
+      await this.stockPrices.recordPrice(ticker, roundedPrice, idx);
     }
   }
 
@@ -88,11 +93,11 @@ export class StockMarketService {
    * Get price history from journal, generate missing data if needed
    * Returns existing recorded prices and fills gaps with generated sequences
    */
-  getPriceHistory(ticker, periods = 60) {
-    const stock = this.getStock(ticker);
+  async getPriceHistory(ticker, periods = 60) {
+    const stock = await this.getStock(ticker);
     if (!stock) return null;
 
-    const {changeAmount, changePercent, prices} = this.calculateChange(stock, periods);
+    const {changeAmount, changePercent, prices} = await this.calculateChange(stock, periods);
     const timeLabels = getTimeLabels(DateTime.fromSQL(stock.updated_at), prices.length);
 
     return {
@@ -106,8 +111,8 @@ export class StockMarketService {
     };
   }
 
-  calculateChange(stock, periods = 60, returnPrices = true) {
-    const recordedPrices = this.stockPrices.getPriceHistory(stock.ticker, periods);
+  async calculateChange(stock, periods = 60, returnPrices = true) {
+    const recordedPrices = await this.stockPrices.getPriceHistory(stock.ticker, periods);
 
     const prices = getPrices(recordedPrices);
     const firstPrice = first(prices) || stock.price;
@@ -122,47 +127,44 @@ export class StockMarketService {
     };
   }
 
-  getDashboard() {
+  async getDashboard() {
     const periodRange = 60 * 24; // last 24 hours
-    const stocks = this.getAllStocks();
-    return flow(
-      map(stock => {
-        const {changeAmount, changePercent} = this.calculateChange(stock, periodRange, false);
-        return {
-          ...stock,
-          changeAmount,
-          changePercent,
-          periodRange,
-        };
-      }),
-      orderBy(['ticket'], ['asc']),
-    )(stocks);
+    const stocks = await this.getAllStocks();
+    const result = [];
+    for (const stock of stocks) {
+      const {changeAmount, changePercent} = await this.calculateChange(stock, periodRange, false);
+      result.push({
+        ...stock,
+        changeAmount,
+        changePercent,
+        periodRange,
+      });
+    }
+    return orderBy(['ticket'], ['asc'])(result);
   }
 
   /**
    * Reset a stock price (for testing)
    */
-  resetPrice(ticker, price) {
-    this.stocks.setPrice({ticker, price});
+  async resetPrice(ticker, price) {
+    await this.stocks.setPrice({ticker, price});
     return this.getStock(ticker);
   }
 
-  getTop(count = 5, periodRange = 60) {
-    const stocks = this.getAllStocks();
-    return flow(
-      map(stock => {
-        const {changeAmount, changePercent} = this.calculateChange(stock, periodRange, false);
-        return {
-          ...stock,
-          changeAmount,
-          changePercent,
-          periodRange,
-        };
-      }),
-      orderBy(['changeAmount'], ['desc']),
-      slice(0, count),
-    )(stocks);
+  async getTop(count = 5, periodRange = 60) {
+    const stocks = await this.getAllStocks();
+    const result = [];
+    for (const stock of stocks) {
+      const {changeAmount, changePercent} = await this.calculateChange(stock, periodRange, false);
+      result.push({
+        ...stock,
+        changeAmount,
+        changePercent,
+        periodRange,
+      });
+    }
+    return flow(orderBy(['changeAmount'], ['desc']), slice(0, count))(result);
   }
-};
+}
 
 export const stockMarketService = new StockMarketService();

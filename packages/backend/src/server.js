@@ -12,11 +12,11 @@ const port = process.env.PORT;
 
 rateLimitService.startUpdate();
 
-stockMarketService.initializeStocks();
+await stockMarketService.initializeStocks();
 setTimeout(() => {
-  setInterval(() => {
+  setInterval(async () => {
     try {
-      stockMarketService.simulateTick();
+      await stockMarketService.simulateTick();
     } catch (err) {
       console.error('Error in simulateTick:', err);
     }

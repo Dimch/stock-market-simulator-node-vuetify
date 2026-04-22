@@ -12,16 +12,16 @@ export const routes = () => {
     (_, res) => res.send('Admin Services')); // stub route
 
   admin.get('/rate-limits',
-    (_, res) => res.json(rateLimitService.getDashboard()));
+    async (_, res) => res.json(await rateLimitService.getDashboard()));
 
   admin.get('/rate-limits/list',
-    (_, res) => res.json(rateLimitService.getDashboard()));
+    async (_, res) => res.json(await rateLimitService.getDashboard()));
 
   admin.get('/stocks',
-    (_, res) => res.json(stockMarketService.getDashboard()));
+    async (_, res) => res.json(await stockMarketService.getDashboard()));
 
   admin.get('/stocks/:ticker/:periods',
-    (req, res) => res.json(stockMarketService.getPriceHistory(req.params.ticker, Number.parseInt(req.params.periods))));
+    async (req, res) => res.json(await stockMarketService.getPriceHistory(req.params.ticker, Number.parseInt(req.params.periods))));
 
   return ['/admin', admin];
 };
