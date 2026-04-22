@@ -64,7 +64,7 @@ export class RateLimits {
           salt,
           buckets as "window",
           updated_at
-        from rate_limits
+        from staff.rate_limits
         where key = $1
         order by salt asc;
       `,
