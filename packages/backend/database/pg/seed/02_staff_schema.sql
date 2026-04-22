@@ -22,16 +22,14 @@ create unique index admins_email_uindex
 
 create table staff.rate_limits
 (
-  id         serial
-    constraint rate_limits_pk
-      primary key,
   key        varchar(100)              not null,
   salt       text        default ''    not null,
   buckets    jsonb       default '{}'  not null,
-  updated_at timestamptz default now() not null
+  updated_at timestamptz default now() not null,
+  constraint rate_limits_pk
+    primary key (key, salt)
 );
 alter table staff.rate_limits owner to postgres;
-create unique index rate_limits_key_salt_uindex on staff.rate_limits (key, salt);
 
 create table staff.rate_limit_configs
 (
