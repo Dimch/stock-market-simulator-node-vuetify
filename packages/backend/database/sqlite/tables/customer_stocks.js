@@ -49,4 +49,4 @@ export class CustomerStocks {
 
     stmt.run(customerStock);
   }
-};
+}

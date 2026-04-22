@@ -52,4 +52,4 @@ export class Transactions {
     `);
     return stmt.all(customerId);
   }
-};
+}

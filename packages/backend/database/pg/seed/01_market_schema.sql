@@ -12,7 +12,7 @@ create table market.stocks
       primary key,
   ticker     varchar(10)               not null,
   name       varchar(100)              not null,
-  price      money                     not null,
+  price      decimal                   not null,
   updated_at timestamptz default now() not null
 );
 comment
@@ -25,8 +25,8 @@ create table market.stock_prices
   ticker varchar(10) not null
     constraint stock_prices_stocks_ticker_fk
       references market.stocks (ticker),
-  period integer not null,
-  price  money       not null,
+  period integer  not null,
+  price  decimal  not null,
   constraint stock_prices_pk
     primary key (ticker, period)
 );
@@ -41,7 +41,7 @@ create table market.customers
   password   text                      not null,
   name       varchar(255)              not null,
   ip         varchar(100)              not null,
-  balance    money       default 0     not null,
+  balance    decimal     default 0     not null,
   created_at timestamptz default now() not null,
   updated_at timestamptz default now() not null
 );
@@ -57,7 +57,7 @@ create table market.customer_stocks
     constraint customer_stocks_customers_id_fk
       references market.customers,
   amount              integer                   not null,
-  zero_amount_balance money                     not null,
+  zero_amount_balance decimal                   not null,
   updated_at          timestamptz default now() not null,
   constraint customer_stocks_pk
     primary key (stock_id, customer_id)
@@ -76,7 +76,7 @@ create table market.transactions
     constraint transactions_stocks_id_fk
       references market.stocks,
   amount      integer                   not null,
-  price       money                     not null,
+  price       decimal                   not null,
   created_at  timestamptz default now() not null
 );
 alter table market.transactions owner to postgres;

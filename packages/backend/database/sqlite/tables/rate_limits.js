@@ -89,4 +89,4 @@ export class RateLimits {
     const limits = stmt.all({key});
     return map(parseWindow)(limits);
   }
-};
+}

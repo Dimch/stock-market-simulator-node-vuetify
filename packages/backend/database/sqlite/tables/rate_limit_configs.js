@@ -85,4 +85,4 @@ export class RateLimitConfigs {
     `);
     return stmt.all();
   }
-};
+}
