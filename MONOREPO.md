@@ -27,11 +27,12 @@ Default endpoints:
 
 - Frontend: `http://localhost:3000`
 - Backend: `http://localhost:3001`
+- PostgreSQL (Docker Compose only): `localhost:5432`
 
 Choose the workflow based on what you need:
 
-- Use `npm run dev` when you want the simplest local setup.
-- Use Docker when you want both apps running in containers while editing source files on the host.
+- Use `npm run dev` when you want the simplest local setup. In this mode, the backend falls back to its default in-memory SQLite implementation.
+- Use Docker when you want both apps running in containers while editing source files on the host. In Compose mode, the backend switches to PostgreSQL via `DB=pg` and the stack starts a dedicated database container for you.
 
 ## Structure
 
@@ -42,6 +43,7 @@ Choose the workflow based on what you need:
 ├── turbo.json
 └── packages/
     ├── backend/
+    │   ├── database/
     │   ├── Dockerfile
     │   ├── package.json
     │   ├── src/
@@ -73,6 +75,14 @@ npm run test
 ```
 
 Default port: `3001`
+
+Database behavior:
+
+- Host development (`npm run dev` from the root or from `packages/backend`) uses the backend's default in-memory SQLite path.
+- Docker Compose sets `DB=pg`, so the backend talks to PostgreSQL instead.
+- In the SQLite-backed host workflow, data is recreated whenever the backend process restarts.
+
+This distinction is important when you are debugging data access behavior or reproducing issues, because the active database engine and data lifetime depend on the workflow you choose.
 
 ### Frontend
 
@@ -145,12 +155,22 @@ npm run docker:down
 What this setup does:
 
 - Runs backend and frontend as separate containers
+- Runs a PostgreSQL container for the backend
 - Mounts `packages/backend` and `packages/frontend` from the host into the containers
 - Exposes the frontend on `localhost:3000`
 - Exposes the backend on `localhost:3001`
+- Exposes PostgreSQL on `localhost:5432`
 - Starts the frontend with Vite using `--host`, which makes it reachable from outside the container
 
+Compose-specific database notes:
+
+- The backend container sets `DB=pg`, which selects `packages/backend/database/pg` instead of the default SQLite implementation.
+- PostgreSQL is initialized from the SQL files in `packages/backend/database/pg/seed`.
+- The Compose file uses the default local credentials `postgres` / `postgres` and database name `stock_simulator_dev`.
+
 Because the source directories are bind-mounted, you can edit files on the host machine while the applications continue running in Docker.
+
+This change is significant for development workflow documentation because `npm run dev` and `npm run docker:up` no longer exercise the same database backend. Use host development for the lightest setup, and use Compose when you specifically need Postgres-backed behavior or a fuller multi-container environment.
 
 If you already have the stack running and only changed application source files, rebuilding is usually not necessary. If you changed dependencies or Dockerfiles, rebuild the images before starting the stack again.
 
@@ -158,6 +178,7 @@ If you already have the stack running and only changed application source files,
 
 - The frontend Vite server proxies `/health`, `/admin`, `/csrf-token`, and `/stock-market` to the backend.
 - The backend development server runs with `nodemon`, so server changes restart automatically.
+- The backend database layer defaults to in-memory SQLite unless `DB` is set; Docker Compose sets `DB=pg` for the backend container.
 - Docker enables polling for frontend file watching to keep updates reliable in containerized development.
 
 ## Typical Workflows
@@ -168,11 +189,15 @@ If you already have the stack running and only changed application source files,
 npm run dev
 ```
 
+This is the quickest workflow and keeps the backend on in-memory SQLite.
+
 ### Work inside Docker while editing on the host
 
 ```bash
 npm run docker:up
 ```
+
+Use this workflow when you want the backend running against the Compose-managed PostgreSQL container.
 
 ### Work on just one package
 
