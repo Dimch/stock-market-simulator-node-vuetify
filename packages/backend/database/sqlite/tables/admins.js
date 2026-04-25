@@ -60,4 +60,4 @@ export class Admins {
     `);
     return stmt.get(email);
   }
-};
+}

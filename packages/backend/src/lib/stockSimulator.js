@@ -43,6 +43,9 @@ export const generatePriceSequence = (initialPrice, periods = 100, options = {})
     reverse = false, // If true, generate sequence backwards
   } = options;
 
+  if (!initialPrice || initialPrice <= 0) {
+    throw new Error('Invalid price, should be a positive number');
+  }
   let currentPrice = initialPrice;
   const fromCurrentPrice = () => {
     currentPrice = generateNextPrice(currentPrice, drift, volatility, dt);

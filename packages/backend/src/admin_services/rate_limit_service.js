@@ -1,9 +1,8 @@
 import fp from 'lodash/fp.js';
 import {Duration} from 'luxon';
-import {RateLimits, RateLimitConfigs} from '../database/index.js';
+import {RateLimits, RateLimitConfigs, store} from '../../database/index.js';
 import {RateLimiter} from 'sliding-window-limiter';
-import {store} from './rate_limit_store_adapter.js';
-const {isInteger, map, reduce, startCase, sum} = fp;
+const {isInteger, map, startCase, sum} = fp;
 
 const UNITS = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'];
 
@@ -79,16 +78,18 @@ export class RateLimitService {
     this.updatePeriod = options.updatePeriod || 5 * 1000; // Default to 5 seconds
   }
 
-  getDashboard() {
-    const configs = this.configs.getAll();
-    return reduce((acc, config) => {
-      const limits = RateLimits.getByKey(config.key);
-      return [...acc, ...RateLimitInfo.dashboardItems(config)(limits)];
-    }, [])(configs);
+  async getDashboard() {
+    const configs = await this.configs.getAll();
+    const result = [];
+    for (const config of configs) {
+      const limits = await RateLimits.getByKey(config.key);
+      result.push(...RateLimitInfo.dashboardItems(config)(limits));
+    }
+    return result;
   }
 
   async updateLimits() {
-  const limits = this.store.getKeySaltPairs();
+    const limits = await this.store.getKeySaltPairs();
     if (!limits?.length) return;
 
     for (const limit of limits) {

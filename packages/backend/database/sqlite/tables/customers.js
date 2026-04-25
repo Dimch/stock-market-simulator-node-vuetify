@@ -82,4 +82,4 @@ export class Customers {
     `);
     return stmt.get(username);
   }
-};
+}

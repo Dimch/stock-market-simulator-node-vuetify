@@ -15,6 +15,7 @@ import {init as initRateLimits,
   RateLimits as RateLimitsRepo} from './tables/rate_limits.js';
 import {init as initRateLimitConfigs,
   RateLimitConfigs as RateLimitConfigsRepo} from './tables/rate_limit_configs.js';
+import {RateLimitStoreAdapter} from './tables/rate_limit_store_adapter.js';
 
 // TODO: make database configurable
 
@@ -28,6 +29,7 @@ export const StockPrices = StockPricesRepo.create(db);
 export const Transactions = TransactionsRepo.create(db);
 export const RateLimits = RateLimitsRepo.create(db);
 export const RateLimitConfigs = RateLimitConfigsRepo.create(db);
+export const store = RateLimitStoreAdapter.create(db);
 
 await initAdmins(db);
 await initCustomers(db);
@@ -37,4 +39,3 @@ initTransactions(db);
 initCustomerStocks(db);
 initRateLimits(db);
 initRateLimitConfigs(db);
-export {RateLimits as RateLimitsRepo} from './tables/rate_limits.js';

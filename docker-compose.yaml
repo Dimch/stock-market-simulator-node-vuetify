@@ -13,12 +13,21 @@ services:
       - "3001:3001"
     environment:
       - PORT=3001
+      - DB=pg
     volumes:
       - ./packages/backend:/app
       - /app/node_modules
     restart: unless-stopped
     networks:
       - stock-simulator-network
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:3001/health"]
+      interval: 5s
+      timeout: 30s
+      retries: 10
 
   frontend:
     build:
@@ -35,10 +44,33 @@ services:
       - ./packages/frontend:/app
       - /app/node_modules
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     restart: unless-stopped
     networks:
       - stock-simulator-network
+
+  db:
+    image: postgres:18-alpine
+    container_name: stock-simulator-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=stock_simulator_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./packages/backend/database/pg/seed:/docker-entrypoint-initdb.d/
+    command: ["postgres", "-c", "log_statement=all"]
+    restart: unless-stopped
+    networks:
+      - stock-simulator-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 1s
+      timeout: 30s
+      retries: 10
+      # start_period: 30s
 
 networks:
   stock-simulator-network:

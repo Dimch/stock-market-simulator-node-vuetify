@@ -91,4 +91,4 @@ export class Stocks {
       this.setPrice({ticker: stock.ticker, price: Math.round(newPrice * 100) / 100});
     }
   }
-};
+}
