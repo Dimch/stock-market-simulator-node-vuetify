@@ -7,7 +7,9 @@
     "dev": "PORT=3001 nodemon ./src/server.js",
     "build": "echo 'Backend requires no build step'",
     "start": "node ./src/server.js",
-    "test": "node --test test/**/*.test.js"
+    "test": "node --test test/**/*.test.js",
+    "test:smoke:pg": "DB=pg PGHOST=localhost PGPORT=5432 PGDATABASE=stock_simulator_dev PGUSER=postgres PGPASSWORD=postgres vitest run smoke/postgres.compose.test.js",
+    "test:smoke:pg:compose": "node ./scripts/run-postgres-smoke.mjs"
   },
   "dependencies": {
     "argon2": "0.44.0",

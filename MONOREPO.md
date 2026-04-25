@@ -72,6 +72,7 @@ cd packages/backend
 npm run dev
 npm run start
 npm run test
+npm run test:smoke:pg:compose
 ```
 
 Default port: `3001`
@@ -83,6 +84,8 @@ Database behavior:
 - In the SQLite-backed host workflow, data is recreated whenever the backend process restarts.
 
 This distinction is important when you are debugging data access behavior or reproducing issues, because the active database engine and data lifetime depend on the workflow you choose.
+
+For a focused automated check of the Docker-only Postgres path, run `npm run test:smoke:pg:compose` from `packages/backend`. That command brings up the Compose `db` service if needed, waits for PostgreSQL health, runs the Vitest smoke test, and stops the database container afterward only if it started it.
 
 ### Frontend
 
@@ -173,6 +176,15 @@ Because the source directories are bind-mounted, you can edit files on the host 
 This change is significant for development workflow documentation because `npm run dev` and `npm run docker:up` no longer exercise the same database backend. Use host development for the lightest setup, and use Compose when you specifically need Postgres-backed behavior or a fuller multi-container environment.
 
 If you already have the stack running and only changed application source files, rebuilding is usually not necessary. If you changed dependencies or Dockerfiles, rebuild the images before starting the stack again.
+
+To verify the Postgres-backed backend path without manually managing the database container, you can also run:
+
+```bash
+cd packages/backend
+npm run test:smoke:pg:compose
+```
+
+This smoke test covers the seeded admin login flow and seeded stock data against PostgreSQL.
 
 ## Development Notes
 

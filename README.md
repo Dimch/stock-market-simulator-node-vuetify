@@ -57,6 +57,8 @@ The current Docker setup mounts the backend and frontend source trees into their
 
 In Docker Compose mode, the stack now includes a PostgreSQL container. The backend is configured with `DB=pg` in that environment, so this is the workflow to use when you want to exercise the Postgres-backed path instead of the default SQLite-backed host development mode.
 
+There is also a backend-specific automated smoke test for this Postgres path. From `packages/backend`, run `npm run test:smoke:pg:compose` to start the Compose-managed database if needed, wait for it to become healthy, run the Vitest smoke check, and stop that database container afterward if the script started it.
+
 Default access points:
 
 - Frontend: `http://localhost:3000`

@@ -9,13 +9,15 @@ types.setTypeParser(types.builtins.DATE, dateTimeParser);
 types.setTypeParser(types.builtins.NUMERIC, (value) => value ? parseFloat(value) : 0);
 
 const config = {
-  host: 'stock-simulator-db',
-  database: 'stock_simulator_dev',
-  user: 'postgres',
-  password: 'postgres',
+  host: process.env.PGHOST || 'stock-simulator-db',
+  port: Number(process.env.PGPORT || '5432'),
+  database: process.env.PGDATABASE || 'stock_simulator_dev',
+  user: process.env.PGUSER || 'postgres',
+  password: process.env.PGPASSWORD || 'postgres',
 };
 const pool = new Pool(config);
 
 export const exec = queryConf => pool.query(queryConf);
 export const rows = get('rows');
 export const one = flow([rows, first]);
+export const close = () => pool.end();
