@@ -1,6 +1,5 @@
 import {defineStore} from 'pinia';
 import {useAuthApi, useStockAuthApi} from '@/api/authApi.js';
-import {get} from 'lodash';
 
 const strategyConfig = {
   admin: {
@@ -34,6 +33,7 @@ export const useAuthStore = strategy => defineStore('auth' + strategy?.toUpperCa
       router.value.push(returnUrl.value || redirectRoute.value);
     } catch (err) {
       console.error('Login error:', err);
+      throw err;
     }
   };
   const logout = async () => {
