@@ -17,10 +17,13 @@ const routes = [
   CustomerRoutes,
 ];
 
-export const createAppRouter = (history = createWebHistory(import.meta.env.BASE_URL)) => {
+export const createAppRouter = (
+  history = createWebHistory(import.meta.env.BASE_URL),
+  routeDefinitions = routes,
+) => {
   const router = createRouter({
     history,
-    routes,
+    routes: routeDefinitions,
   });
 
   // Authentication guard

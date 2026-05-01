@@ -21,6 +21,61 @@ vi.mock('@/stores/ui', () => ({
 
 import {createAppRouter} from '@/router';
 
+const StubPage = {
+  render: () => null,
+};
+
+const testRoutes = [
+  {
+    path: '/',
+    name: 'Landing',
+    component: StubPage,
+    meta: {
+      requiresAuth: false,
+    },
+  },
+  {
+    path: '/login',
+    name: 'AdminAuthentication',
+    component: StubPage,
+    meta: {
+      requiresAuth: false,
+    },
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: StubPage,
+    meta: {
+      requiresAuth: false,
+    },
+  },
+  {
+    path: '/console/admin/dashboards/market',
+    name: 'Market',
+    component: StubPage,
+    meta: {
+      requiresAuth: true,
+      authStrategy: 'admin',
+      loginRoute: '/login',
+    },
+  },
+  {
+    path: '/console/admin/dashboards/security',
+    name: 'Security',
+    component: StubPage,
+    meta: {
+      requiresAuth: true,
+      authStrategy: 'admin',
+      loginRoute: '/login',
+    },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/404',
+  },
+];
+
 const createAuthStore = (overrides = {}) => ({
   isAuthenticated: vi.fn().mockResolvedValue(false),
   loginRoute: '/login',
@@ -65,7 +120,7 @@ describe('app router guards', () => {
   });
 
   it('redirects unauthenticated users to the login page and remembers the target route', async () => {
-    const router = createAppRouter(createMemoryHistory());
+    const router = createAppRouter(createMemoryHistory(), testRoutes);
 
     await router.push('/console/admin/dashboards/market');
 
@@ -79,7 +134,7 @@ describe('app router guards', () => {
 
   it('does not fetch a csrf token again when one is already present', async () => {
     routerStoreMocks.csrfStore = createCsrfStore({token: 'existing-csrf-token'});
-    const router = createAppRouter(createMemoryHistory());
+    const router = createAppRouter(createMemoryHistory(), testRoutes);
 
     await router.push('/console/admin/dashboards/market');
 
@@ -93,7 +148,7 @@ describe('app router guards', () => {
       returnUrl: '/console/admin/dashboards/security',
     });
 
-    const router = createAppRouter(createMemoryHistory());
+    const router = createAppRouter(createMemoryHistory(), testRoutes);
     await router.push('/login');
 
     expect(router.currentRoute.value.fullPath).toBe('/console/admin/dashboards/security');
@@ -106,7 +161,7 @@ describe('app router guards', () => {
       redirectRoute: '/console/admin/dashboards/market',
     });
 
-    const router = createAppRouter(createMemoryHistory());
+    const router = createAppRouter(createMemoryHistory(), testRoutes);
     await router.push('/login');
 
     expect(router.currentRoute.value.fullPath).toBe('/console/admin/dashboards/market');
