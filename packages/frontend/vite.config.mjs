@@ -36,6 +36,8 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.js'],
     css: true,
+    // Keep Vitest scoped to unit/integration tests so Playwright smoke specs stay out of root `npm test`.
+    include: ['./src/test/**/*.test.js'],
     server: {
       deps: {
         inline: ['vuetify'],
@@ -44,6 +46,7 @@ export default defineConfig({
     exclude: [
       'dist/**',
       'node_modules/**',
+      'smoke/**',
       'src/test/msw/**',
     ],
     coverage: {
