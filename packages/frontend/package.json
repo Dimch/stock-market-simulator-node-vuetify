@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": ""
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@fontsource/barlow": "5.2.8",
@@ -52,9 +54,14 @@
     "yup": "1.7.1"
   },
   "devDependencies": {
+    "@pinia/testing": "^1.0.3",
     "@vitejs/plugin-vue": "6.0.4",
+    "@vitest/coverage-v8": "^4.0.18",
+    "@vue/test-utils": "^2.4.10",
     "eslint": "9.39.3",
     "eslint-config-vuetify": "4.3.4",
+    "jsdom": "^29.1.1",
+    "msw": "^2.14.2",
     "sass-embedded": "1.97.3",
     "unplugin-auto-import": "19.3.0",
     "unplugin-fonts": "2.0.0",

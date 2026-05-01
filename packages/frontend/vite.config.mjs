@@ -31,6 +31,32 @@ const proxyConf = paths => Object.fromEntries(paths.map((path) => [path, backend
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.js'],
+    css: true,
+    server: {
+      deps: {
+        inline: ['vuetify'],
+      },
+    },
+    exclude: [
+      'dist/**',
+      'node_modules/**',
+      'src/test/msw/**',
+    ],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html'],
+      reportsDirectory: './coverage',
+      include: ['src/**/*.{js,vue}'],
+      exclude: [
+        'src/main.js',
+        'src/test/**',
+      ],
+    },
+  },
   plugins: [
     VueRouter(),
     Layouts(),
