@@ -4,6 +4,10 @@ import {createRateLimit} from '@/test/factories';
 import {hexColor} from '@/helper';
 import {createVChartStub, VChipStub} from '@/test/stubs/components';
 
+const SELECTORS = {
+  chip: '[data-test="chip"]',
+};
+
 describe('RateLimitCard', () => {
   let RateLimitCard;
   let mountWithApp;
@@ -74,7 +78,7 @@ describe('RateLimitCard', () => {
     expect(wrapper.text()).toContain('/2 minutes');
     expect(wrapper.text()).toContain('90%');
 
-    const chip = wrapper.get('[data-test="chip"]');
+    const chip = wrapper.get(SELECTORS.chip);
     expect(chip.attributes('data-color')).toBe('error');
     expect(chip.attributes('data-border')).toBe('error solid thin opacity-50');
 
@@ -115,7 +119,7 @@ describe('RateLimitCard', () => {
       },
     });
 
-    expect(successWrapper.get('[data-test="chip"]').attributes('data-color')).toBe('success');
-    expect(warningWrapper.get('[data-test="chip"]').attributes('data-color')).toBe('warning');
+    expect(successWrapper.get(SELECTORS.chip).attributes('data-color')).toBe('success');
+    expect(warningWrapper.get(SELECTORS.chip).attributes('data-color')).toBe('warning');
   });
 });

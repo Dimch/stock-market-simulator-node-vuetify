@@ -1,12 +1,20 @@
 import {vi} from 'vitest';
 
+export const ROUTER_TEST_PATHS = {
+  landing: '/',
+  login: '/login',
+  notFound: '/404',
+  marketDashboard: '/console/admin/dashboards/market',
+  securityDashboard: '/console/admin/dashboards/security',
+};
+
 export const RouterPageStub = {
   render: () => null,
 };
 
 export const routerTestRoutes = [
   {
-    path: '/',
+    path: ROUTER_TEST_PATHS.landing,
     name: 'Landing',
     component: RouterPageStub,
     meta: {
@@ -14,7 +22,7 @@ export const routerTestRoutes = [
     },
   },
   {
-    path: '/login',
+    path: ROUTER_TEST_PATHS.login,
     name: 'AdminAuthentication',
     component: RouterPageStub,
     meta: {
@@ -22,7 +30,7 @@ export const routerTestRoutes = [
     },
   },
   {
-    path: '/404',
+    path: ROUTER_TEST_PATHS.notFound,
     name: '404',
     component: RouterPageStub,
     meta: {
@@ -30,35 +38,35 @@ export const routerTestRoutes = [
     },
   },
   {
-    path: '/console/admin/dashboards/market',
+    path: ROUTER_TEST_PATHS.marketDashboard,
     name: 'Market',
     component: RouterPageStub,
     meta: {
       requiresAuth: true,
       authStrategy: 'admin',
-      loginRoute: '/login',
+      loginRoute: ROUTER_TEST_PATHS.login,
     },
   },
   {
-    path: '/console/admin/dashboards/security',
+    path: ROUTER_TEST_PATHS.securityDashboard,
     name: 'Security',
     component: RouterPageStub,
     meta: {
       requiresAuth: true,
       authStrategy: 'admin',
-      loginRoute: '/login',
+      loginRoute: ROUTER_TEST_PATHS.login,
     },
   },
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/404',
+    redirect: ROUTER_TEST_PATHS.notFound,
   },
 ];
 
 export const createAuthStoreMock = (overrides = {}) => ({
   isAuthenticated: vi.fn().mockResolvedValue(false),
-  loginRoute: '/login',
-  redirectRoute: '/console/admin/dashboards/market',
+  loginRoute: ROUTER_TEST_PATHS.login,
+  redirectRoute: ROUTER_TEST_PATHS.marketDashboard,
   returnUrl: null,
   $patch: vi.fn(function patch(values) {
     Object.assign(this, values);

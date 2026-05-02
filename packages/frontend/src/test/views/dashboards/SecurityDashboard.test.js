@@ -39,4 +39,3 @@ describe('SecurityDashboard', () => {
     expect(wrapper.get('[data-test="rate-limit-list"]').text()).toBe('list');
   });
 });
-

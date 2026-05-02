@@ -4,6 +4,11 @@ import {flushPromises} from '@vue/test-utils';
 import LoginForm from '@/views/authentication/LoginForm.vue';
 import {mountWithApp} from '@/test/renderWithApp';
 
+const EMAIL_INPUT_SELECTOR = 'input[aria-label="email"]';
+const PASSWORD_INPUT_SELECTOR = 'input[aria-label="password"]';
+const FORM_SELECTOR = 'form';
+const PASSWORD_TOGGLE_SELECTOR = '.v-icon';
+
 const mountLoginForm = () => mountWithApp(LoginForm, {
   routes: [
     {
@@ -71,9 +76,9 @@ describe('LoginForm', () => {
 
     const {wrapper} = await mountLoginForm();
 
-    await wrapper.find('input[aria-label="email"]').setValue(' admin@example.com ');
-    await wrapper.find('input[aria-label="password"]').setValue('password');
-    await wrapper.find('form').trigger('submit');
+    await wrapper.find(`${EMAIL_INPUT_SELECTOR}`).setValue(' admin@example.com ');
+    await wrapper.find(`${PASSWORD_INPUT_SELECTOR}`).setValue('password');
+    await wrapper.find(`${FORM_SELECTOR}`).trigger('submit');
     await flushPromises();
 
     expect(loginFormStoreMocks.authStore.login).toHaveBeenCalledWith('admin@example.com', 'password');
@@ -84,7 +89,7 @@ describe('LoginForm', () => {
 
     const {wrapper} = await mountLoginForm();
 
-    await wrapper.find('form').trigger('submit');
+    await wrapper.find(`${FORM_SELECTOR}`).trigger('submit');
     await flushPromises();
 
     expect(loginFormStoreMocks.authStore.login).toHaveBeenCalledTimes(1);
@@ -94,11 +99,11 @@ describe('LoginForm', () => {
   it('toggles the password field visibility', async () => {
     const {wrapper} = await mountLoginForm();
 
-    expect(wrapper.find('input[aria-label="password"]').attributes('type')).toBe('password');
+    expect(wrapper.find(`${PASSWORD_INPUT_SELECTOR}`).attributes('type')).toBe('password');
 
-    await wrapper.find('.v-icon').trigger('click');
+    await wrapper.find(`${PASSWORD_TOGGLE_SELECTOR}`).trigger('click');
     await nextTick();
 
-    expect(wrapper.find('input[aria-label="password"]').attributes('type')).toBe('text');
+    expect(wrapper.find(`${PASSWORD_INPUT_SELECTOR}`).attributes('type')).toBe('text');
   });
 });

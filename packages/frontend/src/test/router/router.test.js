@@ -2,6 +2,7 @@ import {beforeEach, describe, expect, it, vi} from 'vitest';
 import {createMemoryHistory} from 'vue-router';
 import {createAppRouter} from '@/router';
 import {
+  ROUTER_TEST_PATHS,
   createAuthStoreMock,
   createCsrfStoreMock,
   createUiStoreMock,
@@ -37,11 +38,11 @@ describe('app router guards', () => {
   it('redirects unauthenticated users to the login page and remembers the target route', async () => {
     const router = createAppRouter(createMemoryHistory(), routerTestRoutes);
 
-    await router.push('/console/admin/dashboards/market');
+    await router.push(ROUTER_TEST_PATHS.marketDashboard);
 
-    expect(router.currentRoute.value.fullPath).toBe('/login');
-    expect(routerStoreMocks.authStore.$patch).toHaveBeenCalledWith({returnUrl: '/console/admin/dashboards/market'});
-    expect(routerStoreMocks.authStore.returnUrl).toBe('/console/admin/dashboards/market');
+    expect(router.currentRoute.value.fullPath).toBe(ROUTER_TEST_PATHS.login);
+    expect(routerStoreMocks.authStore.$patch).toHaveBeenCalledWith({returnUrl: ROUTER_TEST_PATHS.marketDashboard});
+    expect(routerStoreMocks.authStore.returnUrl).toBe(ROUTER_TEST_PATHS.marketDashboard);
     expect(routerStoreMocks.csrfStore.fetchToken).toHaveBeenCalledTimes(1);
     expect(routerStoreMocks.uiStore.transitions).toContain(true);
     expect(routerStoreMocks.uiStore.isLoading).toBe(false);
@@ -51,34 +52,34 @@ describe('app router guards', () => {
     routerStoreMocks.csrfStore = createCsrfStoreMock({token: 'existing-csrf-token'});
     const router = createAppRouter(createMemoryHistory(), routerTestRoutes);
 
-    await router.push('/console/admin/dashboards/market');
+    await router.push(ROUTER_TEST_PATHS.marketDashboard);
 
-    expect(router.currentRoute.value.fullPath).toBe('/login');
+    expect(router.currentRoute.value.fullPath).toBe(ROUTER_TEST_PATHS.login);
     expect(routerStoreMocks.csrfStore.fetchToken).not.toHaveBeenCalled();
   });
 
   it('redirects authenticated users away from the login page to their return URL', async () => {
     routerStoreMocks.authStore = createAuthStoreMock({
       isAuthenticated: vi.fn().mockResolvedValue(true),
-      returnUrl: '/console/admin/dashboards/security',
+      returnUrl: ROUTER_TEST_PATHS.securityDashboard,
     });
 
     const router = createAppRouter(createMemoryHistory(), routerTestRoutes);
-    await router.push('/login');
+    await router.push(ROUTER_TEST_PATHS.login);
 
-    expect(router.currentRoute.value.fullPath).toBe('/console/admin/dashboards/security');
+    expect(router.currentRoute.value.fullPath).toBe(ROUTER_TEST_PATHS.securityDashboard);
   });
 
   it('redirects authenticated users from the login page to the default dashboard when no return URL is set', async () => {
     routerStoreMocks.authStore = createAuthStoreMock({
       isAuthenticated: vi.fn().mockResolvedValue(true),
       returnUrl: null,
-      redirectRoute: '/console/admin/dashboards/market',
+      redirectRoute: ROUTER_TEST_PATHS.marketDashboard,
     });
 
     const router = createAppRouter(createMemoryHistory(), routerTestRoutes);
-    await router.push('/login');
+    await router.push(ROUTER_TEST_PATHS.login);
 
-    expect(router.currentRoute.value.fullPath).toBe('/console/admin/dashboards/market');
+    expect(router.currentRoute.value.fullPath).toBe(ROUTER_TEST_PATHS.marketDashboard);
   });
 });

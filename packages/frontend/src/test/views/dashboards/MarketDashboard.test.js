@@ -1,6 +1,16 @@
 import {beforeEach, describe, expect, it, vi} from 'vitest';
 import {createModelValueButtonStub, createPropTextStub} from '@/test/stubs/widgets';
 
+const SELECTORS = {
+  chartTicker: '[data-test="chart-ticker"]',
+  stockList: '[data-test="stock-list"]',
+};
+
+const TICKERS = {
+  default: 'ZVEX',
+  next: 'ACME',
+};
+
 const StockPriceRangeStub = createPropTextStub({
   name: 'StockPriceRange',
   propName: 'ticker',
@@ -10,7 +20,7 @@ const StockPriceRangeStub = createPropTextStub({
 const StockListStub = createModelValueButtonStub({
   name: 'StockList',
   testId: 'stock-list',
-  nextValue: 'ACME',
+  nextValue: TICKERS.next,
 });
 
 describe('MarketDashboard', () => {
@@ -35,11 +45,11 @@ describe('MarketDashboard', () => {
   it('wires the selected ticker from the stock list into the chart widget', async () => {
     const {wrapper} = await mountWithApp(MarketDashboard);
 
-    expect(wrapper.get('[data-test="chart-ticker"]').text()).toBe('ZVEX');
-    expect(wrapper.get('[data-test="stock-list"]').text()).toBe('ZVEX');
+    expect(wrapper.get(SELECTORS.chartTicker).text()).toBe(TICKERS.default);
+    expect(wrapper.get(SELECTORS.stockList).text()).toBe(TICKERS.default);
 
-    await wrapper.get('[data-test="stock-list"]').trigger('click');
+    await wrapper.get(SELECTORS.stockList).trigger('click');
 
-    expect(wrapper.get('[data-test="chart-ticker"]').text()).toBe('ACME');
+    expect(wrapper.get(SELECTORS.chartTicker).text()).toBe(TICKERS.next);
   });
 });
