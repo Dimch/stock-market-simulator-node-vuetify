@@ -1,5 +1,5 @@
 <script setup>
-import {computed, defineProps, ref} from 'vue';
+import {computed, ref} from 'vue';
 import {useQuery} from '@pinia/colada';
 import {useTheme} from 'vuetify';
 import {use} from 'echarts/core';
@@ -66,12 +66,12 @@ const chartOptions = computed(() => ({
 }));
 
 const periodOptions = [
-  {title: '1 hour', value: 1 * 60},
+  {title: '1 hour', value: 60},
   {title: '6 hours', value: 6 * 60},
   {title: '12 hours', value: 12 * 60},
   {title: '24 hours', value: 24 * 60},
 ];
-const periodRange = ref(1 * 60); // last hour data with 1 min interval
+const periodRange = ref(60); // last hour data with 1 min interval
 
 const adminApi = useAdminApi();
 const {data: stock, refresh: refreshStock} = useQuery({

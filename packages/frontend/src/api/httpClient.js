@@ -6,6 +6,11 @@ import {useCsrfStore} from '@/stores/csrf.js';
 const clients = {};
 
 export const data = get('data');
+export const resetClients = () => {
+  for (const key of Object.keys(clients)) {
+    delete clients[key];
+  }
+};
 
 const isInvalidCsrfError = err => err.response?.status === 419 && err.response?.data === 'invalid csrf token';
 
@@ -28,7 +33,7 @@ export const useClient = (baseURL = '', config) => {
     rax(axiosInstance, {
       retries: 1,
       retryCondition: isInvalidCsrfError,
-      onRetry: async(err) => {
+      onRetry: async () => {
         const csrfStore = useCsrfStore();
         await csrfStore.fetchToken();
       },

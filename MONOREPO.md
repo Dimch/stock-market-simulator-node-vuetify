@@ -102,6 +102,8 @@ cd packages/frontend
 npm run dev
 npm run build
 npm run preview
+npx playwright install chromium
+npm run test:smoke
 ```
 
 Default port: `3000`
@@ -131,6 +133,15 @@ Run tests:
 ```bash
 npm run test
 ```
+
+Run the frontend browser smoke suite:
+
+```bash
+npx playwright install chromium
+npm run test:smoke:frontend
+```
+
+The Playwright browser install only needs to be done the first time on a machine, or when the Playwright version changes.
 
 Lint the monorepo:
 
@@ -185,6 +196,30 @@ npm run test:smoke:pg:compose
 ```
 
 This smoke test covers the seeded admin login flow and seeded stock data against PostgreSQL.
+
+## Frontend Smoke Suite
+
+The frontend package also includes a thin Playwright smoke suite under `packages/frontend/smoke`. It starts the backend and frontend on the host, then verifies the core admin browser path:
+
+- redirect from a protected admin route to `/login`
+- seeded admin login through the real form
+- market dashboard load
+- security dashboard load
+
+Run it from the root:
+
+```bash
+npx playwright install chromium
+npm run test:smoke:frontend
+```
+
+Or from the frontend package:
+
+```bash
+cd packages/frontend
+npx playwright install chromium
+npm run test:smoke
+```
 
 ## Development Notes
 

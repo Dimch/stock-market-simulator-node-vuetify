@@ -99,7 +99,7 @@ const dark = {
   },
 };
 
-export default createVuetify({
+export const createAppVuetify = () => createVuetify({
   icons: {
     defaultSet: 'mdi',
   },
@@ -123,3 +123,5 @@ export default createVuetify({
     },
   },
 });
+
+export default createAppVuetify();

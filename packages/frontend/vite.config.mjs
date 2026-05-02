@@ -31,6 +31,35 @@ const proxyConf = paths => Object.fromEntries(paths.map((path) => [path, backend
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.js'],
+    css: true,
+    // Keep Vitest scoped to unit/integration tests so Playwright smoke specs stay out of root `npm test`.
+    include: ['./src/test/**/*.test.js'],
+    server: {
+      deps: {
+        inline: ['vuetify'],
+      },
+    },
+    exclude: [
+      'dist/**',
+      'node_modules/**',
+      'smoke/**',
+      'src/test/msw/**',
+    ],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html'],
+      reportsDirectory: './coverage',
+      include: ['src/**/*.{js,vue}'],
+      exclude: [
+        'src/main.js',
+        'src/test/**',
+      ],
+    },
+  },
   plugins: [
     VueRouter(),
     Layouts(),

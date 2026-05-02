@@ -71,10 +71,25 @@ Default access points:
 npm run dev
 npm run build
 npm run test
+npx playwright install chromium
+npm run test:smoke:frontend
 npm run lint
 npm run docker:up
 npm run docker:down
 ```
+
+## Frontend Smoke Tests
+
+The repository now includes a thin Playwright smoke suite for the browser application. It starts the backend and frontend locally, then verifies the core admin flow: protected-route redirect, admin login, market dashboard load, and security dashboard load.
+
+Run it from the monorepo root:
+
+```bash
+npx playwright install chromium
+npm run test:smoke:frontend
+```
+
+The browser install only needs to be done the first time on a machine, or after Playwright version changes.
 
 ## Project Status
 
